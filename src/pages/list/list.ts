@@ -16,6 +16,8 @@ import { ItemService } from '../../providers/item-service';
 
 export class ListPage {
     public items: any;
+    lat: number = 51.678418;
+    lng: number = 7.809007;
 
     constructor(public navCtrl: NavController,
                 public itemService: ItemService) {}
