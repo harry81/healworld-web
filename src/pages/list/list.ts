@@ -16,8 +16,8 @@ import { ItemService } from '../../providers/item-service';
 
 export class ListPage {
     public items: any;
-    lat: number = 51.678418;
-    lng: number = 7.809007;
+    public lat: number;
+    public lng: number;
 
     constructor(public navCtrl: NavController,
                 public itemService: ItemService) {}
@@ -25,6 +25,7 @@ export class ListPage {
     ionViewDidLoad() {
         console.log('Hello ListPage Page');
         this.loadItem();
+        this.setLocation(this);
     }
 
     loadItem(){
@@ -32,6 +33,21 @@ export class ListPage {
             .then(data => {
                 this.items = data.results;
             });
-        console.log('items', this.items);
+    }
+
+    setLocation(self){
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                console.log('pos', pos);
+                self.lat = pos.lat;
+                self.lng = pos.lng;
+            });
+        }
     }
 }
