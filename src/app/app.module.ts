@@ -7,6 +7,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { DetailPage } from '../pages/detail/detail';
 import { TabsPage } from '../pages/tabs/tabs';
 
 
@@ -17,6 +18,7 @@ import { TabsPage } from '../pages/tabs/tabs';
         ContactPage,
         HomePage,
         ListPage,
+        DetailPage,
         TabsPage],
     imports: [
         IonicModule.forRoot(MyApp),
@@ -30,6 +32,7 @@ import { TabsPage } from '../pages/tabs/tabs';
         ContactPage,
         HomePage,
         ListPage,
+        DetailPage,
         TabsPage
     ],
     providers: []
