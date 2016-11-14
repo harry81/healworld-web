@@ -1,0 +1,17 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>post</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="onPost(this.files)">
+    <label for="fileElem">사진 올리기</label>
+
+    <div>
+        <input type="file" multiple (change)="onPost(input)" #input />
+    </div>
+
+</ion-content>

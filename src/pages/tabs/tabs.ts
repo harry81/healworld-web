@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { ListPage } from '../list/list';
 import { AboutPage } from '../about/about';
+import { PostPage } from '../post/post';
 import { ContactPage } from '../contact/contact';
 
 @Component({
@@ -15,6 +16,7 @@ export class TabsPage {
   tab2Root: any = AboutPage;
   tab3Root: any = ContactPage;
   tab4Root: any = ListPage;
+  tabPostRoot: any = PostPage;
 
   constructor() {
 

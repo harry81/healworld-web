@@ -5,7 +5,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ItemService {
     public data: any;
-    public url: string= 'http://saveworld-backend.gm347t2p7n.ap-northeast-2.elasticbeanstalk.com/api-item';
+    // public url: string= 'http://saveworld-backend.gm347t2p7n.ap-northeast-2.elasticbeanstalk.com/api-item';
+    public url: string= 'http://localhost:8000/api-item/';
 
     constructor(public http: Http) {
         console.log('Hello ItemService Provider');
