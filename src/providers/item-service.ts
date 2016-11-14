@@ -33,17 +33,17 @@ export class ItemService {
         formData.append("itemshot", file);
         formData.append("item", 1);
 
-        console.log('post Image', file);
-
-        this.http
-            .post(this.baseUrl + 'api-image/',
-                  formData)
-            .map(response => response.json())
-            .subscribe(
-                response => console.log('uploading an image Complete', response),
-                this.logError,
-                () => console.log('Authentication Complete')
-            );
+        return new Promise(resolve => {
+            this.http
+                .post(this.baseUrl + 'api-image/',
+                      formData)
+                .map(response => response.json())
+                .subscribe(
+                    response => {
+                        resolve(response);
+                    }
+                );
+        })
     }
 
 }

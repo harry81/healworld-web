@@ -8,6 +8,7 @@ import { ItemService } from '../../providers/item-service';
     providers: [ItemService]
 })
 export class PostPage {
+    public preview: any;
 
     constructor(public navCtrl: NavController,
                 public itemService: ItemService) {}
@@ -17,7 +18,11 @@ export class PostPage {
     }
 
     onPost(input) {
-        this.itemService.postImage(input.files[0]);
+        this.itemService.postImage(input.files[0])
+            .then(data => {
+                console.log('response', data);
+                this.preview = data.itemshot.thumbnail__300x200;
+            });
     }
 
 }
