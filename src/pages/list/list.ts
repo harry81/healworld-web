@@ -22,7 +22,7 @@ export class ListPage {
     }
 
     loadItem(){
-        this.itemService.load()
+        this.itemService.loadItem()
             .then(data => {
                 this.items = data.results.features;
             });

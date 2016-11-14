@@ -1,27 +1,23 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { ItemService } from '../../providers/item-service';
 
-/*
-  Generated class for the Post page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
     selector: 'page-post',
-    templateUrl: 'post.html'
+    templateUrl: 'post.html',
+    providers: [ItemService]
 })
 export class PostPage {
 
-    constructor(public navCtrl: NavController) {}
+    constructor(public navCtrl: NavController,
+                public itemService: ItemService) {}
 
     ionViewDidLoad() {
         console.log('Hello PostPage Page');
     }
 
     onPost(input) {
-        console.log(input.files);
-        console.log(input.files[0]);
+        this.itemService.postImage(input.files[0]);
     }
 
 }
