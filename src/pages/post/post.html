@@ -1,18 +1,40 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>post</ion-title>
+    <ion-title>자원 등록</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-    <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="onPost(this.files)">
-    <label for="fileElem">사진 올리기</label>
 
-    <div>
-        <input type="file" multiple (change)="onPost(input)" #input />
-    </div>
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
 
-    <img src="{{preview}}">
+        <ion-item>
+            <ion-label>제목</ion-label>
+            <ion-input formControlName="memo" placeholder="가방 팝니다" name="memo"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>가격</ion-label>
+            <ion-select formControlName="price">
+                <ion-option value="1000" selected="true">1000</ion-option>
+                <ion-option value="2000">2000</ion-option>
+                <ion-option value="3000">3000</ion-option>
+                <ion-option value="4000">4000</ion-option>
+                <ion-option value="5000">5000</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <input type="file" multiple (change)="onPostImage(input)" #input />
+            <input type="hidden" name="itemshot" formControlName="itemshot" />
+        </ion-item>
+
+        <ion-item>
+            <img src="{{preview}}">
+        </ion-item>
+
+        <button ion-button full type="submit" [disabled]="!postForm.valid">등록완료</button>
+    </form>
 </ion-content>
