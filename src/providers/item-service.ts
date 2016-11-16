@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -36,6 +36,20 @@ export class ItemService {
         return new Promise(resolve => {
             this.http
                 .post(this.baseUrl + 'api-image/',
+                      formData)
+                .map(response => response.json())
+                .subscribe(
+                    response => {
+                        resolve(response);
+                    }
+                );
+        })
+    }
+
+    postItem(formData){
+        return new Promise(resolve => {
+            this.http
+                .post(this.baseUrl + 'api-item/',
                       formData)
                 .map(response => response.json())
                 .subscribe(
