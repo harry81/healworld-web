@@ -11,6 +11,7 @@ import { ItemService } from '../../providers/item-service';
 export class PostPage {
     public preview: any;
     public postForm: any;
+    public response: any;
 
     constructor(public navCtrl: NavController,
                 public itemService: ItemService,
@@ -23,7 +24,7 @@ export class PostPage {
             'price': [
                 '3000', Validators.compose([Validators.required])
             ],
-            'itemshot': [
+            'image_ids': [
                 ''
             ]
         });
@@ -33,18 +34,33 @@ export class PostPage {
         console.log('Hello PostPage Page');
     }
 
+    popView(){
+        this.navCtrl.pop();
+    }
+
     onPostImage(input) {
         this.itemService.postImage(input.files[0])
             .then(data => {
                 console.log('response', data);
-                this.preview = data.itemshot.thumbnail__300x200;
-                this.postForm.value['itemshot'] = data.id;
-                console.log('postForm', this.postForm);
+                this.response = data; // Property 'itemshot' does not exist on type '{}'
+
+                this.preview = this.response.itemshot.thumbnail__300x200;
+                this.postForm.value['image_ids'] = this.response.id;
+                this.postForm.value['user'] = 1; // TODO : use real user id
             });
     }
 
     onSubmit() {
         console.log('submit', this.postForm.value);
         this.itemService.postItem(this.postForm.value);
+        this.clearPostForm();
+    }
+
+    clearPostForm() {
+        this.postForm.reset();
+
+        this.preview = null;
+        this.postForm.value['itemshot'] = null;
+
     }
 }

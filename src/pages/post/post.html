@@ -1,8 +1,8 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>자원 등록</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>자원 등록</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -27,8 +27,8 @@
         </ion-item>
 
         <ion-item>
-            <input type="file" multiple (change)="onPostImage(input)" #input />
-            <input type="hidden" name="itemshot" formControlName="itemshot" />
+            <input type="file" multiple (change)="onPostImage(input)" formControlName="image_ids" #input capture="camera" />
+            <input type="hidden" name="image_ids"  />
         </ion-item>
 
         <ion-item>
