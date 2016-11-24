@@ -27,9 +27,8 @@ export class PostPage {
             'price': [
                 '3000', Validators.compose([Validators.required])
             ],
-            'image_ids': [
-                ''
-            ]
+            'image_ids': [''],
+            'point': [''],
         });
     }
 
@@ -42,6 +41,7 @@ export class PostPage {
     }
 
     onPostImage(input) {
+        this.getAddress()
         this.itemService.postImage(input.files[0])
             .then(data => {
                 this.response = data; // Property 'itemshot' does not exist on type '{}'
@@ -49,6 +49,7 @@ export class PostPage {
                 this.preview = this.response.itemshot.thumbnail__300x200;
                 this.postForm.value['image_ids'] = this.response.id;
                 this.postForm.value['user'] = 1; // TODO : use real user id
+                this.postForm.value['point'] = `POINT (${this.position.coords.longitude} ${this.position.coords.latitude} )`
             });
     }
 
