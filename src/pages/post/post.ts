@@ -10,8 +10,11 @@ import { ItemService } from '../../providers/item-service';
 })
 export class PostPage {
     public preview: any;
+    public address: string;
     public postForm: any;
     public response: any;
+
+    public position: any;
 
     constructor(public navCtrl: NavController,
                 public itemService: ItemService,
@@ -31,7 +34,7 @@ export class PostPage {
     }
 
     ionViewDidLoad() {
-        console.log('Hello PostPage Page');
+        this.getCurrentLocation();
     }
 
     popView(){
@@ -41,7 +44,6 @@ export class PostPage {
     onPostImage(input) {
         this.itemService.postImage(input.files[0])
             .then(data => {
-                console.log('response', data);
                 this.response = data; // Property 'itemshot' does not exist on type '{}'
 
                 this.preview = this.response.itemshot.thumbnail__300x200;
@@ -51,16 +53,32 @@ export class PostPage {
     }
 
     onSubmit() {
-        console.log('submit', this.postForm.value);
         this.itemService.postItem(this.postForm.value);
         this.clearPostForm();
     }
 
     clearPostForm() {
         this.postForm.reset();
-
         this.preview = null;
         this.postForm.value['itemshot'] = null;
+    }
 
+    getCurrentLocation(){
+        this.itemService.getPosition()
+            .then(position =>{
+                console.log(position);
+                this.position = position;
+            },
+                  error => alert(error));
+    }
+
+    getAddress(){
+        this.itemService.getAddress(this.position.coords.latitude,
+                                    this.position.coords.longitude)
+            .then((response) => {
+                console.log(response['results'][0]);
+
+                this.address = response['results'][0]['formatted_address'];
+            })
     }
 }

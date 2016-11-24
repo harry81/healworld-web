@@ -32,9 +32,15 @@
         </ion-item>
 
         <ion-item>
+            {{address}}
+        </ion-item>
+
+        <ion-item>
             <img src="{{preview}}">
         </ion-item>
 
         <button ion-button full type="submit" [disabled]="!postForm.valid">등록완료</button>
     </form>
+    <button ion-button full (click)="getCurrentLocation()">getCurrentLocation</button>
+    <button ion-button full (click)="getAddress()">getAddress</button>
 </ion-content>
