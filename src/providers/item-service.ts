@@ -71,8 +71,10 @@ export class ItemService {
                 position => {
                     resolve(position);
                 },
-                () => {
-                    reject('Position could not be determined.');
+                (error) => {
+                    console.log('message', error.message);
+                    reject('code: '    + error.code    + '\n' +
+                           'message: ' + error.message + '\n');
                 },
                 {
                     enableHighAccuracy: true
