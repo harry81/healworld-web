@@ -18,12 +18,11 @@
     <ion-card *ngFor="let item of items" (click)="itemTapped(item)">
       <ion-item >
         <ion-avatar item-left>
-          <ion-icon ios="logo-android" md="logo-android"></ion-icon>
+          <img data-gender="genderless" data-src="{{item.properties.user.profile_picture}}" class="iconic" alt="person" />
         </ion-avatar>
         <h2>{{item.properties.user.username}}</h2>
       </ion-item>
 
-      <ion-icon name="add-circle"></ion-icon>
       <div *ngFor="let image of item.properties.images">
         <img height="200" src="{{image.itemshot.thumbnail__300x200}}">
       </div>
@@ -47,8 +46,14 @@
         </ion-col>
         <ion-col center text-center>
           <ion-note>
-            11h ago
+            {{item.properties.price}}
           </ion-note>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col center text-center>
+            {{item.properties.address}} new address
         </ion-col>
       </ion-row>
 

@@ -48,14 +48,17 @@ export class PostPage {
 
                 this.preview = this.response.itemshot.thumbnail__300x200;
                 this.postForm.value['image_ids'] = this.response.id;
-                this.postForm.value['user'] = 1; // TODO : use real user id
+                this.postForm.value['user_id'] = 1; // TODO : use real user id
                 this.postForm.value['point'] = `POINT (${this.position.coords.longitude} ${this.position.coords.latitude} )`
             });
     }
 
     onSubmit() {
-        this.itemService.postItem(this.postForm.value);
-        this.clearPostForm();
+        this.itemService.postItem(this.postForm.value)
+            .then(response => {
+                this.clearPostForm();
+                this.navCtrl.pop();
+            });
     }
 
     clearPostForm() {
