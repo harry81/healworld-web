@@ -59,7 +59,7 @@ export class PostPage {
         this.itemService.postItem(this.postForm.value)
             .then(response => {
                 this.clearPostForm();
-                this.navCtrl.pop();
+                // move after submitting form data
             });
     }
 

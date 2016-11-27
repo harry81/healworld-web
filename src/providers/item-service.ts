@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 export class ItemService {
     public data: any;
 
-    // public baseUrl: string= 'http://saveworld-backend.gm347t2p7n.ap-northeast-2.elasticbeanstalk.com/';
+    // public baseUrl: string= 'https://backend.healworld.co.kr/';
     public baseUrl: string= 'http://localhost:8000/';
     public gmapUrl: string= 'https://maps.googleapis.com/maps/api/geocode/json\?types\=political';
     public gmapKey: string= 'AIzaSyDRCEiyDSW4JsDxFe7bJ17w9cpnLljvEQA';
@@ -15,13 +15,21 @@ export class ItemService {
         console.log('Hello ItemService Provider');
     }
 
-    loadItem() {
+
+    loadItem(item_id="") {
         if (this.data) {
             return Promise.resolve(this.data);
         }
 
+        let url = this.baseUrl + 'api-item/';
+        if (item_id != ''){
+            url = url + item_id + '/';
+        }
+
+        console.log('url', url);
+
         return new Promise(resolve => {
-            this.http.get(this.baseUrl + 'api-item/')
+            this.http.get(url)
                 .map(res => res.json())
                 .subscribe(data => {
                     this.data = data;

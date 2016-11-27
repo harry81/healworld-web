@@ -1,37 +1,34 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ItemService } from '../../providers/item-service';
 
 @Component({
-  selector: 'page-detail',
-  templateUrl: 'detail.html'
+    selector: 'page-detail',
+    templateUrl: 'detail.html',
+    providers: [ItemService]
 })
+
 export class DetailPage {
     public lat: number;
     public lng: number;
     public item: any;
 
-    constructor(public navCtrl: NavController, public params:NavParams) {
+    constructor(public navCtrl: NavController,
+                public params:NavParams,
+                public itemService: ItemService) {
+
         this.item = params.get("item");
-        console.log('item', this.item);
     }
 
     ionViewDidLoad() {
-        console.log('Hello DetailPage Page');
-        this.setLocation(this);
+        this.loadItem(this.item);
     }
 
-    setLocation(self){
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-
-                self.lat = pos.lat;
-                self.lng = pos.lng;
+    loadItem(item){
+        this.itemService.loadItem(item.properties.pk)
+            .then(data => {
+                this.lat = data['geometry']['coordinates'][1];
+                this.lng = data['geometry']['coordinates'][0];
             });
-        }
     }
 }
