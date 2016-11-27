@@ -29,6 +29,7 @@ export class PostPage {
             ],
             'image_ids': [''],
             'point': [''],
+            'address': [''],
         });
     }
 
@@ -49,7 +50,8 @@ export class PostPage {
                 this.preview = this.response.itemshot.thumbnail__300x200;
                 this.postForm.value['image_ids'] = this.response.id;
                 this.postForm.value['user_id'] = 1; // TODO : use real user id
-                this.postForm.value['point'] = `POINT (${this.position.coords.longitude} ${this.position.coords.latitude} )`
+                this.postForm.value['point'] = `POINT (${this.position.coords.longitude} ${this.position.coords.latitude} )`;
+                this.postForm.value['address'] = this.address;
             });
     }
 

@@ -41,7 +41,7 @@
         <ion-col>
           <button ion-button color="primary" clear small icon-left>
             <ion-icon name='text'></ion-icon>
-            4 Comments
+            {{item.properties.created_at | date : format : timezone}}
           </button>
         </ion-col>
         <ion-col center text-center>
@@ -53,7 +53,7 @@
 
       <ion-row>
         <ion-col center text-center>
-            {{item.properties.address}} new address
+            {{item.properties.address}}
         </ion-col>
       </ion-row>
 
