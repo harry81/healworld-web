@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>List</ion-title>
+    <ion-item>
+      <ion-input type="search" placeholder="검색어"></ion-input>
+    </ion-item>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content class="home">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
 
   <ion-list>
     <ion-card *ngFor="let item of items" (click)="itemTapped(item)">

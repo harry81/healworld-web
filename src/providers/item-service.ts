@@ -17,10 +17,6 @@ export class ItemService {
 
 
     loadItem(item_id="") {
-        if (this.data) {
-            return Promise.resolve(this.data);
-        }
-
         let url = this.baseUrl + 'api-item/';
         if (item_id != ''){
             url = url + item_id + '/';

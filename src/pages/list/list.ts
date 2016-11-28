@@ -22,6 +22,7 @@ export class ListPage {
     }
 
     loadItem(){
+        console.log('loadItem in list');
         this.itemService.loadItem()
             .then(data => {
                 this.items = data.results.features;
@@ -32,5 +33,15 @@ export class ListPage {
         this.navCtrl.push(DetailPage, {
             item: item
         });
+    }
+
+    doRefresh(refresher) {
+        console.log('Begin async operation', refresher);
+
+        this.itemService.loadItem()
+            .then(data => {
+                this.items = data.results.features;
+                refresher.complete();
+            });
     }
 }
