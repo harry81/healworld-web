@@ -2,10 +2,24 @@ page-list {
 
 }
 
+.toolbar-md {
+    padding: 0px;
+}
+
 .sebm-google-map-container {
     height: 300px;
 }
 
-  .social-cards ion-col {
-    padding: 0;
+.card-md {
+    margin: 0;
+    width: calc(100% - 0px);
+}
+
+ .list-title {
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #889785;
+    text-align:center;
   }
