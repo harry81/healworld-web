@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ViewController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 import { ItemService } from '../../providers/item-service';
+
 
 @Component({
     selector: 'page-post',
@@ -17,6 +18,7 @@ export class PostPage {
     public position: any;
 
     constructor(public navCtrl: NavController,
+                public viewCtrl: ViewController,
                 public itemService: ItemService,
                 private formBuilder: FormBuilder) {
 
@@ -60,6 +62,7 @@ export class PostPage {
             .then(response => {
                 this.clearPostForm();
                 // move after submitting form data
+                this.viewCtrl.dismiss();
             });
     }
 

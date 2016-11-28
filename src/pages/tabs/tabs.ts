@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-
+import { ModalController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ListPage } from '../list/list';
 import { AboutPage } from '../about/about';
-import { PostPage } from '../post/post';
 import { ContactPage } from '../contact/contact';
+import { PostPage } from '../post/post';
+
 
 @Component({
   templateUrl: 'tabs.html'
@@ -18,7 +19,12 @@ export class TabsPage {
   tab4Root: any = ListPage;
   tabPostRoot: any = PostPage;
 
-  constructor() {
+    constructor(public modalCtrl: ModalController) {
 
-  }
+    }
+
+    presentAddModal(){
+        let profileModal = this.modalCtrl.create(PostPage);
+        profileModal.present();
+    }
 }

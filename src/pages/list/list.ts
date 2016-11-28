@@ -12,8 +12,6 @@ import { DetailPage } from '../detail/detail';
 export class ListPage {
     public items: any;
 
-    detailPage = DetailPage;
-
     constructor(public navCtrl: NavController,
                 public itemService: ItemService) {}
 
@@ -21,11 +19,15 @@ export class ListPage {
         this.loadItem();
     }
 
+    updateItem(data){
+        this.items = data.results.features;
+    }
+
     loadItem(){
         console.log('loadItem in list');
         this.itemService.loadItem()
             .then(data => {
-                this.items = data.results.features;
+                this.updateItem(data);
             });
     }
 
@@ -36,11 +38,9 @@ export class ListPage {
     }
 
     doRefresh(refresher) {
-        console.log('Begin async operation', refresher);
-
         this.itemService.loadItem()
             .then(data => {
-                this.items = data.results.features;
+                this.updateItem(data);
                 refresher.complete();
             });
     }
