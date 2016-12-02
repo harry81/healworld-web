@@ -23,7 +23,7 @@
     <ion-card *ngFor="let item of items" (click)="itemTapped(item)">
       <ion-item >
         <ion-avatar item-left>
-          <img data-src="{{item.properties.user.profile_picture}}" />
+          <img data-src="{{item.properties.user.profile_picture.thumbnail__50x50}}" />
         </ion-avatar>
         <h2>{{item.properties.user.username}}</h2>
       </ion-item>
