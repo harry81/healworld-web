@@ -60,8 +60,6 @@ export class PostPage {
     onSubmit() {
         this.itemService.postItem(this.postForm.value)
             .then(response => {
-                this.clearPostForm();
-                // move after submitting form data
                 this.viewCtrl.dismiss();
             });
     }

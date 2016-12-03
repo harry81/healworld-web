@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ItemService } from '../../providers/item-service';
 import { DetailPage } from '../detail/detail';
+import { PostPage } from '../post/post';
 
 @Component({
     selector: 'page-list',
@@ -35,6 +36,10 @@ export class ListPage {
         this.navCtrl.push(DetailPage, {
             item: item
         });
+    }
+
+    addItem() {
+        this.navCtrl.push(PostPage);
     }
 
     doRefresh(refresher) {

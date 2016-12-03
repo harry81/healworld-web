@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ListPage } from '../list/list';
 import { AboutPage } from '../about/about';
@@ -19,12 +19,7 @@ export class TabsPage {
   tab4Root: any = ListPage;
   tabPostRoot: any = PostPage;
 
-    constructor(public modalCtrl: ModalController) {
+    constructor(public navCtrl: NavController) {
 
-    }
-
-    presentAddModal(){
-        let profileModal = this.modalCtrl.create(PostPage);
-        profileModal.present();
     }
 }

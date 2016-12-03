@@ -1,9 +1,3 @@
-<!--
-  Generated template for the List page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -13,11 +7,15 @@
 </ion-header>
 
 <ion-content class="home">
-
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
 
+    <ion-refresher-content
+       pullingIcon="arrow-dropdown"
+       pullingText="Pull to refresh"
+       refreshingSpinner="circles"
+       refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
 
   <ion-list>
     <ion-card *ngFor="let item of items" (click)="itemTapped(item)">
@@ -58,10 +56,15 @@
 
       <ion-row>
         <ion-col center text-center>
-            {{item.properties.address}}
+          {{item.properties.address}}
         </ion-col>
       </ion-row>
 
     </ion-card>
   </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="addItem()">+</button>
+  </ion-fab>
+
 </ion-content>
