@@ -11,6 +11,7 @@ import { ItemService } from '../../providers/item-service';
 export class DetailPage {
     public lat: number;
     public lng: number;
+    public zoom: number;
     public item: any;
 
     constructor(public navCtrl: NavController,
@@ -29,6 +30,7 @@ export class DetailPage {
             .then(data => {
                 this.lat = data['geometry']['coordinates'][1];
                 this.lng = data['geometry']['coordinates'][0];
+                this.zoom = 12;
             });
     }
 }
