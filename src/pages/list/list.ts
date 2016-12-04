@@ -74,7 +74,8 @@ export class ListPage {
 
     doInfinite(infiniteScroll) {
         setTimeout(() => {
-            this.loadItem();
+            if (this.next_url != null)
+                this.loadItem();
             infiniteScroll.complete();
         }, 500);
     }
