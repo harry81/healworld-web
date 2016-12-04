@@ -19,8 +19,13 @@
 
     <ion-item >
       {{item.properties.address}}
-      <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-        <sebm-google-map-circle [latitude]="lat" [longitude]="lng" [clickable]="true" fillColor="#010101" [radius]="1000"></sebm-google-map-circle>
+      <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="true">
+        <sebm-google-map-circle [latitude]="lat" [longitude]="lng" [clickable]="true"
+                                fillColor="#010101" [radius]="1000" [fillOpacity]="0.1"></sebm-google-map-circle>
+
+        <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [label]="'M'">
+        </sebm-google-map-marker>
+
       </sebm-google-map>
     </ion-item>
   </ion-card>

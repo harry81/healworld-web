@@ -96,7 +96,8 @@ export class ItemService {
         let params: URLSearchParams = new URLSearchParams();
         params.set('latlng', `${lat},${lng}`);
         params.set('language', 'ko');
-        params.set('location_type', 'ROOFTOP');
+        params.set('location_type', 'APPROXIMATE');
+        params.set('result_type', 'political|sublocality|postal_code');
         params.set('key', this.gmapKey);
 
         return new Promise(resolve => {
