@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{item.properties.memo}}</ion-title>
+    <ion-title>등록된 자원</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -8,25 +8,25 @@
 
   <ion-card>
     <ion-item>
-      {{item.properties.price}}
-    </ion-item >
+      <div class="list-title">{{item.properties.memo}}</div>
+    </ion-item>
 
     <ion-item>
       <div *ngFor="let image of item.properties.images">
         <img height="200" src="{{image.itemshot.thumbnail__400x400}}">
       </div>
+      <p>{{item.properties.price}}</p>
+      <p>{{item.properties.created_at | date : format : timezone}}</p>
     </ion-item>
 
     <ion-item >
-      {{item.properties.address}}
       <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="true">
         <sebm-google-map-circle [latitude]="lat" [longitude]="lng" [clickable]="true"
                                 fillColor="#010101" [radius]="1000" [fillOpacity]="0.1"></sebm-google-map-circle>
-
         <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [label]="'M'">
         </sebm-google-map-marker>
-
       </sebm-google-map>
+      <h2>{{item.properties.address}}</h2>
     </ion-item>
   </ion-card>
 

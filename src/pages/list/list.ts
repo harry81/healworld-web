@@ -13,6 +13,7 @@ import { PostPage } from '../post/post';
 export class ListPage {
     public items: any[];
     public next_url: string;
+    public search_input: string="Heal World";
 
     constructor(public navCtrl: NavController,
                 public itemService: ItemService) {}
@@ -78,5 +79,9 @@ export class ListPage {
                 this.loadItem();
             infiniteScroll.complete();
         }, 500);
+    }
+
+    onSearchInput(searchbar){
+
     }
 }
