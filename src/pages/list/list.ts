@@ -11,7 +11,8 @@ import { PostPage } from '../post/post';
 })
 
 export class ListPage {
-    public items: any;
+    public items: any[];
+    public next_url: string;
 
     constructor(public navCtrl: NavController,
                 public itemService: ItemService) {}
@@ -21,12 +22,33 @@ export class ListPage {
     }
 
     updateItem(data){
-        this.items = data.results.features;
+
+        if (this.items == null){
+            this.items = data.results.features;
+        }
+
+        else {
+            for (let idx_data in data.results.features) {
+                let obj = data.results.features[idx_data];
+                let exist = false;
+
+                for (let idx_item in this.items) {
+                    if (this.items[idx_item].properties.pk == obj.properties.pk){
+                        exist = true;
+                        break;
+                    }
+                }
+
+                if (exist == false){
+                    this.items.push(obj);
+                }
+            }
+        }
+        this.next_url = data.next;
     }
 
     loadItem(){
-        console.log('loadItem in list');
-        this.itemService.loadItem()
+        this.itemService.loadItem("", this.next_url)
             .then(data => {
                 this.updateItem(data);
             });
@@ -48,5 +70,12 @@ export class ListPage {
                 this.updateItem(data);
                 refresher.complete();
             });
+    }
+
+    doInfinite(infiniteScroll) {
+        setTimeout(() => {
+            this.loadItem();
+            infiniteScroll.complete();
+        }, 500);
     }
 }

@@ -16,12 +16,15 @@ export class ItemService {
     }
 
 
-    loadItem(item_id="") {
+    loadItem(item_id="", next_url="") {
         let url = this.baseUrl + 'api-item/';
         if (item_id != ''){
             url = url + item_id + '/';
         }
 
+        if (next_url != ''){
+            url = next_url;
+        }
         console.log('url', url);
 
         return new Promise(resolve => {
