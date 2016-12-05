@@ -18,7 +18,7 @@ export class ItemService {
     }
 
     setBaseUrl(){
-        if (window.location.href.indexOf('backend') > -1)
+        if (window.location.href.indexOf('healworld.co.kr') > -1)
             this.baseUrl = 'https://backend.healworld.co.kr/';
     }
 
