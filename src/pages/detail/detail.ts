@@ -7,7 +7,7 @@ import { ItemService } from '../../providers/item-service';
 @Component({
     selector: 'page-detail',
     templateUrl: 'detail.html',
-    providers: [ItemService]
+    providers: [ItemService],
 })
 
 export class DetailPage {

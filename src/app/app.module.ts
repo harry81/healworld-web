@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import {MomentModule} from 'angular2-moment/moment.module';
 
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
@@ -26,7 +27,8 @@ import { TabsPage } from '../pages/tabs/tabs';
         IonicModule.forRoot(MyApp),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyDRCEiyDSW4JsDxFe7bJ17w9cpnLljvEQA'
-        })],
+        }),
+        MomentModule],
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,

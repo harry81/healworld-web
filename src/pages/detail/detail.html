@@ -38,7 +38,8 @@
         </ion-avatar>
         <h2>{{ comment.user_name }}</h2>
         <h3>{{ comment.comment }}</h3>
-        <p>{{ comment.submit_date | date : format : timezone}}</p>
+        <p>{{ comment.submit_date | amTimeAgo}}</p>
+
       </ion-item>
     </ion-list>
 
