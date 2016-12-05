@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { URLSearchParams } from '@angular/http';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 import { ItemService } from '../../providers/item-service';
@@ -43,7 +44,10 @@ export class DetailPage {
     }
 
     loadComment() {
-        this.itemService.loadComment()
+        let params: URLSearchParams = new URLSearchParams();
+        params.set('object_pk', this.item.properties.pk);
+
+        this.itemService.loadComment(params)
             .subscribe(res => {
                 this.comments = res;
             });
@@ -53,7 +57,8 @@ export class DetailPage {
         console.log('postcomment', this.postForm.value['comment_input']);
         this.postForm.value['content_type'] = 8; // content type of Item
         this.postForm.value['site'] = 1;
-        this.postForm.value['object_pk'] = this.item;
+        this.postForm.value['user_name'] = this.item.properties.user.username;
+        this.postForm.value['object_pk'] = this.item.properties.pk;
 
         this.itemService.postComment(this.postForm.value)
             .then(response => {

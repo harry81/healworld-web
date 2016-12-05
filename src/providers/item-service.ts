@@ -119,9 +119,8 @@ export class ItemService {
 
     }
 
-    loadComment() {
+    loadComment(params) {
         let url = this.baseUrl + 'api-comment/';
-        let params: URLSearchParams = new URLSearchParams();
 
         return this.http.get(url, {search: params})
                 .map(res => res.json());
