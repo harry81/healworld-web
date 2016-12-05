@@ -6,15 +6,21 @@ import 'rxjs/add/operator/map';
 export class ItemService {
     public data: any;
 
-    // public baseUrl: string= 'https://backend.healworld.co.kr/';
     public baseUrl: string= 'http://localhost:8000/';
     public gmapUrl: string= 'https://maps.googleapis.com/maps/api/geocode/json\?types\=political';
     public gmapKey: string= 'AIzaSyDRCEiyDSW4JsDxFe7bJ17w9cpnLljvEQA';
 
+    // http://localhost:8000/api-item/?dist=4&point=128.507629,36.1459654&search=%E3%85%8E%E3%85%8E%E3%85%8E
+
     constructor(public http: Http) {
-        console.log('Hello ItemService Provider');
+        this.setBaseUrl();
+        console.log('this.baseUrl', this.baseUrl);
     }
 
+    setBaseUrl(){
+        if (window.location.href.indexOf('backend') > -1)
+            this.baseUrl = 'https://backend.healworld.co.kr/';
+    }
 
     loadItem(item_id="", next_url="") {
         let url = this.baseUrl + 'api-item/';
@@ -102,7 +108,7 @@ export class ItemService {
 
         return new Promise(resolve => {
             this.http
-                .get(this.gmapUrl , {search: params})
+                .get(this.gmapUrl, {search: params})
                 .map(response => response.json())
                 .subscribe(
                     response => {
@@ -111,6 +117,28 @@ export class ItemService {
                 );
         })
 
+    }
+
+    loadComment() {
+        let url = this.baseUrl + 'api-comment/';
+        let params: URLSearchParams = new URLSearchParams();
+
+        return this.http.get(url, {search: params})
+                .map(res => res.json());
+    }
+
+    postComment(formData){
+        return new Promise(resolve => {
+            this.http
+                .post(this.baseUrl + 'api-comment/',
+                      formData)
+                .map(response => response.json())
+                .subscribe(
+                    response => {
+                        resolve(response);
+                    }
+                );
+        })
     }
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { FormBuilder } from '@angular/forms';
 import { ItemService } from '../../providers/item-service';
 
 @Component({
@@ -13,24 +14,52 @@ export class DetailPage {
     public lng: number;
     public zoom: number;
     public item: any;
+    public comments: any;
+    public postForm: any;
 
     constructor(public navCtrl: NavController,
                 public params:NavParams,
+                private formBuilder: FormBuilder,
                 public itemService: ItemService) {
 
         this.item = params.get("item");
+        this.postForm = this.formBuilder.group({
+            'comment': ['']
+        });
     }
 
     ionViewDidLoad() {
         this.loadItem(this.item);
+        this.loadComment();
     }
 
-    loadItem(item){
+    loadItem(item) {
         this.itemService.loadItem(item.properties.pk)
             .then(data => {
                 this.lat = data['geometry']['coordinates'][1];
                 this.lng = data['geometry']['coordinates'][0];
-                this.zoom = 12;
+                this.zoom = 14;
+            });
+    }
+
+    loadComment() {
+        this.itemService.loadComment()
+            .subscribe(res => {
+                this.comments = res;
+            });
+    }
+
+    postComment() {
+        console.log('postcomment', this.postForm.value['comment_input']);
+        this.postForm.value['content_type'] = 8; // content type of Item
+        this.postForm.value['site'] = 1;
+        this.postForm.value['object_pk'] = this.item;
+
+        this.itemService.postComment(this.postForm.value)
+            .then(response => {
+                this.postForm.value['submit_date'] = Date.now();
+                this.comments.unshift(this.postForm.value);
+                this.postForm.reset();
             });
     }
 }
