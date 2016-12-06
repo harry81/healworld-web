@@ -22,15 +22,37 @@ export class ItemService {
             this.baseUrl = 'https://backend.healworld.co.kr/';
     }
 
-    loadItem(item_id="", next_url="") {
+    loadItems(params) {
+        let url = this.baseUrl + 'api-item/';
+
+        return new Promise(resolve => {
+            this.http.get(url, {search: params})
+                .map(res => res.json())
+                .subscribe(data => {
+                    this.data = data;
+                    resolve(this.data);
+                });
+        });
+    }
+
+    loadItemsbyUrl(url) {
+        return new Promise(resolve => {
+            this.http.get(url)
+                .map(res => res.json())
+                .subscribe(data => {
+                    this.data = data;
+                    resolve(this.data);
+                });
+        });
+    }
+
+    loadItem(item_id="") {
+
         let url = this.baseUrl + 'api-item/';
         if (item_id != ''){
             url = url + item_id + '/';
         }
 
-        if (next_url != ''){
-            url = next_url;
-        }
         console.log('url', url);
 
         return new Promise(resolve => {

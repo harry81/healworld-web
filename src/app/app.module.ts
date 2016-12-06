@@ -12,6 +12,7 @@ import { DetailPage } from '../pages/detail/detail';
 import { PostPage } from '../pages/post/post';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DesktopPage } from '../pages/desktop/desktop';
+import { MapPage } from '../pages/map/map';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { DesktopPage } from '../pages/desktop/desktop';
         DetailPage,
         PostPage,
         DesktopPage,
+        MapPage,
         TabsPage],
     imports: [
         IonicModule.forRoot(MyApp),
@@ -41,6 +43,7 @@ import { DesktopPage } from '../pages/desktop/desktop';
         DetailPage,
         PostPage,
         DesktopPage,
+        MapPage,
         TabsPage
     ],
     providers: []

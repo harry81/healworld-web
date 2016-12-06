@@ -4,6 +4,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 import { ItemService } from '../../providers/item-service';
 
+import { MapPage } from '../map/map';
+
+
 @Component({
     selector: 'page-detail',
     templateUrl: 'detail.html',
@@ -66,5 +69,13 @@ export class DetailPage {
                 this.comments.unshift(this.postForm.value);
                 this.postForm.reset();
             });
+    }
+
+    showMap() {
+        this.navCtrl.push(MapPage, {
+            lat: this.lat,
+            lng: this.lng,
+            zoom: this.zoom
+        });
     }
 }
