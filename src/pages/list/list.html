@@ -4,7 +4,8 @@
     <ion-searchbar
        placeholder = "Heal World"
        [showCancelButton]="shouldShowCancel"
-       (ionCancel)="onSearchCancel($event)">
+       (ionCancel)="onSearchCancel($event)"
+       (ionInput)="onSearchInput($event)">
     </ion-searchbar>
   </ion-navbar>
 
@@ -42,7 +43,7 @@
         <ion-col>
           <button ion-button color="primary" clear small icon-left>
             <ion-icon name='thumbs-up'></ion-icon>
-            12 Likes
+            {{ item.properties.cnt_of_comments }} Comments
           </button>
         </ion-col>
         <ion-col>

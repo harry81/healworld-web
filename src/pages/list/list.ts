@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { URLSearchParams } from '@angular/http';
 import { NavController } from 'ionic-angular';
 import { ItemService } from '../../providers/item-service';
 import { DetailPage } from '../detail/detail';
@@ -15,16 +16,22 @@ export class ListPage {
     public next_url: string;
     public search_input: string="Heal World";
 
-    constructor(public navCtrl: NavController,
-                public itemService: ItemService) {}
+    public params: URLSearchParams = new URLSearchParams();
 
-    ionViewDidLoad() {
-        this.loadItem();
+
+    constructor(public navCtrl: NavController,
+                public itemService: ItemService) {
+        // params.set('dist', `3`);
+        // params.set('point', `118.507629,36.1459654`);
+        this.params.set('search', ``);
     }
 
-    updateItem(data){
+    ionViewDidLoad() {
+        this.loadItems(true);
+    }
 
-        if (this.items == null){
+    updateItem(data, overwrite=false){
+        if (overwrite == true) {
             this.items = data.results.features;
         }
 
@@ -41,17 +48,21 @@ export class ListPage {
                 }
 
                 if (exist == false){
-                    this.items.push(obj);
+                    if (data.previous != null)
+                        this.items.push(obj);
+                    else {
+                        this.items.unshift(obj);
+                    }
                 }
             }
         }
         this.next_url = data.next;
     }
 
-    loadItem(){
-        this.itemService.loadItem("", this.next_url)
+    loadItems(overwrite=false){
+        this.itemService.loadItems(this.params)
             .then(data => {
-                this.updateItem(data);
+                this.updateItem(data, overwrite);
             });
     }
 
@@ -66,7 +77,7 @@ export class ListPage {
     }
 
     doRefresh(refresher) {
-        this.itemService.loadItem()
+        this.itemService.loadItems(this.params)
             .then(data => {
                 this.updateItem(data);
                 refresher.complete();
@@ -76,12 +87,18 @@ export class ListPage {
     doInfinite(infiniteScroll) {
         setTimeout(() => {
             if (this.next_url != null)
-                this.loadItem();
+                this.itemService.loadItemsbyUrl(this.next_url)
+                .then(data => {
+                    this.updateItem(data);
+                })
             infiniteScroll.complete();
         }, 500);
     }
 
-    onSearchInput(searchbar){
+    onSearchInput(ev){
+        let val = ev.target.value;
+        this.params.set('search', val);
 
+        this.loadItems(true);
     }
 }

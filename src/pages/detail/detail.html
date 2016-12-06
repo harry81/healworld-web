@@ -15,16 +15,14 @@
       <div *ngFor="let image of item.properties.images">
         <img height="200" src="{{image.itemshot.thumbnail__400x400}}">
       </div>
-      <p>{{item.properties.price}}</p>
-      <p>{{item.properties.created_at | date : format : timezone}}</p>
+      <p>{{item.properties.price}} /
+      {{item.properties.created_at | date : format : timezone}}</p>
     </ion-item>
 
     <ion-item >
-      <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="true">
-        <sebm-google-map-circle [latitude]="lat" [longitude]="lng" [clickable]="true"
-                                fillColor="#010101" [radius]="500" [fillOpacity]="0.1"></sebm-google-map-circle>
-      </sebm-google-map>
-      <h2>{{item.properties.address}}</h2>
+      <p>{{item.properties.address}}
+        <button mini (click)="showMap()"><ion-icon name="map"></ion-icon></button>
+        </p>
     </ion-item>
 
     <form [formGroup]="postForm" (ngSubmit)="postComment()">
@@ -33,12 +31,18 @@
 
     <ion-list>
       <ion-item *ngFor="let comment of comments">
+
         <ion-avatar item-left>
-          <img src="img/avatar-finn.png">
+          <ion-icon name="person"></ion-icon>
         </ion-avatar>
-        <h2>{{ comment.user_name }}</h2>
-        <h3>{{ comment.comment }}</h3>
-        <p>{{ comment.submit_date | amTimeAgo}}</p>
+
+        <ion-row>
+          <h4><b>{{ comment.user_name }}</b>&nbsp;{{ comment.comment }}</h4>
+        </ion-row>
+
+        <ion-row>
+            <p>{{ comment.submit_date | amTimeAgo}}</p>
+        </ion-row>
 
       </ion-item>
     </ion-list>
