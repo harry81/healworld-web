@@ -27,6 +27,7 @@ export class ListPage {
     }
 
     ionViewWillEnter() {
+        if (this.items == null)
         this.loadItems(true);
     }
 
