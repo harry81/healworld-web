@@ -16,7 +16,7 @@
 
   <script>
   if (('serviceWorker' in navigator) &&
-      (window.location.href.indexOf('backend') > -1)) {
+      (window.location.href.indexOf('healworld') > -1)) {
     navigator.serviceWorker.register('service-worker.js')
       .then(() => console.log('service worker installed'))
       .catch(err => console.log('Error', err));
