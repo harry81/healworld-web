@@ -57,7 +57,6 @@ export class DetailPage {
     }
 
     postComment() {
-        console.log('postcomment', this.postForm.value['comment_input']);
         this.postForm.value['content_type'] = 8; // content type of Item
         this.postForm.value['site'] = 1;
         this.postForm.value['user_name'] = this.item.properties.user.username;

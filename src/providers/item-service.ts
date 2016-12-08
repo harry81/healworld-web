@@ -14,7 +14,6 @@ export class ItemService {
 
     constructor(public http: Http) {
         this.setBaseUrl();
-        console.log('this.baseUrl', this.baseUrl);
     }
 
     setBaseUrl(){
@@ -53,8 +52,6 @@ export class ItemService {
             url = url + item_id + '/';
         }
 
-        console.log('url', url);
-
         return new Promise(resolve => {
             this.http.get(url)
                 .map(res => res.json())
@@ -67,6 +64,8 @@ export class ItemService {
 
     postImage(file){
         let formData = new FormData();
+
+        console.log('postImage in service');
 
         formData.append("itemshot", file);
         formData.append("item", 1);
@@ -100,7 +99,6 @@ export class ItemService {
 
     getPosition() {
         // http://stackoverflow.com/questions/37296876/my-position-gets-returned-too-fast-how-to-make-a-promise
-        console.log('Getting position');
         let promise = new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(
                 position => {
