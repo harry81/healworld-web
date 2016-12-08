@@ -26,8 +26,11 @@ export class ListPage {
         this.params.set('search', ``);
     }
 
-    ionViewDidLoad() {
+    ionViewWillEnter() {
         this.loadItems(true);
+    }
+
+    ionViewDidLoad() {
     }
 
     updateItem(data, overwrite=false){
