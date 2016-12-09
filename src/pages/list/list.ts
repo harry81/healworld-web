@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { ItemService } from '../../providers/item-service';
 import { DetailPage } from '../detail/detail';
 import { PostPage } from '../post/post';
@@ -15,12 +15,20 @@ export class ListPage {
     public items: any[];
     public next_url: string;
     public search_input: string="Heal World";
+    public loader: any;
 
     public params: URLSearchParams = new URLSearchParams();
 
+    constructor(public navCtrl: NavController
+                ,public itemService: ItemService
+                ,public loadingCtrl: LoadingController) {
 
-    constructor(public navCtrl: NavController,
-                public itemService: ItemService) {
+        this.loader = this.loadingCtrl.create({
+            content: "Please wait...",
+            duration: 3000
+        });
+
+
         // params.set('dist', `3`);
         // params.set('point', `118.507629,36.1459654`);
         this.params.set('search', ``);
@@ -64,9 +72,13 @@ export class ListPage {
     }
 
     loadItems(overwrite=false){
+        this.loader.present();
+
         this.itemService.loadItems(this.params)
             .subscribe(data => {
                 this.updateItem(data, overwrite);
+                this.loader.dismiss();
+
             });
     }
 
