@@ -39,7 +39,7 @@ export class DetailPage {
 
     loadItem(item) {
         this.itemService.loadItem(item.properties.pk)
-            .then(data => {
+            .subscribe(data => {
                 this.lat = data['geometry']['coordinates'][1];
                 this.lng = data['geometry']['coordinates'][0];
                 this.zoom = 14;
@@ -63,7 +63,7 @@ export class DetailPage {
         this.postForm.value['object_pk'] = this.item.properties.pk;
 
         this.itemService.postComment(this.postForm.value)
-            .then(response => {
+            .subscribe(response => {
                 this.postForm.value['submit_date'] = Date.now();
                 this.comments.unshift(this.postForm.value);
                 this.postForm.reset();

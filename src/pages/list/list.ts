@@ -65,7 +65,7 @@ export class ListPage {
 
     loadItems(overwrite=false){
         this.itemService.loadItems(this.params)
-            .then(data => {
+            .subscribe(data => {
                 this.updateItem(data, overwrite);
             });
     }
@@ -82,7 +82,7 @@ export class ListPage {
 
     doRefresh(refresher) {
         this.itemService.loadItems(this.params)
-            .then(data => {
+            .subscribe(data => {
                 this.updateItem(data);
                 refresher.complete();
             });
@@ -92,7 +92,7 @@ export class ListPage {
         setTimeout(() => {
             if (this.next_url != null)
                 this.itemService.loadItemsbyUrl(this.next_url)
-                .then(data => {
+                .subscribe(data => {
                     this.updateItem(data);
                 })
             infiniteScroll.complete();
