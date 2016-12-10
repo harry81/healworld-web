@@ -16,6 +16,7 @@ export class ListPage {
     public next_url: string;
     public search_input: string="Heal World";
     public loader: any;
+    public address: any = "모든 지역";
 
     public params: URLSearchParams = new URLSearchParams();
 
@@ -23,8 +24,6 @@ export class ListPage {
                 ,public itemService: ItemService
                 ,public loadingCtrl: LoadingController) {
 
-        // params.set('dist', `3`);
-        // params.set('point', `118.507629,36.1459654`);
         this.params.set('search', ``);
     }
 
@@ -117,6 +116,34 @@ export class ListPage {
     }
 
     locatePosition() {
-        console.log('locate ');
+        let distance : number = 10;
+
+        if (this.itemService.position != null) {
+            this.params.set('dist', null);
+            this.params.set('point', null);
+            this.address = "모든 지역";;
+            this.loadItems(true);
+        }
+
+        else {
+            this.itemService.getPosition()
+                .then(position =>{
+                    // step 1) set positional argument
+                    distance = distance * 1000;
+                    this.params.set('dist', distance.toString());
+                    this.params.set('point',
+                                    `${this.itemService.position.coords.longitude},${this.itemService.position.coords.latitude}`);
+
+                    // step 2) show address for user
+                    this.itemService.address.subscribe((response) => {
+                        console.log(response['results'][0]);
+                        this.address = response['results'][0]['formatted_address'];
+                    });
+
+                    // step 3) load items based on the position
+                    this.loadItems(true);
+                },
+                      error => alert(error));
+        }
     }
 }

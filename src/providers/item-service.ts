@@ -5,6 +5,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ItemService {
     public data: any;
+    public position: any;
+    public address: any;
 
     public baseUrl: string= 'http://localhost:8000/';
     public gmapUrl: string= 'https://maps.googleapis.com/maps/api/geocode/json\?types\=political';
@@ -70,6 +72,10 @@ export class ItemService {
         let promise = new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(
                 position => {
+                    this.position = position;
+                    this.address = this.getAddress(
+                        this.position.coords.latitude,
+                        this.position.coords.longitude);
                     resolve(position);
                 },
                 (error) => {
