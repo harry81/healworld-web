@@ -24,25 +24,13 @@ export class ItemService {
     loadItems(params) {
         let url = this.baseUrl + 'api-item/';
 
-        return new Promise(resolve => {
-            this.http.get(url, {search: params})
-                .map(res => res.json())
-                .subscribe(data => {
-                    this.data = data;
-                    resolve(this.data);
-                });
-        });
+        return this.http.get(url, {search: params})
+            .map(res => res.json());
     }
 
     loadItemsbyUrl(url) {
-        return new Promise(resolve => {
-            this.http.get(url)
-                .map(res => res.json())
-                .subscribe(data => {
-                    this.data = data;
-                    resolve(this.data);
-                });
-        });
+        return this.http.get(url)
+            .map(res => res.json());
     }
 
     loadItem(item_id="") {
@@ -52,14 +40,8 @@ export class ItemService {
             url = url + item_id + '/';
         }
 
-        return new Promise(resolve => {
-            this.http.get(url)
-                .map(res => res.json())
-                .subscribe(data => {
-                    this.data = data;
-                    resolve(this.data);
-                });
-        });
+        return this.http.get(url)
+            .map(res => res.json());
     }
 
     postImage(file){
@@ -70,31 +52,17 @@ export class ItemService {
         formData.append("itemshot", file);
         formData.append("item", 1);
 
-        return new Promise(resolve => {
-            this.http
+        return this.http
                 .post(this.baseUrl + 'api-image/',
                       formData)
-                .map(response => response.json())
-                .subscribe(
-                    response => {
-                        resolve(response);
-                    }
-                );
-        })
+                .map(response => response.json());
     }
 
     postItem(formData){
-        return new Promise(resolve => {
-            this.http
-                .post(this.baseUrl + 'api-item/',
-                      formData)
-                .map(response => response.json())
-                .subscribe(
-                    response => {
-                        resolve(response);
-                    }
-                );
-        })
+        return this.http
+            .post(this.baseUrl + 'api-item/',
+                  formData)
+            .map(response => response.json());
     }
 
     getPosition() {
@@ -126,17 +94,9 @@ export class ItemService {
         params.set('result_type', 'political|sublocality|postal_code');
         params.set('key', this.gmapKey);
 
-        return new Promise(resolve => {
-            this.http
-                .get(this.gmapUrl, {search: params})
-                .map(response => response.json())
-                .subscribe(
-                    response => {
-                        resolve(response);
-                    }
-                );
-        })
-
+        return this.http
+            .get(this.gmapUrl, {search: params})
+            .map(response => response.json());
     }
 
     loadComment(params) {
@@ -147,17 +107,11 @@ export class ItemService {
     }
 
     postComment(formData){
-        return new Promise(resolve => {
-            this.http
-                .post(this.baseUrl + 'api-comment/',
-                      formData)
-                .map(response => response.json())
-                .subscribe(
-                    response => {
-                        resolve(response);
-                    }
-                );
-        })
+        return this.http
+            .post(this.baseUrl + 'api-comment/',
+                  formData)
+            .map(response => response.json());
+
     }
 
 }
