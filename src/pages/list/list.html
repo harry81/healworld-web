@@ -1,12 +1,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-searchbar
-       placeholder = "Heal World"
-       [showCancelButton]="shouldShowCancel"
-       (ionCancel)="onSearchCancel($event)"
-       (ionInput)="onSearchInput($event)">
-    </ion-searchbar>
+    <ion-row>
+      <ion-searchbar
+         placeholder = "Heal World"
+         [showCancelButton]="shouldShowCancel"
+         (ionCancel)="onSearchCancel($event)"
+         (search)="onSearchInput($event)">
+      </ion-searchbar>
+    </ion-row>
+
+    <ion-row>
+      <ion-col><p>전국</p>
+      </ion-col>
+      <ion-col right>
+        <button ion-button mini (click)="locatePosition()"><ion-icon name="md-locate"></ion-icon></button>
+      </ion-col>
+    </ion-row>
   </ion-navbar>
 
 </ion-header>
@@ -29,6 +39,8 @@
           <img data-src="{{item.properties.user.profile_picture.thumbnail__50x50}}" />
         </ion-avatar>
         <h2>{{item.properties.user.username}}</h2>
+        <p>{{item.properties.address}}</p>
+
       </ion-item>
 
       <div *ngFor="let image of item.properties.images">
@@ -56,12 +68,6 @@
           <ion-note>
             {{item.properties.price}}
           </ion-note>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col center text-center>
-          {{item.properties.address}}
         </ion-col>
       </ion-row>
 

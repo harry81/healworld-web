@@ -23,12 +23,6 @@ export class ListPage {
                 ,public itemService: ItemService
                 ,public loadingCtrl: LoadingController) {
 
-        this.loader = this.loadingCtrl.create({
-            content: "Please wait...",
-            duration: 3000
-        });
-
-
         // params.set('dist', `3`);
         // params.set('point', `118.507629,36.1459654`);
         this.params.set('search', ``);
@@ -72,6 +66,11 @@ export class ListPage {
     }
 
     loadItems(overwrite=false){
+        this.loader = this.loadingCtrl.create({
+            content: "Please wait...",
+            duration: 3000
+        });
+
         this.loader.present();
 
         this.itemService.loadItems(this.params)
@@ -114,7 +113,10 @@ export class ListPage {
     onSearchInput(ev){
         let val = ev.target.value;
         this.params.set('search', val);
-
         this.loadItems(true);
+    }
+
+    locatePosition() {
+        console.log('locate ');
     }
 }
