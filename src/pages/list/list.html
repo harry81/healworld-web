@@ -13,7 +13,7 @@
     <ion-row>
       <ion-col><p>전국</p>
       </ion-col>
-      <ion-col right>
+      <ion-col text-right>
         <button ion-button mini (click)="locatePosition()"><ion-icon name="md-locate"></ion-icon></button>
       </ion-col>
     </ion-row>
@@ -35,11 +35,25 @@
   <ion-list>
     <ion-card *ngFor="let item of items" (click)="itemTapped(item)">
       <ion-item >
+
         <ion-avatar item-left>
           <img data-src="{{item.properties.user.profile_picture.thumbnail__50x50}}" />
         </ion-avatar>
-        <h2>{{item.properties.user.username}}</h2>
-        <p>{{item.properties.address}}</p>
+        <ion-row>
+          <ion-col>
+            <b>{{item.properties.user.username}}</b>
+          </ion-col>
+
+          <ion-col class="date">
+            {{item.properties.created_at | amTimeAgo}}
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <p>{{item.properties.address}}
+          </ion-col>
+        </ion-row>
 
       </ion-item>
 
@@ -54,20 +68,13 @@
       <ion-row>
         <ion-col>
           <button ion-button color="primary" clear small icon-left>
-            <ion-icon name='thumbs-up'></ion-icon>
+            <ion-icon name="text"></ion-icon>
             {{ item.properties.cnt_of_comments }} Comments
           </button>
         </ion-col>
-        <ion-col>
-          <button ion-button color="primary" clear small icon-left>
-            <ion-icon name='text'></ion-icon>
-            {{item.properties.created_at | date : format : timezone}}
-          </button>
-        </ion-col>
-        <ion-col center text-center>
-          <ion-note>
-            {{item.properties.price}}
-          </ion-note>
+
+        <ion-col class="price" center>
+          {{item.properties.price}}
         </ion-col>
       </ion-row>
 
