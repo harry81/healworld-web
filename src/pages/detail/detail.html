@@ -13,7 +13,7 @@
 
     <ion-item>
       <div *ngFor="let image of item.properties.images">
-        <img height="200" src="{{image.itemshot.thumbnail__400x400}}">
+        <img src="{{image.itemshot.thumbnail__400x400}}">
       </div>
       <p>{{item.properties.price}} /
       {{item.properties.created_at | date : format : timezone}}</p>
