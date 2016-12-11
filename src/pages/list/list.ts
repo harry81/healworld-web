@@ -118,10 +118,10 @@ export class ListPage {
     locatePosition() {
         let distance : number = 10;
 
-        if (this.itemService.position != null) {
+        if (this.address != "모든 지역") {
             this.params.set('dist', null);
             this.params.set('point', null);
-            this.address = "모든 지역";;
+            this.address = "모든 지역";
             this.loadItems(true);
         }
 

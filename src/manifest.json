@@ -1,6 +1,6 @@
 {
-  "name": "Let's heal World",
-  "short_name": "Heal World!",
+  "name": "세상을 치유하는 가장 손쉬운 방법",
+  "short_name": "Heal the world!",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
