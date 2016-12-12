@@ -11,11 +11,10 @@
     </ion-row>
 
     <ion-row>
-      <ion-col width-75 center><p>{{address}}</p>
+      <ion-col width-75 text-center><p>{{address}}</p>
       </ion-col>
       <ion-col text-right>
         <button ion-button mini (click)="locatePosition()"><ion-icon name="md-locate"></ion-icon></button>
-        <a href="http://backend.healworld.co.kr/login/facebook/">facebook</a>
       </ion-col>
     </ion-row>
   </ion-navbar>
@@ -34,11 +33,11 @@
   </ion-refresher>
 
   <ion-list>
-    <ion-card *ngFor="let item of items" (click)="itemTapped(item)">
+    <ion-card *ngFor="let item of items">
       <ion-item >
 
         <ion-avatar item-left>
-          <img data-src="{{item.properties.user.profile_picture.thumbnail__50x50}}" />
+          <a href="http://backend.healworld.co.kr/login/facebook/"><img data-src="{{item.properties.user.profile_picture.thumbnail__50x50}}" /></a>
         </ion-avatar>
         <ion-row>
           <ion-col>
@@ -52,13 +51,13 @@
 
         <ion-row>
           <ion-col>
-            <p>{{item.properties.address}}
+            <p>{{item.properties.address}}</p>
           </ion-col>
         </ion-row>
 
       </ion-item>
 
-      <div *ngFor="let image of item.properties.images">
+      <div *ngFor="let image of item.properties.images" (click)="itemTapped(item)">
         <img height="95%" src="{{image.itemshot.thumbnail__300x200}}">
       </div>
 
