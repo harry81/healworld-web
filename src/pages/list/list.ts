@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { ItemService } from '../../providers/item-service';
 import { DetailPage } from '../detail/detail';
 import { PostPage } from '../post/post';
@@ -22,7 +22,8 @@ export class ListPage {
 
     constructor(public navCtrl: NavController
                 ,public itemService: ItemService
-                ,public loadingCtrl: LoadingController) {
+                ,public loadingCtrl: LoadingController
+                ,private toastCtrl: ToastController) {
 
         this.params.set('search', ``);
     }
@@ -143,7 +144,27 @@ export class ListPage {
                     // step 3) load items based on the position
                     this.loadItems(true);
                 },
-                      error => alert(error));
+                      error => {
+                          switch(error.code) {
+                          case error.PERMISSION_DENIED:
+                              this.presentToast('현재 위치 검색을 위해 주소를 이동합니다. https://www.healworld.co.kr', 3000);
+                              window.location.href = "https://www.healworld.co.kr";
+                              break;
+                          default:
+                              alert(error);
+                          }
+                      });
         }
     }
+
+    presentToast(message, time) {
+        let toast = this.toastCtrl.create({
+            message: message,
+            duration: time,
+            position: 'middle'
+        });
+
+        toast.present();
+    }
+
 }
