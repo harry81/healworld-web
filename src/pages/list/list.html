@@ -37,7 +37,7 @@
       <ion-item >
 
         <ion-avatar item-left>
-          <a href="http://backend.healworld.co.kr/login/facebook/"><img data-src="{{item.properties.user.profile_picture.thumbnail__50x50}}" /></a>
+          <img data-src="{{item.properties.user.profile_picture.thumbnail__50x50}}" (click)="social_login()"/>
         </ion-avatar>
         <ion-row>
           <ion-col>

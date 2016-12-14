@@ -120,4 +120,9 @@ export class ItemService {
 
     }
 
+    social_login() {
+        return this.http.get('https://backend.healworld.co.kr/login/facebook/')
+            .map(res => res.json());
+    }
+
 }

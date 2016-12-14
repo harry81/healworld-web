@@ -157,6 +157,12 @@ export class ListPage {
         }
     }
 
+    social_login() {
+        debugger;
+        this.itemService.social_login();
+        console.log('login');
+    }
+
     presentToast(message, time) {
         let toast = this.toastCtrl.create({
             message: message,
