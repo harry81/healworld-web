@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CookieService } from 'angular2-cookie/core';
 import { URLSearchParams } from '@angular/http';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { ItemService } from '../../providers/item-service';
@@ -23,14 +24,17 @@ export class ListPage {
     constructor(public navCtrl: NavController
                 ,public itemService: ItemService
                 ,public loadingCtrl: LoadingController
-                ,private toastCtrl: ToastController) {
+                ,private toastCtrl: ToastController
+                ,private _cookieService: CookieService) {
 
         this.params.set('search', ``);
     }
 
     ionViewWillEnter() {
         if (this.items == null)
-        this.loadItems(true);
+            this.loadItems(true);
+        console.log('jwt ', this._cookieService.get('jwt_token'));
+        console.log('username ', this._cookieService.get('username'));
     }
 
     ionViewDidLoad() {
