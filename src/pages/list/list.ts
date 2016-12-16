@@ -157,9 +157,11 @@ export class ListPage {
         }
     }
 
-    social_login() {
-        debugger;
-        this.itemService.social_login();
+    get_token() {
+        this.itemService.get_token()
+            .subscribe(data => {
+                console.log(data);
+            });
         console.log('login');
     }
 
