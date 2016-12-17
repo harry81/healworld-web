@@ -15,6 +15,8 @@ export class AuthService {
         let jwt_token_test = this._cookieService.get('jwt_token_test');
         let jwt_token = this._cookieService.get('jwt_token');
 
+        localStorage.setItem('id_token', jwt_token);
+
         this.storage.set('jwt_token_test', jwt_token_test);
         this.storage.set('id_token', jwt_token);
 
