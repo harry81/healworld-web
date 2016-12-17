@@ -56,14 +56,14 @@ export class ItemService {
         formData.append("itemshot", file);
         formData.append("item", 1);
 
-        return this.http
+        return this.authHttp
                 .post(this.baseUrl + 'api-image/',
                       formData)
                 .map(response => response.json());
     }
 
     postItem(formData){
-        return this.http
+        return this.authHttp
             .post(this.baseUrl + 'api-item/',
                   formData)
             .map(response => response.json());
@@ -115,7 +115,7 @@ export class ItemService {
     }
 
     postComment(formData){
-        return this.http
+        return this.authHttp
             .post(this.baseUrl + 'api-comment/',
                   formData)
             .map(response => response.json());

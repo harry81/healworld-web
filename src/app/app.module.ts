@@ -4,7 +4,6 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { Http } from '@angular/http';
-import { Storage } from '@ionic/storage';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { MyApp } from './app.component';
@@ -19,14 +18,12 @@ import { DesktopPage } from '../pages/desktop/desktop';
 import { MapPage } from '../pages/map/map';
 
 
-let storage = new Storage();
-
 export function getAuthHttp(http) {
     return new AuthHttp(new AuthConfig({
         headerPrefix: 'JWT',
         noJwtError: true,
         globalHeaders: [{'Accept': 'application/json'}],
-        tokenGetter: (() => storage.get('id_token')),
+        tokenGetter: (() => localStorage.getItem('id_token'))
     }), http);
 }
 
@@ -66,8 +63,7 @@ export function getAuthHttp(http) {
                     provide: AuthHttp,
                     useFactory: getAuthHttp,
                     deps: [Http]
-                },
-                Storage
+                }
                ]
 })
 export class AppModule {}
