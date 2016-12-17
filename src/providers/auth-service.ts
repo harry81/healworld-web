@@ -7,13 +7,28 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-    public storage = new Storage();
 
     constructor(private authHttp: AuthHttp
-                ,private _cookieService: CookieService) {
+                ,private _cookieService: CookieService
+                ,public storage: Storage) {
 
-        this.storage.set('id_token', this._cookieService.get('jwt_token'));
-        console.log(this.storage.get('id_token'));
+        let jwt_token_test = this._cookieService.get('jwt_token_test');
+        let jwt_token = this._cookieService.get('jwt_token');
+
+        this.storage.set('jwt_token_test', jwt_token_test);
+        this.storage.set('id_token', jwt_token;
+
+        this.storage.get('jwt_token_test').then(token => {
+            console.log('storage - jwt_token_test', token);
+        });
+
+        this.storage.get('id_token').then(token => {
+            console.log('storage - id_token', token);
+        });
+
+        this.storage.get('storage_test').then(token => {
+            console.log('storage - storage_test', token);
+        });
     }
 
     authenticated() {

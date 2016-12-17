@@ -34,8 +34,8 @@ export class ListPage {
         if (this.items == null)
             this.loadItems(true);
 
-        console.log('jwt ', this._cookieService.get('jwt_token'));
-        console.log('username ', this._cookieService.get('username'));
+        console.log('cookie in list - jwt ', this._cookieService.get('jwt_token'));
+        console.log('cookie in list - username ', this._cookieService.get('username'));
     }
 
     ionViewDidLoad() {

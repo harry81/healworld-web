@@ -66,7 +66,8 @@ export function getAuthHttp(http) {
                     provide: AuthHttp,
                     useFactory: getAuthHttp,
                     deps: [Http]
-                }
+                },
+                Storage
                ]
 })
 export class AppModule {}
