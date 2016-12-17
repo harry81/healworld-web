@@ -21,7 +21,6 @@ export class ProfilePage {
     }
 
     ionViewDidLoad() {
-        this.auth.authenticated();
     }
 
 }

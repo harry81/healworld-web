@@ -16,4 +16,15 @@
 <ion-content padding>
   hi user. {{ auth.loggedIn()}}
 
+   <button id="login" *ngIf="!auth.loggedIn()">Log In</button>
+   <button id="logout" *ngIf="auth.loggedIn()">Log Out</button>
+
+   <div id="login_show" *ngIf="auth.loggedIn()">
+     login
+   </div>
+
+   <div id="login_hide" *ngIf="!auth.loggedIn()">
+     logout
+   </div>
+
 </ion-content>
