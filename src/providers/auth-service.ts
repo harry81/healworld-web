@@ -1,23 +1,20 @@
+import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import {tokenNotExpired} from 'angular2-jwt';
+import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the AuthService provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class AuthService {
+    public storage = new Storage();
 
-    constructor(public http: Http) {
-        console.log('Hello AuthService Provider');
+    constructor(private authHttp: AuthHttp) {
+        console.log(this.storage.get('id_token'));
     }
 
-    public static authenticated() {
-        return tokenNotExpired();
+    authenticated() {
+        this.storage.get('id_token').then(token => {
+            console.log(tokenNotExpired(null, token)); // Returns true/false
+        });
     }
-
 }
