@@ -13,6 +13,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DetailPage } from '../pages/detail/detail';
 import { PostPage } from '../pages/post/post';
+import { ProfilePage } from '../pages/profile/profile';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DesktopPage } from '../pages/desktop/desktop';
 import { MapPage } from '../pages/map/map';
@@ -37,6 +38,7 @@ export function getAuthHttp(http) {
         ListPage,
         DetailPage,
         PostPage,
+        ProfilePage,
         DesktopPage,
         MapPage,
         TabsPage],
@@ -54,6 +56,7 @@ export function getAuthHttp(http) {
         ListPage,
         DetailPage,
         PostPage,
+        ProfilePage,
         DesktopPage,
         MapPage,
         TabsPage
