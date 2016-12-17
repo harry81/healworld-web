@@ -16,12 +16,12 @@ import { AuthService } from '../../providers/auth-service';
 export class ProfilePage {
 
     constructor(public navCtrl: NavController
-                ,public authService: AuthService
+                ,public auth: AuthService
                ) {
     }
 
     ionViewDidLoad() {
-        this.authService.authenticated();
+        this.auth.authenticated();
     }
 
 }

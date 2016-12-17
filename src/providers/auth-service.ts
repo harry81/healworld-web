@@ -16,7 +16,7 @@ export class AuthService {
         let jwt_token = this._cookieService.get('jwt_token');
 
         this.storage.set('jwt_token_test', jwt_token_test);
-        this.storage.set('id_token', jwt_token;
+        this.storage.set('id_token', jwt_token);
 
         this.storage.get('jwt_token_test').then(token => {
             console.log('storage - jwt_token_test', token);
@@ -35,5 +35,9 @@ export class AuthService {
         this.storage.get('id_token').then(token => {
             console.log(tokenNotExpired(null, token)); // Returns true/false
         });
+    }
+
+    loggedIn() {
+        return tokenNotExpired();
     }
 }
