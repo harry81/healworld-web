@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -14,7 +15,8 @@ export class ItemService {
 
     // http://localhost:8000/api-item/?dist=4&point=128.507629,36.1459654&search=%E3%85%8E%E3%85%8E%E3%85%8E
 
-    constructor(public http: Http) {
+    constructor(public http: Http,
+               public authHttp: AuthHttp) {
         this.setBaseUrl();
     }
 

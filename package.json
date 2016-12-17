@@ -25,6 +25,7 @@
     "@ionic/storage": "1.1.6",
     "angular2-cookie": "^1.2.5",
     "angular2-google-maps": "^0.16.0",
+    "angular2-jwt": "^0.1.27",
     "angular2-moment": "^1.0.0",
     "ionic-angular": "2.0.0-rc.2",
     "ionic-native": "2.2.3",
