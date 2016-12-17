@@ -10,7 +10,8 @@ import { AuthService } from '../../providers/auth-service';
 */
 @Component({
     selector: 'page-profile',
-    templateUrl: 'profile.html'
+    templateUrl: 'profile.html',
+    providers: [AuthService]
 })
 export class ProfilePage {
 
@@ -20,7 +21,7 @@ export class ProfilePage {
     }
 
     ionViewDidLoad() {
-        authService.authenticated();
+        this.authService.authenticated();
     }
 
 }
