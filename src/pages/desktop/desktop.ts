@@ -16,7 +16,6 @@ export class DesktopPage {
   constructor(public navCtrl: NavController) {}
 
   ionViewDidLoad() {
-    console.log('Hello DesktopPage Page');
   }
 
 }

@@ -9,7 +9,6 @@ import { Storage } from '@ionic/storage';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DetailPage } from '../pages/detail/detail';
@@ -34,7 +33,6 @@ export function getAuthHttp(http) {
     declarations: [
         MyApp,
         AboutPage,
-        ContactPage,
         HomePage,
         ListPage,
         DetailPage,
@@ -52,7 +50,6 @@ export function getAuthHttp(http) {
     entryComponents: [
         MyApp,
         AboutPage,
-        ContactPage,
         HomePage,
         ListPage,
         DetailPage,

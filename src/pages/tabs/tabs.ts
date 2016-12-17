@@ -3,7 +3,6 @@ import { Platform } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ListPage } from '../list/list';
 import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
 import { PostPage } from '../post/post';
 import { DesktopPage } from '../desktop/desktop';
 
@@ -16,7 +15,6 @@ export class TabsPage {
   // should be each tab's root Page
   tab1Root: any = HomePage;
   tab2Root: any = AboutPage;
-  tab3Root: any = ContactPage;
   tabHome: any = ListPage;
   tabPostRoot: any = PostPage;
   tabDesktop: any = DesktopPage;
