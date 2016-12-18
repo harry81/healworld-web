@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
+    public baseUrl: string= 'http://localhost:8000/';
 
     constructor(private authHttp: AuthHttp
                 ,private _cookieService: CookieService) {
@@ -17,11 +18,21 @@ export class AuthService {
         }
     }
 
-    loggedIn() {
+    isAuthorized() {
         return tokenNotExpired();
     }
 
     loggedOut() {
         localStorage.setItem('id_token', null);
     }
+
+    getUserInfo() {
+        // this.baseUrl = 'https://backend.healworld.co.kr/';
+        let url = this.baseUrl + 'api-profile/info/';
+
+        return this.authHttp.get(url)
+            .map(res => res.json());
+    }
+
+
 }

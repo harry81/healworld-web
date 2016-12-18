@@ -1,30 +1,24 @@
-<!--
-  Generated template for the Profile page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
     <ion-title>사용자</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-  hi user. {{ auth.loggedIn()}}
+   <div id="login_show" *ngIf="authService.isAuthorized()">
+     you're an authorized user.
+     hi {{username}}
 
-   <button id="login" *ngIf="!auth.loggedIn()">Log In</button>
-   <button id="logout" *ngIf="auth.loggedIn()">Log Out</button>
+     <div *ngIf="social_auth">
+     {{provider}} {{social_auth.extra_data.id}} id
+     <img src="https://graph.facebook.com/{{facebook_id}}/picture/" alt="" *ngIf="provider=='facebook'"/>
+     </div>
 
-   <div id="login_show" *ngIf="auth.loggedIn()">
-     login
+
    </div>
 
-   <div id="login_hide" *ngIf="!auth.loggedIn()">
-     logout
+   <div id="login_hide" *ngIf="!authService.isAuthorized()">
+     Show buttons to login at facebook, naver
    </div>
 
 </ion-content>

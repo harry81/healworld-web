@@ -14,13 +14,35 @@ import { AuthService } from '../../providers/auth-service';
     providers: [AuthService]
 })
 export class ProfilePage {
+    public user: any;
+    public social_auth: any;
+    public username: string;
+    public provider: string;
+    public facebook_id: string;
 
     constructor(public navCtrl: NavController
-                ,public auth: AuthService
+                ,public authService: AuthService
                ) {
+        this.setUserInfo();
     }
 
-    ionViewDidLoad() {
+    ionViewWillEnter() {
     }
 
+    setUserInfo() {
+        this.authService.getUserInfo()
+            .subscribe(data => {
+                localStorage.setItem('user', JSON.stringify(data));
+
+                let user = localStorage.getItem('user');
+                this.user = JSON.parse(user);
+                this.username = this.user.username;
+
+                if (this.username != ""){
+                    this.social_auth = this.user.social_auth[0];
+                    this.provider = this.social_auth.provider;
+                    this.facebook_id = this.social_auth.extra_data.id;
+                }
+            });
+    }
 }
