@@ -13,8 +13,6 @@ export class ItemService {
     public gmapUrl: string= 'https://maps.googleapis.com/maps/api/geocode/json\?types\=political';
     public gmapKey: string= 'AIzaSyDRCEiyDSW4JsDxFe7bJ17w9cpnLljvEQA';
 
-    // http://localhost:8000/api-item/?dist=4&point=128.507629,36.1459654&search=%E3%85%8E%E3%85%8E%E3%85%8E
-
     constructor(public http: Http,
                public authHttp: AuthHttp) {
         this.setBaseUrl();

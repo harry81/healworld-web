@@ -13,6 +13,7 @@ import { AuthService } from '../../providers/auth-service';
     templateUrl: 'profile.html',
     providers: [AuthService]
 })
+
 export class ProfilePage {
     public user: any;
     public social_auth: any;

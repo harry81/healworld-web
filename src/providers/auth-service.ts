@@ -11,15 +11,22 @@ export class AuthService {
     constructor(private authHttp: AuthHttp
                 ,private _cookieService: CookieService) {
 
-        let jwt_token = this._cookieService.get('jwt_token');
+        this.setBaseUrl();
 
+        let jwt_token = this._cookieService.get('jwt_token');
         if ( jwt_token != undefined ) {
             localStorage.setItem('id_token', jwt_token);
         }
     }
 
+    setBaseUrl(){
+        if (window.location.href.indexOf('healworld.co.kr') > -1)
+            this.baseUrl = 'https://backend.healworld.co.kr/';
+    }
+
     isAuthorized() {
-        return tokenNotExpired();
+        let id_token = localStorage.getItem('id_token');
+        return tokenNotExpired() && id_token;
     }
 
     loggedOut() {
@@ -27,7 +34,6 @@ export class AuthService {
     }
 
     getUserInfo() {
-        // this.baseUrl = 'https://backend.healworld.co.kr/';
         let url = this.baseUrl + 'api-profile/info/';
 
         return this.authHttp.get(url)

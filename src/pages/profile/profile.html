@@ -13,12 +13,12 @@
      {{provider}} {{social_auth.extra_data.id}} id
      <img src="https://graph.facebook.com/{{facebook_id}}/picture/" alt="" *ngIf="provider=='facebook'"/>
      </div>
-
-
    </div>
 
    <div id="login_hide" *ngIf="!authService.isAuthorized()">
      Show buttons to login at facebook, naver
+     <a href="https://backend.healworld.co.kr/login/facebook/">Facebook</a><br/>
+     <a href="https://backend.healworld.co.kr/login/naver/">naver</a><br/>
    </div>
 
 </ion-content>
