@@ -15,19 +15,24 @@
       <div *ngFor="let image of item.properties.images">
         <img src="{{image.itemshot.thumbnail__400x400}}">
       </div>
-      <p>{{item.properties.price}} /
-      {{item.properties.created_at | date : format : timezone}}</p>
-    </ion-item>
+      <ion-row>
+        <ion-col right>
+          <p>{{item.properties.price}}원</p>
+        </ion-col>
+        <ion-col>
+          <p>{{item.properties.created_at | date : format : timezone}}</p>
+        </ion-col>
+      </ion-row>
 
-    <ion-item >
-      <p>{{item.properties.address}}
-        <button mini (click)="showMap()"><ion-icon name="map"></ion-icon></button>
-        </p>
-    </ion-item>
+      <ion-row>
+        <button ion-button icon-right full  (click)="showMap()">
+          {{item.properties.address}}
+          <ion-icon name="map"></ion-icon>
+        </button>
 
-    <form [formGroup]="postForm" (ngSubmit)="postComment()">
-      <ion-input formControlName="comment" placeholder="comment" name="comment"></ion-input>
-    </form>
+      </ion-row>
+
+    </ion-item>
 
     <ion-list>
       <ion-item *ngFor="let comment of comments">
@@ -50,3 +55,15 @@
   </ion-card>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <form [formGroup]="postForm" (ngSubmit)="postComment()">
+
+      <ion-item>
+        <ion-input formControlName="comment" placeholder="댓글 달기" name="comment" class="comment"></ion-input>
+        <button ion-button outline item-right>등록</button>
+      </ion-item>
+    </form>
+  </ion-toolbar>
+</ion-footer>
