@@ -17,8 +17,8 @@
 
    <div id="login_hide" *ngIf="!authService.isAuthorized()">
      Show buttons to login at facebook, naver
-     <a href="https://backend.healworld.co.kr/login/facebook/">Facebook</a><br/>
-     <a href="https://backend.healworld.co.kr/login/naver/">naver</a><br/>
+     <a href="{{authService.baseUrl}}login/facebook/">Facebook</a><br/>
+     <a href="{{authService.baseUrl}}login/naver/">naver</a><br/>
    </div>
 
 </ion-content>

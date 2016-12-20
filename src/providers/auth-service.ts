@@ -19,7 +19,7 @@ export class AuthService {
         }
     }
 
-    setBaseUrl(){
+    setBaseUrl() {
         if (window.location.href.indexOf('healworld.co.kr') > -1)
             this.baseUrl = 'https://backend.healworld.co.kr/';
     }
