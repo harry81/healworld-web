@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { NavController, ViewController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 import { ItemService } from '../../providers/item-service';
-
+import { AuthService } from '../../providers/auth-service';
 
 @Component({
     selector: 'page-post',
     templateUrl: 'post.html',
-    providers: [ItemService]
+    providers: [ItemService, AuthService]
 })
 export class PostPage {
     public preview: any;
@@ -20,6 +20,7 @@ export class PostPage {
     constructor(public navCtrl: NavController,
                 public viewCtrl: ViewController,
                 public itemService: ItemService,
+                public authService: AuthService,
                 private formBuilder: FormBuilder) {
 
         this.postForm = this.formBuilder.group({
@@ -51,7 +52,7 @@ export class PostPage {
 
                 this.preview = this.response.itemshot.thumbnail__100x100;
                 this.postForm.value['image_ids'] = this.response.id;
-                this.postForm.value['user_id'] = 21; // TODO : use real user id
+                this.postForm.value['user_id'] = this.authService.user.pk;
                 this.postForm.value['point'] = `POINT (${this.position.coords.longitude} ${this.position.coords.latitude} )`;
                 this.postForm.value['address'] = this.address;
             });

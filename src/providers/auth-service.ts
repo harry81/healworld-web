@@ -7,11 +7,13 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthService {
     public baseUrl: string= 'http://localhost:8000/';
+    public user: any;
 
     constructor(private authHttp: AuthHttp
                 ,private _cookieService: CookieService) {
 
         this.setBaseUrl();
+        this.setUserInfo();
 
         let jwt_token = this._cookieService.get('jwt_token');
         if ( jwt_token != undefined ) {
@@ -40,5 +42,15 @@ export class AuthService {
             .map(res => res.json());
     }
 
+    setUserInfo() {
+        this.getUserInfo()
+            .subscribe(data => {
+                localStorage.setItem('user', JSON.stringify(data));
+
+                this.user = JSON.parse(localStorage.getItem('user'));
+                this.username = this.user.username;
+
+            });
+    }
 
 }
