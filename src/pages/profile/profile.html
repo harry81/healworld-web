@@ -16,9 +16,17 @@
    </div>
 
    <div id="login_hide" *ngIf="!authService.isAuthorized()">
-     Show buttons to login at facebook, naver
-     <a href="{{authService.baseUrl}}login/facebook/">Facebook</a><br/>
-     <a href="{{authService.baseUrl}}login/naver/">naver</a><br/>
-   </div>
+     <ion-card>
+       <ion-item>
+         <a href="{{authService.baseUrl}}login/facebook/">
+           <button ion-button outline round block>Facebook</button></a>
+       </ion-item>
 
+       <ion-item>
+         <a href="{{authService.baseUrl}}login/naver/">
+           <button ion-button outline round block color="secondary" >Naver</button></a>
+       </ion-item>
+     </ion-card>
+
+   </div>
 </ion-content>
