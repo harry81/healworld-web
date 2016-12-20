@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
 import { NavController, NavParams } from 'ionic-angular';
-import { FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { ItemService } from '../../providers/item-service';
 
 import { MapPage } from '../map/map';
@@ -28,7 +28,7 @@ export class DetailPage {
 
         this.item = params.get("item");
         this.postForm = this.formBuilder.group({
-            'comment': ['']
+            'comment': ['', Validators.compose([Validators.required])]
         });
     }
 
@@ -67,7 +67,11 @@ export class DetailPage {
                 this.postForm.value['submit_date'] = Date.now();
                 this.comments.unshift(this.postForm.value);
                 this.postForm.reset();
-            });
+            },
+                       error => {
+                           console.log(error);
+                           alert("[정보] 로그인후 댓글을 달 수 있습니다.");
+                       });
     }
 
     showMap() {
