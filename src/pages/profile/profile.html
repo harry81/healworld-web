@@ -17,6 +17,9 @@
 
    <div id="login_hide" *ngIf="!authService.isAuthorized()">
      <ion-card>
+       <ion-card-header>
+         로그인 하세요.
+       </ion-card-header>
        <ion-item>
          <a href="{{authService.baseUrl}}login/facebook/">
            <button ion-button outline round block>Facebook</button></a>
