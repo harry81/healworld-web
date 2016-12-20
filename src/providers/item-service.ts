@@ -80,8 +80,8 @@ export class ItemService {
                 },
                 (error) => {
                     console.log('message', error.message);
-                    reject('code: '    + error.code    + '\n' +
-                           'message: ' + error.message + '\n');
+                    reject('https://www.healworld.co.kr 로 접속하여 주세요.');
+
                 },
                 {
                     enableHighAccuracy: true

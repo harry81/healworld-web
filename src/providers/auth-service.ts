@@ -45,11 +45,9 @@ export class AuthService {
     setUserInfo() {
         this.getUserInfo()
             .subscribe(data => {
-                localStorage.setItem('user', JSON.stringify(data));
-
-                this.user = JSON.parse(localStorage.getItem('user'));
-                this.username = this.user.username;
-
+                let user = JSON.stringify(data)
+                localStorage.setItem('user', user);
+                this.user = JSON.parse(user);
             });
     }
 
