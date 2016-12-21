@@ -15,18 +15,65 @@
   <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4e8ef7">
-  
+
   <title>Let's heal the world</title>
-  
+
   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
 
   <script>
-  if (('serviceWorker' in navigator) &&
-      (window.location.href.indexOf('healworld') > -1)) {
+  if (('serviceWorker' in navigator) ) {
     navigator.serviceWorker.register('service-worker.js')
-      .then(() => {
+      .then((registration) => {
           console.log('service worker installed');
+
+ if (!registration.pushManager) {
+        alert('Your browser doesn\'t support push notification.');
+        return false;
+      }
+
+debugger;
+Notification.requestPermission().then(function(result) {
+  if (result === 'denied') {
+    console.log('Permission wasn\'t granted. Allow a retry.');
+    return;
+  }
+  if (result === 'default') {
+    console.log('The permission request was dismissed.');
+    return;
+  }
+  // Do something with the granted permission.
+});
+
+
+    //To check `push notification` permission is denied by user
+    if (Notification.permission === 'denied') {
+      console.warn('User has blocked push notification.');
+      return;
+    }
+
+
+    //Check `push notification` is supported or not
+    if (!('PushManager' in window)) {
+      console.error('Push notification isn\'t supported in your browser.');
+      return;
+    }
+
+registration.pushManager.subscribe({userVisibleOnly: true}).then(
+      function(pushSubscription) {
+        console.log('sub', pushSubscription.endpoint);
+        // The push subscription details needed by the application
+        // server are now available, and can be sent to it using,
+        // for example, an XMLHttpRequest.
+      }, function(error) {
+        // During development it often helps to log errors to the
+        // console. In a production environment it might make sense to
+        // also report information about errors back to the
+        // application server.
+        console.log('error in sub', error);
+      }
+    );
+
 
       })
       .catch(err => console.log('Error', err));
