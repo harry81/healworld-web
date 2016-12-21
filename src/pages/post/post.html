@@ -8,7 +8,7 @@
 
   <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
     <ion-item>
-      <input type="file" multiple (change)="onPostImage(input)" formControlName="image_ids" #input capture="camera" />
+      <input type="file" class="custom-file-input" (change)="onPostImage(input)" formControlName="image_ids" #input capture="camera" title=" " accept="images/*" />
       <input type="hidden" name="image_ids"  />
     </ion-item>
 
@@ -32,7 +32,12 @@
     </ion-item>
 
     <ion-item>
-      <img *ngFor="let image of preview" src="{{image.itemshot.thumbnail__100x100}}">
+      <ion-slides pager>
+        <ion-slide >
+          <img *ngFor="let image of preview" src="{{image.itemshot.thumbnail__100x100}}">
+        </ion-slide>
+      </ion-slides>
+
     </ion-item>
 
     <button ion-button full type="submit" [disabled]="!postForm.valid">등록완료</button>
