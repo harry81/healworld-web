@@ -2,16 +2,13 @@
 
   <ion-navbar>
     <ion-row>
-      <ion-searchbar
-         placeholder = "Heal World"
-         [showCancelButton]="shouldShowCancel"
-         (ionCancel)="onSearchCancel($event)"
-         (search)="onSearchInput($event)">
-      </ion-searchbar>
-    </ion-row>
-
-    <ion-row>
-      <ion-col width-75 text-center><p>{{address}}</p>
+      <ion-col width-75 text-center>
+        <ion-searchbar
+           placeholder = "Heal World"
+           [showCancelButton]="shouldShowCancel"
+           (ionCancel)="onSearchCancel($event)"
+           (search)="onSearchInput($event)">
+        </ion-searchbar>
       </ion-col>
       <ion-col text-right>
         <button ion-button mini (click)="locatePosition()"><ion-icon name="md-locate"></ion-icon></button>
@@ -22,6 +19,13 @@
 </ion-header>
 
 <ion-content class="home">
+
+  <ion-item>
+  <ion-icon name="ios-water-outline" item-left></ion-icon>
+  <p>{{address}}</p>
+  <ion-badge item-right>10</ion-badge>
+  </ion-item>
+
   <ion-refresher (ionRefresh)="doRefresh($event)">
 
     <ion-refresher-content
