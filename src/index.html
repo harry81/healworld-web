@@ -25,9 +25,13 @@
   if (('serviceWorker' in navigator) &&
       (window.location.href.indexOf('healworld') > -1)) {
     navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('service worker installed'))
+      .then(() => {
+          console.log('service worker installed');
+
+      })
       .catch(err => console.log('Error', err));
   }
+
   </script>
 
   <link href="build/main.css" rel="stylesheet">
