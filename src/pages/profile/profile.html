@@ -5,31 +5,34 @@
 </ion-header>
 
 <ion-content padding>
-   <div id="login_show" *ngIf="authService.isAuthorized()">
-     you're an authorized user.
-     hi {{username}}
 
-     <div *ngIf="social_auth">
-     {{provider}} {{social_auth.extra_data.id}} id
-     <img src="https://graph.facebook.com/{{facebook_id}}/picture/" alt="" *ngIf="provider=='facebook'"/>
-     </div>
-   </div>
+  <ion-card *ngIf="authService.isAuthorized()">
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="https://graph.facebook.com/{{facebook_id}}/picture/" alt="" *ngIf="provider=='facebook'"/>
+      </ion-avatar>
+      <h2>{{username}}</h2>
+      <p>November 5, 1955</p>
+    </ion-item>
 
-   <div id="login_hide" *ngIf="!authService.isAuthorized()">
-     <ion-card>
-       <ion-card-header>
-         로그인 하세요.
-       </ion-card-header>
-       <ion-item>
-         <a href="{{authService.baseUrl}}login/facebook/">
-           <button ion-button outline round block>Facebook</button></a>
-       </ion-item>
+    <ion-card-content>
+      <p>소비자가 커피 한 잔(125㎖)을 마시기 위해서는 원두 재배·수확·가공·유통 등에 1000잔에 해당하는 물이 필요하다.
+- [출처: 중앙일보] 물 발자국? 제품이 생산되기까지 필요한 물의 양 계산…국가표준으로 제정</p>
+    </ion-card-content>
+  </ion-card>
 
-       <ion-item>
-         <a href="{{authService.baseUrl}}login/naver/">
-           <button ion-button outline round block color="secondary" >Naver</button></a>
-       </ion-item>
-     </ion-card>
+  <ion-card  *ngIf="!authService.isAuthorized()">
+    <ion-card-header>
+      로그인 하세요.
+    </ion-card-header>
+    <ion-item>
+      <a href="{{authService.baseUrl}}login/facebook/">
+        <button ion-button outline round block>Facebook</button></a>
+    </ion-item>
 
-   </div>
+    <ion-item>
+      <a href="{{authService.baseUrl}}login/naver/">
+        <button ion-button outline round block color="secondary" >Naver</button></a>
+    </ion-item>
+  </ion-card>
 </ion-content>
