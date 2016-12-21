@@ -10,7 +10,7 @@ import { AuthService } from '../../providers/auth-service';
     providers: [ItemService, AuthService]
 })
 export class PostPage {
-    public preview: any;
+    public preview: Array<any> = [];
     public address: string;
     public postForm: any;
     public response: any;
@@ -27,8 +27,11 @@ export class PostPage {
             'memo': [
                 '', Validators.compose([Validators.required])
             ],
+            'detail': [
+                '', Validators.compose([Validators.required])
+            ],
             'price': [
-                '3000', Validators.compose([Validators.required])
+                '5000', Validators.compose([Validators.required])
             ],
             'image_ids': [''],
             'point': [''],
@@ -48,17 +51,18 @@ export class PostPage {
         this.getAddress()
         this.itemService.postImage(input.files[0])
             .subscribe(data => {
-                this.response = data; // Property 'itemshot' does not exist on type '{}'
-
-                this.preview = this.response.itemshot.thumbnail__100x100;
+                this.response = data; // because property 'itemshot' does not exist on type '{}'
+                this.preview.push(this.response);
                 this.postForm.value['image_ids'] = this.response.id;
-                this.postForm.value['user_id'] = this.authService.user.pk;
-                this.postForm.value['point'] = `POINT (${this.position.coords.longitude} ${this.position.coords.latitude} )`;
-                this.postForm.value['address'] = this.address;
             });
     }
 
     onSubmit() {
+        this.postForm.value['user_id'] = this.authService.user.pk;
+        this.postForm.value['point'] = `POINT (${this.position.coords.longitude} ${this.position.coords.latitude} )`;
+        this.postForm.value['address'] = this.address;
+        this.postForm.value['image_ids'] = this.preview.map(function(a) {return a.id;}).join();
+
         this.itemService.postItem(this.postForm.value)
             .subscribe(response => {
                 this.viewCtrl.dismiss();

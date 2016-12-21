@@ -13,7 +13,7 @@ import { PostPage } from '../post/post';
 })
 
 export class ListPage {
-    public items: any[];
+    public items: Array<any> = [];
     public next_url: string;
     public search_input: string="Heal World";
     public loader: any;
@@ -31,10 +31,8 @@ export class ListPage {
     }
 
     ionViewWillEnter() {
-        if (this.items == null)
+        if (this.items.length == 0)
             this.loadItems(true);
-
-        console.log('cookie in list - jwt ', this._cookieService.get('jwt_token'));
     }
 
     ionViewDidLoad() {

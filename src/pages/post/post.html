@@ -1,42 +1,40 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>자원 등록</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>자원 등록</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <input type="file" multiple (change)="onPostImage(input)" formControlName="image_ids" #input capture="camera" />
+      <input type="hidden" name="image_ids"  />
+    </ion-item>
 
-        <ion-item>
-            <ion-label>제목</ion-label>
-            <ion-input formControlName="memo" placeholder="가방 팝니다" name="memo"></ion-input>
-        </ion-item>
+    <ion-item>
+      <ion-label>제목</ion-label>
+      <ion-input formControlName="memo" placeholder="가방 팝니다" name="memo"></ion-input>
+    </ion-item>
 
-        <ion-item>
-            <ion-label>가격</ion-label>
-            <ion-select formControlName="price">
-                <ion-option value="1000" selected="true">1000</ion-option>
-                <ion-option value="2000">2000</ion-option>
-                <ion-option value="3000">3000</ion-option>
-                <ion-option value="4000">4000</ion-option>
-                <ion-option value="5000">5000</ion-option>
-            </ion-select>
-        </ion-item>
+    <ion-item>
+      <ion-label>세부</ion-label>
+      <ion-textarea formControlName="detail" placeholder="한달 썼어요" name="detail"></ion-textarea>
+    </ion-item>
 
-        <ion-item>
-            <input type="file" multiple (change)="onPostImage(input)" formControlName="image_ids" #input capture="camera" />
-            <input type="hidden" name="image_ids"  />
-        </ion-item>
+    <ion-item>
+      <ion-label>가격</ion-label>
+      <ion-input formControlName="price" placeholder="5000" name="price"></ion-input>
+    </ion-item>
 
-        <ion-item>
-            {{address}}
-        </ion-item>
+    <ion-item>
+      {{address}}
+    </ion-item>
 
-        <ion-item>
-            <img src="{{preview}}">
-        </ion-item>
+    <ion-item>
+      <img *ngFor="let image of preview" src="{{image.itemshot.thumbnail__100x100}}">
+    </ion-item>
 
-        <button ion-button full type="submit" [disabled]="!postForm.valid">등록완료</button>
-    </form>
+    <button ion-button full type="submit" [disabled]="!postForm.valid">등록완료</button>
+  </form>
 </ion-content>
