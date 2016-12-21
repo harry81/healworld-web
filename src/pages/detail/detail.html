@@ -12,9 +12,12 @@
     </ion-item>
 
     <ion-item>
-      <div *ngFor="let image of item.properties.images">
-        <img src="{{image.itemshot.thumbnail__400x400}}">
-      </div>
+      <ion-slides pager>
+        <ion-slide *ngFor="let image of item.properties.images">
+          <img src="{{image.itemshot.thumbnail__400x400}}">
+        </ion-slide>
+      </ion-slides>
+
       <ion-row>
         <ion-col right>
           <p>{{item.properties.price}}원</p>

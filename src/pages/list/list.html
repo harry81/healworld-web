@@ -58,9 +58,7 @@
 
       </ion-item>
 
-      <div *ngFor="let image of item.properties.images" (click)="itemTapped(item)">
-        <img height="95%" src="{{image.itemshot.crop__400x400}}">
-      </div>
+      <img height="95%" src="{{item.properties.image}}" (click)="itemTapped(item)">
 
       <ion-card-content>
         <p>{{item.properties.memo}}</p>
