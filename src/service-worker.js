@@ -4,6 +4,23 @@ const CURRENT_CACHES = {
   'read-through': 'read-through-cache-v' + CACHE_VERSION
 };
 
+var filesToCache = [
+  './build/main.js',
+  './build/main.css',
+];
+
+self.addEventListener('install', function(event) {
+
+  console.log('Service Worker: Installing....');
+  event.waitUntil(
+
+    caches.open(CURRENT_CACHES['read-through']).then(function(cache) {
+      console.log('Service Worker: Caching App Shell at the moment......');
+      return cache.addAll(filesToCache);
+    })
+  );
+});
+
 self.addEventListener('activate', (event) => {
   // Delete all caches that aren't named in CURRENT_CACHES.
   // While there is only one cache in this example, the same logic will handle the case where
