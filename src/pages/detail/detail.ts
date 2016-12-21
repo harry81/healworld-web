@@ -3,14 +3,14 @@ import { URLSearchParams } from '@angular/http';
 import { NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 import { ItemService } from '../../providers/item-service';
-
+import { AuthService } from '../../providers/auth-service';
 import { MapPage } from '../map/map';
 
 
 @Component({
     selector: 'page-detail',
     templateUrl: 'detail.html',
-    providers: [ItemService],
+    providers: [ItemService, AuthService],
 })
 
 export class DetailPage {
@@ -24,6 +24,7 @@ export class DetailPage {
     constructor(public navCtrl: NavController,
                 public params:NavParams,
                 private formBuilder: FormBuilder,
+                public authService: AuthService,
                 public itemService: ItemService) {
 
         this.item = params.get("item");
@@ -59,7 +60,8 @@ export class DetailPage {
     postComment() {
         this.postForm.value['content_type'] = 8; // content type of Item
         this.postForm.value['site'] = 1;
-        this.postForm.value['user_name'] = this.item.properties.user.username;
+        this.postForm.value['user_name'] = this.authService.user.username;
+        this.postForm.value['user'] = this.authService.user.pk;
         this.postForm.value['object_pk'] = this.item.properties.pk;
 
         this.itemService.postComment(this.postForm.value)
