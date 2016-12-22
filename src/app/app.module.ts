@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
+import { RouterModule }   from '@angular/router';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
