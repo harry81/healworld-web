@@ -24,10 +24,10 @@ export class PostPage {
                 private formBuilder: FormBuilder) {
 
         this.postForm = this.formBuilder.group({
-            'memo': [
+            'title': [
                 '', Validators.compose([Validators.required])
             ],
-            'detail': [
+            'memo': [
                 '', Validators.compose([Validators.required])
             ],
             'price': [
@@ -62,7 +62,7 @@ export class PostPage {
         this.postForm.value['point'] = `POINT (${this.position.coords.longitude} ${this.position.coords.latitude} )`;
         this.postForm.value['address'] = this.address;
         this.postForm.value['image_ids'] = this.preview.map(function(a) {return a.id;}).join();
-
+        debugger;
         this.itemService.postItem(this.postForm.value)
             .subscribe(response => {
                 this.viewCtrl.dismiss();

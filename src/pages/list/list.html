@@ -45,28 +45,28 @@
         </ion-avatar>
 
         <ion-row>
-          <ion-col>
-            <b>{{item.properties.user.username}}</b>
-          </ion-col>
-
-          <ion-col class="date">
-            {{item.properties.created_at | amTimeAgo}}
-          </ion-col>
+            <b>{{item.properties.memo}}</b>
         </ion-row>
-
         <ion-row>
-          <ion-col>
+          <ion-col class="date">
+            {{item.properties.user.username}} / {{item.properties.created_at | amTimeAgo}}
             <p>{{item.properties.address}}</p>
           </ion-col>
         </ion-row>
-
       </ion-item>
-
       <img height="95%" src="{{item.properties.image}}" (click)="itemTapped(item)">
 
       <ion-card-content>
-        <p>{{item.properties.memo}}</p>
+        <p>
+          길이 : 2m
+          넓이 : 1m50cm
+          할인 판매가 : 190,000원
+          배송기간 : 3-4일
+          💕핸드메이드 주문 제작.<4계절용>
+            소재 : 고급 원단. 매트리스 내장재.(방수커버)
+        </p>
       </ion-card-content>
+
 
       <ion-row>
         <ion-col>
@@ -77,10 +77,9 @@
         </ion-col>
 
         <ion-col class="price" center>
-          {{item.properties.price}}
+          {{item.properties.price}} 원
         </ion-col>
       </ion-row>
-
     </ion-card>
   </ion-list>
 

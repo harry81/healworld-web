@@ -17,11 +17,6 @@ page-list {
     padding: 0px;
 }
 
-.card-md {
-    margin: 0;
-    width: calc(100% - 0px);
-}
-
  .list-title {
     top: 36%;
     font-size: 2.0em;
@@ -34,3 +29,15 @@ page-list {
  ion-row {
     text-decoration:none;
  }
+
+ ion-col {
+     padding:3px;
+ }
+
+ .tabs-md .tabbar {
+     height: 35px;
+ }
+
+ .label-md {
+    margin: 0px 8px 0px 0px;
+}
