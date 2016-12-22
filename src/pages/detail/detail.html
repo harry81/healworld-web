@@ -8,7 +8,7 @@
 
   <ion-card>
     <ion-item>
-      <div class="list-title">{{item.properties.memo}}</div>
+      <div class="list-title">{{item.properties.title}}</div>
     </ion-item>
 
     <ion-item>
@@ -32,10 +32,12 @@
           {{item.properties.address}}
           <ion-icon name="map"></ion-icon>
         </button>
-
       </ion-row>
-
     </ion-item>
+
+    <ion-card-content>
+      <p>{{item.properties.memo}}</p>
+    </ion-card-content>
 
     <ion-list>
       <ion-item *ngFor="let comment of comments">

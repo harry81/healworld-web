@@ -45,7 +45,7 @@
         </ion-avatar>
 
         <ion-row>
-            <b>{{item.properties.memo}}</b>
+            <b>{{item.properties.title}}</b>
         </ion-row>
         <ion-row>
           <ion-col class="date">
@@ -57,26 +57,17 @@
       <img height="95%" src="{{item.properties.image}}" (click)="itemTapped(item)">
 
       <ion-card-content>
-        <p>
-          길이 : 2m
-          넓이 : 1m50cm
-          할인 판매가 : 190,000원
-          배송기간 : 3-4일
-          💕핸드메이드 주문 제작.<4계절용>
-            소재 : 고급 원단. 매트리스 내장재.(방수커버)
+        <p>{{item.properties.memo}}
         </p>
       </ion-card-content>
 
-
       <ion-row>
-        <ion-col>
-          <button ion-button color="primary" clear small icon-left>
-            <ion-icon name="text"></ion-icon>
-            {{ item.properties.cnt_of_comments }} Comments
-          </button>
+        <ion-col class="detail" center>
+          <ion-icon name="text"></ion-icon>
+          {{ item.properties.cnt_of_comments }} 댓글
         </ion-col>
 
-        <ion-col class="price" center>
+        <ion-col class="detail" center>
           {{item.properties.price}} 원
         </ion-col>
       </ion-row>
