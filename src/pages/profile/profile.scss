@@ -1,6 +1,14 @@
 page-profile {
 }
 
+page-profile .item-md {
+    font-size:none;
+}
+
+page-profile .input {
+    font:none;
+}
+
 page-profile .item-md .item-button {
     height: 50px;
 }
@@ -9,6 +17,6 @@ a {
     text-decoration:none;
 }
 
-ion-card-header {
+page-profile ion-card-header {
     text-align: center;
 }
