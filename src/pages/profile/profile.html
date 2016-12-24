@@ -17,8 +17,12 @@
 
     <ion-card-content>
       <p>소비자가 커피 한 잔(125㎖)을 마시기 위해서는 원두 재배·수확·가공·유통 등에 1000잔에 해당하는 물이 필요하다.
-- [출처: 중앙일보] 물 발자국? 제품이 생산되기까지 필요한 물의 양 계산…국가표준으로 제정</p>
+        - [출처: 중앙일보] 물 발자국? 제품이 생산되기까지 필요한 물의 양 계산…국가표준으로 제정</p>
     </ion-card-content>
+    <ion-item>
+      <ion-label>푸시 알림 받기</ion-label>
+      <ion-toggle  [(ngModel)]="notification_push" (ionChange)="subscribeToPush();" checked="true"></ion-toggle>
+    </ion-item>
   </ion-card>
 
   <ion-card  *ngIf="!authService.isAuthorized()">

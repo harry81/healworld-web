@@ -1,5 +1,5 @@
 // tick this to make the cache invalidate and update
-const CACHE_VERSION = 52;
+const CACHE_VERSION = 55;
 const CURRENT_CACHES = {
   'read-through': 'read-through-cache-v' + CACHE_VERSION
 };
@@ -13,7 +13,6 @@ self.addEventListener('install', function(event) {
 
   console.log('Service Worker: Installing....');
   event.waitUntil(
-
     caches.open(CURRENT_CACHES['read-through']).then(function(cache) {
       console.log('Service Worker: Caching App Shell at the moment......');
       return cache.addAll(filesToCache);
@@ -25,6 +24,8 @@ self.addEventListener('activate', (event) => {
   // Delete all caches that aren't named in CURRENT_CACHES.
   // While there is only one cache in this example, the same logic will handle the case where
   // there are multiple versioned caches.
+  console.log('service activate in event');
+
   const expectedCacheNames = Object.keys(CURRENT_CACHES).map((key) => {
     return CURRENT_CACHES[key];
   });
@@ -44,6 +45,25 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+self.addEventListener('activated', (event) => {
+  debugger;
+  console.log('activated');
+});
+
+self.addEventListener('push', function(event) {
+  console.log('[Service Worker] Push Received.');
+
+  const title = 'Push Codelab';
+  const options = {
+    body: 'Yay it works.',
+    icon: 'images/icon.png',
+    badge: 'images/badge.png'
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+
 // This sample illustrates an aggressive approach to caching, in which every valid response is
 // cached and every request is first checked against the cache.
 // This may not be an appropriate approach if your web application makes requests for
@@ -52,7 +72,6 @@ self.addEventListener('activate', (event) => {
 // Other approaches, like selectively caching based on response headers or only caching
 // responses served from a specific domain, might be more appropriate for those use cases.
 self.addEventListener('fetch', (event) => {
-
   event.respondWith(
     caches.open(CURRENT_CACHES['read-through']).then((cache) => {
       return cache.match(event.request).then((response) => {
