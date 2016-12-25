@@ -16,6 +16,9 @@ export class PostPage {
     public response: any;
 
     public position: any;
+    mySlideOptions = {
+        initialSlide: 1
+    };
 
     constructor(public navCtrl: NavController,
                 public viewCtrl: ViewController,
@@ -27,9 +30,7 @@ export class PostPage {
             'title': [
                 '', Validators.compose([Validators.required])
             ],
-            'memo': [
-                '', Validators.compose([Validators.required])
-            ],
+            'memo': [''],
             'price': [
                 '5000', Validators.compose([Validators.required])
             ],
@@ -62,7 +63,6 @@ export class PostPage {
         this.postForm.value['point'] = `POINT (${this.position.coords.longitude} ${this.position.coords.latitude} )`;
         this.postForm.value['address'] = this.address;
         this.postForm.value['image_ids'] = this.preview.map(function(a) {return a.id;}).join();
-        debugger;
         this.itemService.postItem(this.postForm.value)
             .subscribe(response => {
                 this.viewCtrl.dismiss();

@@ -2,15 +2,32 @@ page-list {
 
 }
 
+page-list .item-md {
+    padding-left: 4px;
+}
+
+page-list .card-md {
+    box-shadow: none;
+}
+
+
 .date {
     color:#666;
     font-size: 0.9em;
-    text-align:right;
+    text-align:left;
 }
 
-.detail {
+.memo {
     color:#666;
+    white-space: pre;
 
+}
+
+.address {
+    font-size: 1.4rem;
+    line-height: normal;
+    text-overflow: inherit;
+    color: #666;
 }
 
 .toolbar-md {

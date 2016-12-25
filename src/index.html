@@ -24,14 +24,15 @@
   <script>
   let swRegistration = null;
 
-  if (('serviceWorker' in navigator) ) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then((registration) => {
-        console.log('service worker installed in index');
-        swRegistration = registration;
-      }
-    ).catch(err => console.log('Error', err));
-  }
+if (('serviceWorker' in navigator) &&
+    (window.location.href.indexOf('healworld') > -1)) {
+  navigator.serviceWorker.register('service-worker.js')
+    .then((registration) => {
+      console.log('service worker installed in index');
+      swRegistration = registration;
+    }
+         ).catch(err => console.log('Error', err));
+}
 
   </script>
 
