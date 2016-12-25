@@ -44,6 +44,9 @@ export class ProfilePage {
                     this.social_auth = this.user.social_auth[0];
                     this.provider = this.social_auth.provider;
                     this.facebook_id = this.social_auth.extra_data.id;
+
+                    if (data.notification_push)
+                        this.notification_push = true;
                 }
             });
     }
