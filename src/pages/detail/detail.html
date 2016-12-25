@@ -7,9 +7,25 @@
 <ion-content>
 
   <ion-card>
-    <ion-item>
-      <div class="list-title">{{item.properties.title}}</div>
+
+    <ion-item >
+      <ion-avatar item-left>
+        <img data-src="{{item.properties.user.profile_picture}}"/>
+      </ion-avatar>
+
+      <ion-row>
+        <ion-col class="date">
+          <b>{{item.properties.user.username}}</b>
+        </ion-col>
+        <ion-col>
+          <p>{{item.properties.created_at | amTimeAgo}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row >
+        <span class="address">{{item.properties.address}}</span>
+      </ion-row>
     </ion-item>
+
 
     <ion-item>
       <ion-slides pager>
@@ -19,12 +35,7 @@
       </ion-slides>
 
       <ion-row>
-        <ion-col right>
           <p>{{item.properties.price}}원</p>
-        </ion-col>
-        <ion-col>
-          <p>{{item.properties.created_at | date : format : timezone}}</p>
-        </ion-col>
       </ion-row>
 
       <ion-row>
@@ -35,8 +46,7 @@
       </ion-row>
     </ion-item>
 
-    <ion-card-content>
-      {{item.properties.memo}}
+    <ion-card-content> <p>{{item.properties.title}}</p>{{item.properties.memo}}
     </ion-card-content>
 
     <ion-list>
