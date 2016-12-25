@@ -20,6 +20,7 @@ export class ProfilePage {
     public username: string;
     public provider: string;
     public facebook_id: string;
+    public notification_push: any;
 
     constructor(public navCtrl: NavController
                 ,public authService: AuthService
@@ -45,5 +46,15 @@ export class ProfilePage {
                     this.facebook_id = this.social_auth.extra_data.id;
                 }
             });
+    }
+
+    subscribeToPush() {
+        if (this.notification_push == true) {
+            window['subscribe'].call();
+        }
+
+        else if (this.notification_push == false) {
+            window['unsubscribeToPush'].call();
+        }
     }
 }

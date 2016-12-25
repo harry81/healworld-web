@@ -15,21 +15,22 @@
   <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4e8ef7">
-  
-  <title>Let's heal the world</title>
-  
+
+  <title>Let us heal the world</title>
+
   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
 
   <script>
-  if (('serviceWorker' in navigator) &&
-      (window.location.href.indexOf('healworld') > -1)) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => {
-          console.log('service worker installed');
+  let swRegistration = null;
 
-      })
-      .catch(err => console.log('Error', err));
+  if (('serviceWorker' in navigator) ) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then((registration) => {
+        console.log('service worker installed in index');
+        swRegistration = registration;
+      }
+    ).catch(err => console.log('Error', err));
   }
 
   </script>
@@ -47,6 +48,8 @@
 
   <!-- The bundle js is generated during the build process -->
   <script src="build/main.js"></script>
+  <script src="push-notification.js"></script>
+
 
 </body>
 </html>
