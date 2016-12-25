@@ -49,8 +49,6 @@ export class ProfilePage {
     }
 
     subscribeToPush() {
-        console.log('toggle ', this.notification_push);
-
         if (this.notification_push == true) {
             window['subscribe'].call();
         }
@@ -59,6 +57,4 @@ export class ProfilePage {
             window['unsubscribeToPush'].call();
         }
     }
-
-
 }

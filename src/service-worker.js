@@ -46,17 +46,16 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('activated', (event) => {
-  debugger;
   console.log('activated');
 });
 
 self.addEventListener('push', function(event) {
   console.log('[Service Worker] Push Received.');
 
-  const title = 'Push Codelab';
+  const title = 'Heal the world';
   const options = {
-    body: 'Yay it works.',
-    icon: 'images/icon.png',
+    body: '새로운 댓글입니다.',
+    icon: 'assets/imgs/icon-text.png',
     badge: 'images/badge.png'
   };
 

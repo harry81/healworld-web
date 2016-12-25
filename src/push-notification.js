@@ -50,17 +50,40 @@ function initialiseState() {
   });
 }
 
+function httpRequestSubscription(subscription) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log('response from XMLHttpRequest', this.responseText)
+    }
+  };
 
-function sendSubscriptionToServer(subscription) {
-  console.log('Subscription', subscription);
+  var url = "http://localhost:8000/api-profile/";
+  xhttp.open("PATCH", url, true);
+  xhttp.setRequestHeader('Authorization', 'JWT '+ localStorage.getItem('id_token'));
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  var params = "notification_push=";
+
+  if (subscription != false) {
+    params = params + subscription['endpoint'];
+  }
+
+  xhttp.send(params);
 }
 
+function sendSubscriptionToServer(subscription) {
+  httpRequestSubscription(subscription);
+}
+
+
 function unsubscribeToPush() {
-  console.log('unscribe in push-notification');
+  httpRequestSubscription(false);
 }
 
 function subscribe() {
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+
     serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly:true})
       .then(function(subscription) {
         // The subscription was successful
