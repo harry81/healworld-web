@@ -28,8 +28,7 @@ export class AuthService {
 
     loggedOut() {
         this._cookieService.put('jwt_token', null);
-        localStorage.setItem('user', null);
-        localStorage.setItem('id_token', null);
+        localStorage.clear();
     }
 
     getUserInfo() {
