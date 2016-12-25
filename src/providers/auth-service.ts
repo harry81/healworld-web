@@ -14,11 +14,6 @@ export class AuthService {
 
         this.setBaseUrl();
         this.setUserInfo();
-
-        let jwt_token = this._cookieService.get('jwt_token');
-        if ( jwt_token != undefined ) {
-            localStorage.setItem('id_token', jwt_token);
-        }
     }
 
     setBaseUrl() {
@@ -32,6 +27,8 @@ export class AuthService {
     }
 
     loggedOut() {
+        this._cookieService.put('jwt_token', null);
+        localStorage.setItem('user', null);
         localStorage.setItem('id_token', null);
     }
 
@@ -43,6 +40,12 @@ export class AuthService {
     }
 
     setUserInfo() {
+        let jwt_token = this._cookieService.get('jwt_token');
+
+        if ( jwt_token == undefined )
+            return;
+
+        localStorage.setItem('id_token', jwt_token);
         this.getUserInfo()
             .subscribe(data => {
                 let user = JSON.stringify(data)

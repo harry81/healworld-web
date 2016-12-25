@@ -3,13 +3,14 @@ import { CookieService } from 'angular2-cookie/core';
 import { URLSearchParams } from '@angular/http';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { ItemService } from '../../providers/item-service';
+import { AuthService } from '../../providers/auth-service';
 import { DetailPage } from '../detail/detail';
 import { PostPage } from '../post/post';
 
 @Component({
     selector: 'page-list',
     templateUrl: 'list.html',
-    providers: [ItemService]
+    providers: [ItemService, AuthService]
 })
 
 export class ListPage {
@@ -25,9 +26,11 @@ export class ListPage {
                 ,public itemService: ItemService
                 ,public loadingCtrl: LoadingController
                 ,private toastCtrl: ToastController
+                ,public authService: AuthService
                 ,private _cookieService: CookieService) {
 
         this.params.set('search', ``);
+        this.authService.setUserInfo();
     }
 
     ionViewWillEnter() {

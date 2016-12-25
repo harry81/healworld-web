@@ -25,30 +25,28 @@ export class ProfilePage {
     constructor(public navCtrl: NavController
                 ,public authService: AuthService
                ) {
-        this.setUserInfo();
+        this.setUserProfile();
     }
 
     ionViewWillEnter() {
     }
 
-    setUserInfo() {
-        this.authService.getUserInfo()
-            .subscribe(data => {
-                localStorage.setItem('user', JSON.stringify(data));
+    setUserProfile() {
+        let user = localStorage.getItem('user');
 
-                let user = localStorage.getItem('user');
-                this.user = JSON.parse(user);
-                this.username = this.user.username;
+        if (user == undefined )
+            return;
 
-                if (this.username != ""){
-                    this.social_auth = this.user.social_auth[0];
-                    this.provider = this.social_auth.provider;
-                    this.facebook_id = this.social_auth.extra_data.id;
+        this.user = JSON.parse(user);
+        this.username = this.user.username;
+        if (this.username != ""){
+            this.social_auth = this.user.social_auth[0];
+            this.provider = this.social_auth.provider;
+            this.facebook_id = this.social_auth.extra_data.id;
 
-                    if (data.notification_push)
-                        this.notification_push = true;
-                }
-            });
+            if (this.user.notification_push)
+                this.notification_push = true;
+        }
     }
 
     subscribeToPush() {
