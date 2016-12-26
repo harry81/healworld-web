@@ -18,7 +18,7 @@ export class DetailPage {
     public lng: number;
     public zoom: number;
     public item: any;
-    public comments: any;
+    public comments: any[];
     public postForm: any;
 
     constructor(public navCtrl: NavController,

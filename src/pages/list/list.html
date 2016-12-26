@@ -57,6 +57,11 @@
       </ion-item>
 
       <img height="95%" src="{{item.properties.image}}" (click)="itemTapped(item)">
+      <ion-row>
+        <ion-col>
+          <p class="price">{{item.properties.price}} 원</p>
+        </ion-col>
+      </ion-row>
 
       <ion-card-content>
         <p><b>{{item.properties.title}}</b></p>

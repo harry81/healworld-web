@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>등록된 자원</ion-title>
+    <ion-title><p>{{item.properties.title}}</p></ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -21,8 +21,17 @@
           <p>{{item.properties.created_at | amTimeAgo}}</p>
         </ion-col>
       </ion-row>
-      <ion-row >
-        <span class="address">{{item.properties.address}}</span>
+
+      <ion-row>
+        <ion-col width-75>
+          <span class="address">{{item.properties.address}}</span>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear (click)="showMap()">
+            <ion-icon name="map"></ion-icon>
+          </button>
+        </ion-col>
+
       </ion-row>
     </ion-item>
 
@@ -35,19 +44,24 @@
       </ion-slides>
 
       <ion-row>
-          <p>{{item.properties.price}}원</p>
-      </ion-row>
-
-      <ion-row>
-        <button ion-button icon-right full  (click)="showMap()">
-          {{item.properties.address}}
-          <ion-icon name="map"></ion-icon>
-        </button>
+        <ion-col>
+          <p class="price">{{item.properties.price}} 원</p>
+        </ion-col>
       </ion-row>
     </ion-item>
 
-    <ion-card-content> <p>{{item.properties.title}}</p>{{item.properties.memo}}
-    </ion-card-content>
+    <ion-card-content><p>{{item.properties.title}}</p>{{item.properties.memo}}</ion-card-content>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          <div *ngIf="comments"><p>{{comments.length}} 댓글</p></div>
+        </ion-col>
+        <ion-col>
+          <div *ngIf="comments"><p>112 방문</p></div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
 
     <ion-list>
       <ion-item *ngFor="let comment of comments">

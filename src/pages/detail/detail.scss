@@ -14,11 +14,26 @@ page-detail .item-md {
 page-detail .card-md {
     box-shadow: none;
     margin: 5px 0px 0px 0px;
+    width: calc(100%);
 }
 
+page-detail .item-md.item-block .item-inner {
+    padding-right: 0px;
+}
 
-.label-me {
-    margin:4px 0px 0px 0;
+page-detail .button-md {
+    height: 100%;
+}
+
+.address {
+    font-size: 1.2rem;
+    line-height: normal;
+    text-overflow: inherit;
+    color: #666;
+}
+
+.price {
+    text-align: right;
 }
 
 ion-col {
