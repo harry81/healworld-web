@@ -54,11 +54,17 @@ function httpRequestSubscription(subscription) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      console.log('response from XMLHttpRequest', this.responseText)
+      console.log('response from XMLHttpRequest', this.responseText);
     }
   };
 
-  var url = "http://localhost:8000/api-profile/";
+  var baseUrl = "http://localhost:8000/";
+
+  if (window.location.href.indexOf('healworld') > -1)
+    baseUrl = "https://backend.healworld.co.kr/";
+
+  var url = baseUrl + 'api-profile/';
+
   xhttp.open("PATCH", url, true);
   xhttp.setRequestHeader('Authorization', 'JWT '+ localStorage.getItem('id_token'));
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

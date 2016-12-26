@@ -7,6 +7,9 @@ const CURRENT_CACHES = {
 var filesToCache = [
   './build/main.js',
   './build/main.css',
+  './build/polyfills.js',
+  './assets/fonts/ionicons.woff',
+  './assets/fonts/ionicons.woff2',
 ];
 
 self.addEventListener('install', function(event) {
