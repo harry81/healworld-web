@@ -30,6 +30,7 @@ export class ListPage {
                 ,private _cookieService: CookieService) {
 
         this.params.set('search', ``);
+        this.params.set('state', `created`);
         this.authService.setUserInfo();
     }
 
