@@ -22,8 +22,7 @@
 
   <ion-item>
     <ion-icon name="ios-water-outline" item-left></ion-icon>
-    <p>{{address}}</p>
-    <ion-badge item-right>10</ion-badge>
+    <p>{{address}} {{items.length}} 건 </p>
   </ion-item>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">

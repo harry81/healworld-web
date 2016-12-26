@@ -89,7 +89,7 @@
     <form [formGroup]="postForm" (ngSubmit)="postComment()">
 
       <ion-item>
-        <ion-input formControlName="comment" placeholder="댓글 달기" name="comment" class="comment"></ion-input>
+        <ion-input formControlName="comment" placeholder="{{placeholder_comment}}" name="comment" class="comment"></ion-input>
         <button ion-button outline item-right>등록</button>
       </ion-item>
     </form>

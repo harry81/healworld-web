@@ -27,7 +27,7 @@ export class AuthService {
     }
 
     loggedOut() {
-        this._cookieService.all();
+        this._cookieService.removeAll();
         localStorage.clear();
     }
 

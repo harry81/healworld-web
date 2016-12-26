@@ -20,6 +20,7 @@ export class DetailPage {
     public item: any;
     public comments: any[];
     public postForm: any;
+    public placeholder_comment: string = "댓글 달기";
 
     constructor(public navCtrl: NavController,
                 public params:NavParams,
@@ -31,6 +32,9 @@ export class DetailPage {
         this.postForm = this.formBuilder.group({
             'comment': ['', Validators.compose([Validators.required])]
         });
+
+        if (!this.authService.isAuthorized())
+            this.placeholder_comment = "로그인후 댓글을 달 수 있습니다";
     }
 
     ionViewDidLoad() {
