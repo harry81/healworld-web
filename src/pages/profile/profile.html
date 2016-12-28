@@ -42,10 +42,10 @@
   </ion-card>
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="authService.isAuthorized()" >
   <ion-toolbar>
-    <ion-item *ngIf="authService.isAuthorized()" >
-      <button item-right ion-button (click)="authService.loggedOut()">나가기</button>
+    <ion-item>
+      <button item-center ion-button (click)="authService.loggedOut()">나가기</button>
     </ion-item>
   </ion-toolbar>
 </ion-footer>

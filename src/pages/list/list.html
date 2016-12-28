@@ -1,28 +1,29 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-row>
-      <ion-col width-75 text-center>
-        <ion-searchbar
-           placeholder = "Heal World"
-           [showCancelButton]="shouldShowCancel"
-           (ionCancel)="onSearchCancel($event)"
-           (search)="onSearchInput($event)">
-        </ion-searchbar>
-      </ion-col>
-      <ion-col text-right>
-        <button ion-button mini (click)="locatePosition()"><ion-icon name="md-locate"></ion-icon></button>
-      </ion-col>
-    </ion-row>
-  </ion-navbar>
-
-</ion-header>
-
 <ion-content class="home">
+  <ion-item class="menu">
+    <ion-searchbar
+       placeholder = "단어 검색"
+       [showCancelButton]="shouldShowCancel"
+       (ionCancel)="onSearchCancel($event)"
+       (search)="onSearchInput($event)">
+    </ion-searchbar>
+    <button ion-button mini (click)="locatePosition()" item-right><ion-icon name="md-locate"></ion-icon></button>
+  </ion-item>
 
   <ion-item>
-    <ion-icon name="ios-water-outline" item-left></ion-icon>
-    <p>{{address}} {{items.length}} 건 </p>
+    <ion-row>
+      <ion-col width-75><p>{{address}}</p>
+      </ion-col>
+      <ion-col>
+        <p>반경 4km</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col width-75>
+      </ion-col>
+      <ion-col><p>{{items.length}} 건</p>
+      </ion-col>
+    </ion-row>
   </ion-item>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
