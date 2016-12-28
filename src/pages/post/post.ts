@@ -34,7 +34,7 @@ export class PostPage {
             'price': [
                 '', Validators.compose([Validators.required])
             ],
-            'image_ids': ['', Validators.compose([Validators.required])],
+            'image_ids': [''],
             'point': [''],
             'address': [''],
         });
