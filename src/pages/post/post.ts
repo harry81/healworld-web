@@ -30,11 +30,11 @@ export class PostPage {
             'title': [
                 '', Validators.compose([Validators.required])
             ],
-            'memo': [''],
+            'memo': ['', Validators.compose([Validators.required])],
             'price': [
-                '5000', Validators.compose([Validators.required])
+                '', Validators.compose([Validators.required])
             ],
-            'image_ids': [''],
+            'image_ids': ['', Validators.compose([Validators.required])],
             'point': [''],
             'address': [''],
         });
@@ -49,13 +49,20 @@ export class PostPage {
     }
 
     onPostImage(input) {
-        this.getAddress()
         this.itemService.postImage(input.files[0])
             .subscribe(data => {
                 this.response = data; // because property 'itemshot' does not exist on type '{}'
                 this.preview.push(this.response);
                 this.postForm.value['image_ids'] = this.response.id;
+            }, error => {
+                if (error.status == 403){
+                    alert("[정보] 로그인후 사진을 업로드 할 수 있습니다.")
+                }
+                else {
+                    alert("[정보] 사진 업로드에 문제가 있습니다.");
+                }
             });
+        this.getAddress()
     }
 
     onSubmit() {

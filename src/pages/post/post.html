@@ -24,16 +24,16 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>세부</ion-label>
+      <ion-label>내용</ion-label>
       <ion-textarea formControlName="memo" placeholder="한달 썼어요" name="memo"></ion-textarea>
     </ion-item>
 
     <ion-item>
       <ion-label>가격</ion-label>
-      <ion-input formControlName="price" placeholder="5000" name="price"></ion-input>
+      <ion-input formControlName="price" placeholder="7000" name="price"></ion-input>
     </ion-item>
 
-    <ion-item text-center>
+    <ion-item text-center *ngIf="preview">
       <ion-slides  #mySlider pager [options]="mySlideOptions">
         <ion-slide pager>
           <img *ngFor="let image of preview" src="{{image.itemshot.thumbnail__200x200}}">
@@ -42,10 +42,8 @@
       <p>{{address}}</p>
     </ion-item>
 
-  </form>
-
-  <ion-footer>
     <button ion-button full type="submit" [disabled]="!postForm.valid" form="postFrom">등록완료</button>
-  </ion-footer>
+
+  </form>
 
 </ion-content>

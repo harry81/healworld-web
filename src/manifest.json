@@ -9,7 +9,7 @@
     "sizes": "300x300",
     "type": "image/png"
   }],
-  "background_color": "#d9d8d7",
+  "background_color": "#ffffff",
   "theme_color": "#4e8ef7",
   "gcm_sender_id": "113213172315"
 }
