@@ -89,8 +89,8 @@
     <form [formGroup]="postForm" (ngSubmit)="postComment()">
 
       <ion-item>
-        <ion-input formControlName="comment" placeholder="{{placeholder_comment}}" name="comment" class="comment" [disabled]="authService.isAuthorized"></ion-input>
-        <button ion-button outline item-right [disabled]="authService.isAuthorized">등록</button>
+        <ion-input formControlName="comment" placeholder="{{placeholder_comment}}" name="comment" class="comment"></ion-input>
+        <button ion-button outline item-right>등록</button>
       </ion-item>
     </form>
   </ion-toolbar>

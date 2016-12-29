@@ -63,6 +63,11 @@ export class DetailPage {
     }
 
     postComment() {
+        if (!this.authService.isAuthorized()) {
+            alert("[정보] 로그인후 댓글을 달 수 있습니다.");
+            return;
+        }
+
         this.postForm.value['content_type'] = 8; // content type of Item
         this.postForm.value['site'] = 1;
         this.postForm.value['user_name'] = this.authService.user.username;
