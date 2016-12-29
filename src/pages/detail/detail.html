@@ -27,9 +27,11 @@
           <span class="address">{{item.properties.address}}</span>
         </ion-col>
         <ion-col>
+          <p>{{item.properties.distance}}
           <button ion-button clear (click)="showMap()">
             <ion-icon name="map"></ion-icon>
           </button>
+          </p>
         </ion-col>
 
       </ion-row>
@@ -66,9 +68,8 @@
     <ion-list>
       <ion-item *ngFor="let comment of comments">
         <ion-avatar item-left>
-          <ion-icon name="person"></ion-icon>
+          <img data-src="{{comment.user.profile_picture}}"/>
         </ion-avatar>
-
         <ion-row>
           <h4><b>{{ comment.user_name }}</b>&nbsp;{{ comment.comment }}</h4>
         </ion-row>
