@@ -3,19 +3,20 @@ import { NavController, ViewController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 import { ItemService } from '../../providers/item-service';
 import { AuthService } from '../../providers/auth-service';
+import { GeoService } from '../../providers/geo-service';
 
 @Component({
     selector: 'page-post',
     templateUrl: 'post.html',
-    providers: [ItemService, AuthService]
+    providers: [ItemService, AuthService, GeoService]
 })
 export class PostPage {
     public preview: Array<any> = [];
-    public address: string;
     public postForm: any;
     public response: any;
-
+    public address: string;
     public position: any;
+
     mySlideOptions = {
         initialSlide: 1
     };
@@ -24,6 +25,7 @@ export class PostPage {
                 public viewCtrl: ViewController,
                 public itemService: ItemService,
                 public authService: AuthService,
+                public geoService: GeoService,
                 private formBuilder: FormBuilder) {
 
         this.postForm = this.formBuilder.group({
@@ -83,7 +85,7 @@ export class PostPage {
     }
 
     getCurrentLocation(){
-        this.itemService.getPosition()
+        this.geoService.getPosition()
             .then(position =>{
                 console.log(position);
                 this.position = position;
@@ -92,8 +94,8 @@ export class PostPage {
     }
 
     getAddress(){
-        this.itemService.getAddress(this.position.coords.latitude,
-                                    this.position.coords.longitude)
+        this.geoService.getAddress(this.geoService.position.coords.latitude,
+                                    this.geoService.position.coords.longitude)
             .subscribe((response) => {
                 console.log(response['results'][0]);
 

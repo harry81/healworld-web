@@ -54,6 +54,9 @@
         <ion-row >
           <span class="address">{{item.properties.address}}</span>
         </ion-row>
+        <ion-row >
+          <span class="address">{{item.distance}}</span>
+        </ion-row>
       </ion-item>
 
       <img height="95%" src="{{item.properties.image}}" (click)="itemTapped(item)">

@@ -3,6 +3,7 @@ import { CookieService } from 'angular2-cookie/core';
 import { URLSearchParams } from '@angular/http';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { ItemService } from '../../providers/item-service';
+import { GeoService } from '../../providers/geo-service';
 import { AuthService } from '../../providers/auth-service';
 import { DetailPage } from '../detail/detail';
 import { PostPage } from '../post/post';
@@ -10,7 +11,7 @@ import { PostPage } from '../post/post';
 @Component({
     selector: 'page-list',
     templateUrl: 'list.html',
-    providers: [ItemService, AuthService]
+    providers: [ItemService, AuthService, GeoService]
 })
 
 export class ListPage {
@@ -27,6 +28,7 @@ export class ListPage {
                 ,public loadingCtrl: LoadingController
                 ,private toastCtrl: ToastController
                 ,public authService: AuthService
+                ,public geoService: GeoService
                 ,private _cookieService: CookieService) {
 
         this.params.set('search', ``);
@@ -126,23 +128,23 @@ export class ListPage {
         let distance : number = 10;
 
         if (this.address != "모든 지역") {
-            this.params.set('dist', null);
+            this.params.set('dist', '400');
             this.params.set('point', null);
             this.address = "모든 지역";
             this.loadItems(true);
         }
 
         else {
-            this.itemService.getPosition()
+            this.geoService.getPosition()
                 .then(position =>{
                     // step 1) set positional argument
                     distance = distance * 1000;
                     this.params.set('dist', distance.toString());
                     this.params.set('point',
-                                    `${this.itemService.position.coords.longitude},${this.itemService.position.coords.latitude}`);
+                                    `${this.geoService.position.coords.longitude},${this.geoService.position.coords.latitude}`);
 
                     // step 2) show address for user
-                    this.itemService.address.subscribe((response) => {
+                    this.geoService.address.subscribe((response) => {
                         console.log(response['results'][0]);
                         this.address = response['results'][0]['formatted_address'];
                     });

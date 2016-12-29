@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import { Http } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 
@@ -10,8 +10,6 @@ export class ItemService {
     public address: any;
 
     public baseUrl: string= 'http://localhost:8000/';
-    public gmapUrl: string= 'https://maps.googleapis.com/maps/api/geocode/json\?types\=political';
-    public gmapKey: string= 'AIzaSyDRCEiyDSW4JsDxFe7bJ17w9cpnLljvEQA';
 
     constructor(public http: Http,
                public authHttp: AuthHttp) {
@@ -67,44 +65,6 @@ export class ItemService {
             .map(response => response.json());
     }
 
-    getPosition() {
-        // http://stackoverflow.com/questions/37296876/my-position-gets-returned-too-fast-how-to-make-a-promise
-        let promise = new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(
-                position => {
-                    this.position = position;
-                    this.address = this.getAddress(
-                        this.position.coords.latitude,
-                        this.position.coords.longitude);
-                    resolve(position);
-                },
-                (error) => {
-                    console.log('message', error.message);
-                    reject('https://www.healworld.co.kr 로 접속하여 주세요.');
-
-                },
-                {
-                    enableHighAccuracy: true
-                }
-            );
-        });
-
-        return promise;
-    }
-
-    getAddress (lat, lng) {
-        let params: URLSearchParams = new URLSearchParams();
-        params.set('latlng', `${lat},${lng}`);
-        params.set('language', 'ko');
-        params.set('location_type', 'APPROXIMATE');
-        params.set('result_type', 'political|sublocality|postal_code');
-        params.set('key', this.gmapKey);
-
-        return this.http
-            .get(this.gmapUrl, {search: params})
-            .map(response => response.json());
-    }
-
     loadComment(params) {
         let url = this.baseUrl + 'api-comment/';
 
@@ -117,7 +77,6 @@ export class ItemService {
             .post(this.baseUrl + 'api-comment/',
                   formData)
             .map(response => response.json());
-
     }
 
     get_token() {
@@ -126,5 +85,4 @@ export class ItemService {
         return this.http.get(url)
             .map(res => res.json());
     }
-
 }
