@@ -76,8 +76,7 @@ export class DetailPage {
 
         this.itemService.postComment(this.postForm.value)
             .subscribe(response => {
-                this.postForm.value['submit_date'] = Date.now();
-                this.comments.unshift(this.postForm.value);
+                this.comments.unshift(response);
                 this.postForm.reset();
             },
                        error => {
