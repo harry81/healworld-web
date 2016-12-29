@@ -1,5 +1,5 @@
 // tick this to make the cache invalidate and update
-const CACHE_VERSION = 77;
+const CACHE_VERSION = 80;
 const CURRENT_CACHES = {
   'read-through': 'read-through-cache-v' + CACHE_VERSION
 };
@@ -17,7 +17,7 @@ self.addEventListener('install', function(event) {
   console.log('Service Worker: Installing....');
   event.waitUntil(
     caches.open(CURRENT_CACHES['read-through']).then(function(cache) {
-      console.log('Service Worker: Caching App Shell at the moment......');
+      console.log('Service Worker: Caching App Shell at the moment......', CACHE_VERSION);
       return cache.addAll(filesToCache);
     })
   );

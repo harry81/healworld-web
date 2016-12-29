@@ -41,8 +41,10 @@ export class AuthService {
     setUserInfo() {
         let jwt_token = this._cookieService.get('jwt_token');
 
-        if ( jwt_token == undefined )
+        if ( jwt_token == undefined ) {
+            this.loggedOut();
             return;
+        }
 
         localStorage.setItem('id_token', jwt_token);
         this.getUserInfo()

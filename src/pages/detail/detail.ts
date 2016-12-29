@@ -33,8 +33,9 @@ export class DetailPage {
             'comment': ['', Validators.compose([Validators.required])]
         });
 
-        if (!this.authService.isAuthorized())
+        if (!this.authService.isAuthorized()) {
             this.placeholder_comment = "로그인후 댓글을 달 수 있습니다";
+        }
     }
 
     ionViewDidLoad() {

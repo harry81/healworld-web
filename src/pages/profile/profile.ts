@@ -32,7 +32,7 @@ export class ProfilePage {
     }
 
     setUserProfile() {
-        let user = localStorage.getItem('user');
+        let user = this.authService.user;
 
         if (user == undefined )
             return;
