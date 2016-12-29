@@ -38,7 +38,7 @@
 
   <ion-list>
     <ion-card *ngFor="let item of items">
-      <ion-item >
+      <ion-item>
         <ion-avatar item-left>
           <img data-src="{{item.properties.user.profile_picture}}"/>
         </ion-avatar>
@@ -51,11 +51,13 @@
             <p>{{item.properties.created_at | amTimeAgo}}</p>
           </ion-col>
         </ion-row>
-        <ion-row >
-          <span class="address">{{item.properties.address}}</span>
-        </ion-row>
-        <ion-row >
-          <span class="address">{{item.distance}}</span>
+        <ion-row>
+          <ion-col width-75>
+            <span class="address">{{item.properties.address}}</span>
+          </ion-col>
+          <ion-col>
+            <p>{{item.properties.distance}}</p>
+          </ion-col>
         </ion-row>
       </ion-item>
 

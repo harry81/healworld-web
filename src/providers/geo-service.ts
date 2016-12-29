@@ -18,7 +18,6 @@ export class GeoService {
 
 
     constructor(public http: Http) {
-        console.log('Hello GeoService Provider');
     }
 
     getPosition() {

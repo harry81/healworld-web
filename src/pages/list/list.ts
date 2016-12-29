@@ -34,6 +34,7 @@ export class ListPage {
         this.params.set('search', ``);
         this.params.set('state', `created`);
         this.authService.setUserInfo();
+        this.geoService.getPosition();
     }
 
     ionViewWillEnter() {
@@ -81,12 +82,27 @@ export class ListPage {
 
         this.loader.present();
 
-        this.itemService.loadItems(this.params)
-            .subscribe(data => {
-                this.updateItem(data, overwrite);
-                this.loader.dismiss();
+        this.geoService.getPosition()
+            .then(position =>{
+                this.params.set('point',
+                                `${this.geoService.position.coords.longitude},${this.geoService.position.coords.latitude}`);
 
-            });
+                this.itemService.loadItems(this.params)
+                    .subscribe(data => {
+                        this.updateItem(data, overwrite);
+                        this.loader.dismiss();
+                    });
+            },
+                  error => {
+                      switch(error.code) {
+                      case error.PERMISSION_DENIED:
+                          this.presentToast('현재 위치 검색을 위해 주소를 이동합니다. https://www.healworld.co.kr', 3000);
+                          window.location.href = "https://www.healworld.co.kr";
+                          break;
+                      default:
+                          alert(error);
+                      }
+                  });
     }
 
     itemTapped(item, event) {
@@ -124,44 +140,29 @@ export class ListPage {
         this.loadItems(true);
     }
 
+
     locatePosition() {
         let distance : number = 10;
 
         if (this.address != "모든 지역") {
             this.params.set('dist', '400');
-            this.params.set('point', null);
             this.address = "모든 지역";
             this.loadItems(true);
         }
 
         else {
-            this.geoService.getPosition()
-                .then(position =>{
-                    // step 1) set positional argument
-                    distance = distance * 1000;
-                    this.params.set('dist', distance.toString());
-                    this.params.set('point',
-                                    `${this.geoService.position.coords.longitude},${this.geoService.position.coords.latitude}`);
+            // step 1) set positional argument
+            distance = distance * 1000;
+            this.params.set('dist', distance.toString());
 
-                    // step 2) show address for user
-                    this.geoService.address.subscribe((response) => {
-                        console.log(response['results'][0]);
-                        this.address = response['results'][0]['formatted_address'];
-                    });
+            // step 2) show address for user
+            this.geoService.address.subscribe((response) => {
+                console.log(response['results'][0]);
+                this.address = response['results'][0]['formatted_address'];
+            });
 
-                    // step 3) load items based on the position
-                    this.loadItems(true);
-                },
-                      error => {
-                          switch(error.code) {
-                          case error.PERMISSION_DENIED:
-                              this.presentToast('현재 위치 검색을 위해 주소를 이동합니다. https://www.healworld.co.kr', 3000);
-                              window.location.href = "https://www.healworld.co.kr";
-                              break;
-                          default:
-                              alert(error);
-                          }
-                      });
+            // step 3) load items based on the position
+            this.loadItems(true);
         }
     }
 
