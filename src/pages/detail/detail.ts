@@ -80,8 +80,12 @@ export class DetailPage {
                 this.postForm.reset();
             },
                        error => {
-                           console.log(error);
-                           alert("[정보] 로그인후 댓글을 달 수 있습니다.");
+                if (error.status == 403){
+                    alert("[정보] 로그인후 사진을 업로드 할 수 있습니다.")
+                }
+                else {
+                    alert("[정보] 사진 업로드에 문제가 있습니다.");
+                }
                        });
     }
 
