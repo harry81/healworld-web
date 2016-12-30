@@ -7,13 +7,13 @@ def deploy_to_aws():
     print 'Step 1 : version up'
     version_up()
 
-    print 'Step 2 : Building code.'
+    print '\nStep 2 : Building code.'
     build()
 
-    print 'Step 3 : Putting to AWS.'
+    print '\nStep 3 : Putting to AWS.'
     copy_to_aws()
 
-    print 'Step 4 : Invalidating cloudfront.'
+    print '\nStep 4 : Invalidating cloudfront.'
     invalidate_cloudfront()
 
 def build():
