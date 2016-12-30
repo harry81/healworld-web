@@ -8,8 +8,9 @@
 
   <ion-card *ngIf="authService.isAuthorized()">
     <ion-item>
+      {{profile_picture_url}}
       <ion-avatar item-left>
-        <img data-src="{{user.profile_picture}}"/>
+        <img data-src="{{user.profile_picture_url}}"/>
       </ion-avatar>
       <h2>{{username}}</h2>
       <p>November 5, 1955</p>

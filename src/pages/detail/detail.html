@@ -10,7 +10,7 @@
 
     <ion-item >
       <ion-avatar item-left>
-        <img data-src="{{item.properties.user.profile_picture}}"/>
+        <img data-src="{{item.properties.user.profile_picture_url}}"/>
       </ion-avatar>
 
       <ion-row>
@@ -68,7 +68,7 @@
     <ion-list>
       <ion-item *ngFor="let comment of comments">
         <ion-avatar item-left>
-          <img data-src="{{comment.user.profile_picture}}"/>
+          <img data-src="{{comment.user.profile_picture_url}}"/>
         </ion-avatar>
         <ion-row>
           <h4><b>{{ comment.user_name }}</b>&nbsp;{{ comment.comment }}</h4>
