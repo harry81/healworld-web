@@ -35,10 +35,10 @@
     "zone.js": "0.6.21"
   },
   "config": {
-      "ionic_copy": "./config/copy.config.js"
+    "ionic_copy": "./config/copy.config.js"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "0.0.39",
+    "@ionic/app-scripts": "0.0.48",
     "typescript": "2.0.6"
   },
   "description": "healworld-web: An Ionic project",
