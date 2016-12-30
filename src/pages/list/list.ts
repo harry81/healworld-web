@@ -24,9 +24,9 @@ export class ListPage {
     public params: URLSearchParams = new URLSearchParams();
 
     constructor(public navCtrl: NavController
-                ,public itemService: ItemService
                 ,public loadingCtrl: LoadingController
                 ,private toastCtrl: ToastController
+                ,public itemService: ItemService
                 ,public authService: AuthService
                 ,public geoService: GeoService
                 ,private _cookieService: CookieService) {
