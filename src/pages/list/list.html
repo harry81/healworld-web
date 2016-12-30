@@ -2,10 +2,9 @@
   <ion-item class="menu">
     <ion-searchbar
        placeholder = "단어 검색"
-       [showCancelButton]="shouldShowCancel"
-       (ionCancel)="onSearchCancel($event)"
        (search)="onSearchInput($event)">
     </ion-searchbar>
+
     <button ion-button mini (click)="locatePosition()" item-right><ion-icon name="md-locate"></ion-icon></button>
   </ion-item>
 

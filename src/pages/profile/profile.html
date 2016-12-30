@@ -9,7 +9,7 @@
   <ion-card *ngIf="authService.isAuthorized()">
     <ion-item>
       <ion-avatar item-left>
-        <img src="https://graph.facebook.com/{{facebook_id}}/picture/" alt="" *ngIf="provider=='facebook'"/>
+        <img data-src="{{user.profile_picture}}"/>
       </ion-avatar>
       <h2>{{username}}</h2>
       <p>November 5, 1955</p>

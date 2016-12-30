@@ -1,6 +1,6 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
+  "name": "heal-the-world",
+  "author": "Hyunmin",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
     "emulate:before": "build",
     "deploy:before": "build",
     "build:before": "build",
-    "run:before": "build"
+    "run:before": "build",
+    "minify": "ionic-app-scripts minify"
   },
   "dependencies": {
     "@angular/common": "2.1.1",

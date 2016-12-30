@@ -3,7 +3,6 @@ import { CookieService } from 'angular2-cookie/core';
 import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 
-
 @Injectable()
 export class AuthService {
     public baseUrl: string= 'http://localhost:8000/';
@@ -49,7 +48,7 @@ export class AuthService {
         localStorage.setItem('id_token', jwt_token);
         this.getUserInfo()
             .subscribe(data => {
-                let user = JSON.stringify(data)
+                let user = JSON.stringify(data);
                 localStorage.setItem('user', user);
                 this.user = JSON.parse(user);
             });
