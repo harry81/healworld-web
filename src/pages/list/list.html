@@ -61,7 +61,17 @@
       </ion-item>
 
       <img height="95%" src="{{item.properties.image}}" (click)="itemTapped(item)">
+
       <ion-row>
+        <ion-col class="detail" center>
+          <ion-icon name="text"></ion-icon>
+          {{ item.properties.cnt_of_comments }} 댓글
+        </ion-col>
+
+        <ion-col class="detail" center>
+          {{item.properties.price}} 방문
+        </ion-col>
+
         <ion-col>
           <p class="price">{{item.properties.price}} 원</p>
         </ion-col>
@@ -72,17 +82,6 @@
         <span class="memo">{{item.properties.memo}}
         </span>
       </ion-card-content>
-
-      <ion-row>
-        <ion-col class="detail" center>
-          <ion-icon name="text"></ion-icon>
-          {{ item.properties.cnt_of_comments }} 댓글
-        </ion-col>
-
-        <ion-col class="detail" center>
-          {{item.properties.price}} 원
-        </ion-col>
-      </ion-row>
     </ion-card>
   </ion-list>
 
