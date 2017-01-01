@@ -161,14 +161,15 @@ export class ListPage {
             distance = distance * 1000;
             this.params.set('dist', distance.toString());
 
+            // step 3) load items based on the position
+            this.loadItems(true);
+
             // step 2) show address for user
             this.geoService.address.subscribe((response) => {
                 console.log(response['results'][0]);
                 this.address = response['results'][0]['formatted_address'];
             });
 
-            // step 3) load items based on the position
-            this.loadItems(true);
         }
     }
 
