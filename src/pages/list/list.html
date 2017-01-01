@@ -3,20 +3,16 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>목록</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content class="home">
-  <ion-item class="menu">
     <ion-searchbar
        placeholder = "단어 검색"
        (search)="onSearchInput($event)">
     </ion-searchbar>
 
-    <button ion-button mini (click)="locatePosition()" item-right><ion-icon name="md-locate"></ion-icon></button>
-  </ion-item>
 
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="home">
   <ion-item>
     <ion-row>
       <ion-col width-75><p>{{address}}</p>
@@ -28,6 +24,7 @@
 
     <ion-row>
       <ion-col width-75>
+        <!-- <button ion-button mini (click)="locatePosition()" item-right><ion-icon name="md-locate"></ion-icon></button> -->
       </ion-col>
       <ion-col><p>{{items_count}} 건</p>
       </ion-col>

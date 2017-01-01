@@ -41,11 +41,11 @@ export class ListPage {
     }
 
     ionViewWillEnter() {
+        if (this.items.length == 0)
+            this.loadItems(true);
     }
 
     ionViewDidLoad() {
-        if (this.items.length == 0)
-            this.loadItems(true);
     }
 
     updateItem(data, overwrite=false){
