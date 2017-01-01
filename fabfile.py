@@ -17,7 +17,7 @@ def deploy_to_aws():
     invalidate_cloudfront()
 
 def build():
-    local("ionic build")
+    local("npm run build --prod --aot")
 
 def copy_to_aws():
     local("aws s3 sync  www s3://www.healworld.co.kr/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile pointer --region ap-northeast-2;")
