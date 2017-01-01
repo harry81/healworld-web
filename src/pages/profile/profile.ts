@@ -39,7 +39,10 @@ export class ProfilePage {
 
     ionViewWillEnter() {
         this.params.set('state', `created`);
-        this.params.set('user', this.user.pk);
+
+        if (this.user) {
+            this.params.set('user', this.user.pk);
+        }
 
         this.loadItems();
     }
@@ -73,6 +76,12 @@ export class ProfilePage {
     }
 
     loadItems(overwrite=false){
+        let user = localStorage.getItem('user');
+
+        if (user == undefined ) {
+            this.items = null;
+            return;
+        }
 
         this.geoService.getPosition()
             .then(position =>{
@@ -97,5 +106,9 @@ export class ProfilePage {
                   });
     }
 
+    logout() {
+        this.authService.loggedOut();
+        this.items = null;
+    }
 
 }

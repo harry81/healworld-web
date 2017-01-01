@@ -28,6 +28,13 @@ export class AuthService {
     loggedOut() {
         this._cookieService.removeAll();
         localStorage.clear();
+        this.logout();
+    }
+
+    logout() {
+        let url = this.baseUrl + 'api-profile/logout/';
+        return this.authHttp.get(url)
+            .map(res => res.json());
     }
 
     getUserInfo() {
