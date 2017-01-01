@@ -22,6 +22,13 @@ export class DetailPage {
     public postForm: any;
     public placeholder_comment: string = "댓글 달기";
 
+    public detailSlideOptions = {
+        initialSlide: 1,
+        pager: true,
+        centeredSlides: true,
+        zoom: true
+    };
+
     constructor(public navCtrl: NavController,
                 public params:NavParams,
                 private formBuilder: FormBuilder,

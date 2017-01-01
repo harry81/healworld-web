@@ -37,11 +37,10 @@
       </ion-row>
     </ion-item>
 
-
     <ion-item>
-      <ion-slides pager>
-        <ion-slide *ngFor="let image of item.properties.images">
-          <img src="{{image.itemshot.thumbnail__400x400}}">
+      <ion-slides [options]="detailSlideOptions">
+        <ion-slide *ngFor="let image of item.properties.images" zoom>
+          <img src="{{image.itemshot.thumbnail__400x400}}" swiper-lazy>
         </ion-slide>
       </ion-slides>
 

@@ -54,3 +54,21 @@ page-detail ion-card-content {
     font-weight: normal;
     color: #666;
 }
+
+page-detail .slide-zoom {
+    width: unset;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.slider-slide img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}

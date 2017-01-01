@@ -19,7 +19,7 @@ export class ListPage {
     public next_url: string;
     public search_input: string="Heal World";
     public loader: any;
-    public address: any = "모든 지역";
+    public address: any = "전국";
 
     public params: URLSearchParams = new URLSearchParams();
 
@@ -33,6 +33,7 @@ export class ListPage {
 
         this.params.set('search', ``);
         this.params.set('state', `created`);
+        this.params.set('dist', '100000');
         this.authService.setUserInfo();
         this.geoService.getPosition();
     }
@@ -142,17 +143,17 @@ export class ListPage {
 
 
     locatePosition() {
-        let distance : number = 10;
+        let distance : number = 11;
 
-        if (this.address != "모든 지역") {
-            this.params.set('dist', '400');
-            this.address = "모든 지역";
+        if (this.address != "전국") {
+            this.params.set('dist', '100000');
+            this.address = "전국";
             this.loadItems(true);
         }
 
         else {
             // step 1) set positional argument
-            distance = distance * 1000;
+            distance = distance * 1002;
             this.params.set('dist', distance.toString());
 
             // step 2) show address for user
