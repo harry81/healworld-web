@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 
 /*
   Generated class for the Search page.
@@ -8,15 +8,24 @@ import { NavController } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-search',
-  templateUrl: 'search.html'
+    selector: 'page-search',
+    templateUrl: 'search.html'
 })
 export class SearchPage {
 
-  constructor(public navCtrl: NavController) {}
+    constructor(public viewCtrl: ViewController
+                ,params: NavParams) {}
 
-  ionViewDidLoad() {
-    console.log('Hello SearchPage Page');
-  }
+    ionViewDidLoad() {
+        console.log('Hello SearchPage Page');
+    }
 
+    dismiss(search) {
+        let data ={};
+
+        if (search)
+            data = { 'search': '자전거' };
+
+        this.viewCtrl.dismiss(data);
+    }
 }

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CookieService } from 'angular2-cookie/core';
 import { URLSearchParams } from '@angular/http';
-import { NavController, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, LoadingController,
+         ToastController, ModalController } from 'ionic-angular';
 import { ItemService } from '../../providers/item-service';
 import { GeoService } from '../../providers/geo-service';
 import { AuthService } from '../../providers/auth-service';
 import { DetailPage } from '../detail/detail';
+import { SearchPage } from '../search/search';
 import { PostPage } from '../post/post';
 
 @Component({
@@ -31,6 +33,7 @@ export class ListPage {
                 ,public itemService: ItemService
                 ,public authService: AuthService
                 ,public geoService: GeoService
+                ,public modalCtrl: ModalController
                 ,private _cookieService: CookieService) {
 
         this.params.set('search', ``);
@@ -115,6 +118,22 @@ export class ListPage {
         this.navCtrl.push(DetailPage, {
             item: item
         });
+    }
+
+    openSearch() {
+        let searchModal = this.modalCtrl.create(SearchPage, { userId: 8675309 });
+        searchModal.onDidDismiss(data => {
+            console.log('params ', this.params);
+
+            if ('search' in data) {
+                this.params.set('search', data['search'])
+            }
+
+            console.log(data);
+            this.locatePosition();
+        });
+
+        searchModal.present();
     }
 
     addItem() {
