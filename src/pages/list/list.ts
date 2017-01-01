@@ -16,12 +16,14 @@ import { PostPage } from '../post/post';
 
 export class ListPage {
     public items: Array<any> = [];
+    public items_count: Number = 0;
     public next_url: string;
-    public search_input: string="Heal World";
     public loader: any;
     public address: any = "전국";
 
     public params: URLSearchParams = new URLSearchParams();
+    public dist: Number;
+    public search: string;
 
     constructor(public navCtrl: NavController
                 ,public loadingCtrl: LoadingController
@@ -39,39 +41,42 @@ export class ListPage {
     }
 
     ionViewWillEnter() {
+    }
+
+    ionViewDidLoad() {
         if (this.items.length == 0)
             this.loadItems(true);
     }
 
-    ionViewDidLoad() {
-    }
-
     updateItem(data, overwrite=false){
-        if (overwrite == true) {
-            this.items = data.results.features;
-        }
 
-        else {
-            for (let idx_data in data.results.features) {
-                let obj = data.results.features[idx_data];
-                let exist = false;
+        for (let idx_data in data.results.features) {
+            let obj = data.results.features[idx_data];
+            this.items_count = data.count;
 
-                for (let idx_item in this.items) {
-                    if (this.items[idx_item].properties.pk == obj.properties.pk){
-                        exist = true;
-                        break;
-                    }
+            if (data.request_query) {
+                this.dist = Number(data.request_query['dist']) / 1000
+                this.search = data.request_query['search']
+            }
+
+            let exist = false;
+
+            for (let idx_item in this.items) {
+                if (this.items[idx_item].properties.pk == obj.properties.pk){
+                    exist = true;
+                    break;
                 }
+            }
 
-                if (exist == false){
-                    if (data.previous != null)
-                        this.items.push(obj);
-                    else {
-                        this.items.unshift(obj);
-                    }
+            if (exist == false){
+                if (data.previous != null)
+                    this.items.push(obj);
+                else {
+                    this.items.unshift(obj);
                 }
             }
         }
+
         this.next_url = data.next;
     }
 
@@ -153,7 +158,7 @@ export class ListPage {
 
         else {
             // step 1) set positional argument
-            distance = distance * 1002;
+            distance = distance * 1000;
             this.params.set('dist', distance.toString());
 
             // step 2) show address for user
