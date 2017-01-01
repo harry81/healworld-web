@@ -148,7 +148,7 @@ export class ListPage {
 
 
     locatePosition() {
-        let distance : number = 11;
+        let distance : number = 10;
 
         if (this.address != "전국") {
             this.params.set('dist', '100000');
