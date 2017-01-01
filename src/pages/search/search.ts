@@ -12,19 +12,24 @@ import { NavParams, ViewController } from 'ionic-angular';
     templateUrl: 'search.html'
 })
 export class SearchPage {
+    public search: string;
+    public brightness: number;
 
     constructor(public viewCtrl: ViewController
-                ,params: NavParams) {}
+                ,params: NavParams) {
+        this.search = 'hi';
+        this.brightness = 10;
+
+    }
 
     ionViewDidLoad() {
-        console.log('Hello SearchPage Page');
     }
 
     dismiss(search) {
         let data ={};
 
         if (search)
-            data = { 'search': '자전거' };
+            data = { 'search': this.search };
 
         this.viewCtrl.dismiss(data);
     }

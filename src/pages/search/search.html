@@ -10,14 +10,30 @@
 
 
 <ion-content padding>
-  <ion-item>
-    <ion-row>
-      <ion-col>
-        <button ion-button mini outline round (click)="dismiss()">취소</button>
-      </ion-col>
-      <ion-col>
-        <button ion-button mini outline round (click)="dismiss(false)">검색</button>
-      </ion-col>
-    </ion-row>
-  </ion-item>
+
+  <form (ngSubmit)="dismiss()" id="searchFrom">
+    <ion-item no-lines>
+      <ion-label>검색어</ion-label>
+      <ion-input  [(ngModel)]="search" name="search" clearInput></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-range [(ngModel)]="distance" name="distance" min="10" max="10000" pin="true">
+        <ion-icon range-left small name="sunny"></ion-icon>
+        <ion-icon range-right name="sunny"></ion-icon>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          <button ion-button mini outline round (click)="dismiss()">취소</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button mini outline round (click)="dismiss(false)">검색</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </form>
+
 </ion-content>
