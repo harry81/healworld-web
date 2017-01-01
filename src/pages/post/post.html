@@ -7,12 +7,12 @@
 <ion-content padding>
 
   <form [formGroup]="postForm" (ngSubmit)="onSubmit()" id="postFrom">
-    <ion-item>
+    <ion-item no-lines>
       <ion-label>제목</ion-label>
       <ion-input formControlName="title" placeholder="가방 팝니다" name="title" clearInput></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item no-lines>
       <div class="image-upload">
         <label for="file-input">
             <ion-icon name="ios-cloud-upload-outline"></ion-icon>
@@ -23,12 +23,12 @@
       </div>
     </ion-item>
 
-    <ion-item>
+    <ion-item no-lines>
       <ion-label>내용</ion-label>
       <ion-textarea formControlName="memo" placeholder="한달 썼어요" name="memo"></ion-textarea>
     </ion-item>
 
-    <ion-item>
+    <ion-item no-lines>
       <ion-label>가격</ion-label>
       <ion-input formControlName="price" placeholder="7000" name="price"></ion-input>
     </ion-item>
