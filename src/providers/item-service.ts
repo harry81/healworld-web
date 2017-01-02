@@ -65,6 +65,13 @@ export class ItemService {
             .map(response => response.json());
     }
 
+    patchItem(formData){
+        return this.authHttp
+            .patch(this.baseUrl + 'api-item/',
+                  formData)
+            .map(response => response.json());
+    }
+
     loadComment(params) {
         let url = this.baseUrl + 'api-comment/';
 

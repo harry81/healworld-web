@@ -41,13 +41,24 @@ export class MyitemPage {
     }
 
     deleteItem(item) {
+        if (this.user == undefined ) {
+            return;
+        }
+
+        let params = {deleted: 'true',
+                      item_id: item.properties.pk};
+
         console.log(item);
+
+        this.itemService.patchItem(params)
+            .subscribe(data => {
+                this.response = data;
+                console.log('data loaditem', data);
+            });
     }
 
     loadItems(overwrite=false){
-        let user = localStorage.getItem('user');
-
-        if (user == undefined ) {
+        if (this.user == undefined ) {
             this.items = null;
             return;
         }
