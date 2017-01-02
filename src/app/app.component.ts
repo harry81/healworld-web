@@ -5,6 +5,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { ListPage } from '../pages/list/list';
 import { ProfilePage } from '../pages/profile/profile';
 import { DesktopPage } from '../pages/desktop/desktop';
+import { MyitemPage } from '../pages/myitem/myitem';
 import { AuthService } from '../providers/auth-service';
 
 
@@ -32,7 +33,8 @@ export class MyApp {
         // used for an example of ngFor and navigation
         this.pages = [
             { title: '목록', component: ListPage },
-            { title: '계정', component: ProfilePage }
+            { title: '계정', component: ProfilePage },
+            { title: '나의 아이템', component: MyitemPage }
         ];
         this.user = {profile_picture_url: '/assets/imgs/person.png',
                      username: '방문자'};

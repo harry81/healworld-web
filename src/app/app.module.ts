@@ -11,6 +11,7 @@ import { AboutPage } from '../pages/about/about';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DetailPage } from '../pages/detail/detail';
+import { MyitemPage } from '../pages/myitem/myitem';
 import { SearchPage } from '../pages/search/search';
 import { PostPage } from '../pages/post/post';
 import { ProfilePage } from '../pages/profile/profile';
@@ -35,6 +36,7 @@ export function getAuthHttp(http) {
         HomePage,
         ListPage,
         DetailPage,
+        MyitemPage,
         SearchPage,
         PostPage,
         ProfilePage,
@@ -54,6 +56,7 @@ export function getAuthHttp(http) {
         HomePage,
         ListPage,
         DetailPage,
+        MyitemPage,
         SearchPage,
         PostPage,
         ProfilePage,
