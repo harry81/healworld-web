@@ -1,19 +1,14 @@
 <ion-content class="home">
   <ion-navbar>
-
     <button ion-button menuToggle icon-only>
       <ion-icon name="menu"></ion-icon>
     </button>
-
-    <ion-title>목록
-    </ion-title>
 
     <ion-buttons end>
       <button ion-button clear large (click)="openSearch()">
         <ion-icon name="md-search"></ion-icon>
       </button>
     </ion-buttons>
-
   </ion-navbar>
 
   <ion-item>
@@ -26,11 +21,11 @@
     </ion-row>
 
     <ion-row>
-      <ion-col>
-        <p>{{items_count}} 건</p>
+      <ion-col width-75>
+        <p>{{search}}</p>
       </ion-col>
       <ion-col>
-        <button ion-button mini outline round (click)="locatePosition()">내 주변</button>
+        <p>{{items_count}} 건</p>
       </ion-col>
     </ion-row>
   </ion-item>

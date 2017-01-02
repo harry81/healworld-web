@@ -52,32 +52,38 @@ export class ListPage {
     }
 
     updateItem(data, overwrite=false){
+        if (overwrite == true) {
+            this.items = data.results.features;
+        }
 
-        for (let idx_data in data.results.features) {
-            let obj = data.results.features[idx_data];
-            this.items_count = data.count;
+        else {
+            for (let idx_data in data.results.features) {
+                let obj = data.results.features[idx_data];
 
-            if (data.request_query) {
-                this.dist = Number(data.request_query['dist']) / 1000
-                this.search = data.request_query['search']
-            }
+                let exist = false;
 
-            let exist = false;
+                for (let idx_item in this.items) {
+                    if (this.items[idx_item].properties.pk == obj.properties.pk){
+                        exist = true;
+                        break;
+                    }
+                }
 
-            for (let idx_item in this.items) {
-                if (this.items[idx_item].properties.pk == obj.properties.pk){
-                    exist = true;
-                    break;
+                if (exist == false){
+                    if (data.previous != null)
+                        this.items.push(obj);
+                    else {
+                        this.items.unshift(obj);
+                    }
                 }
             }
+        }
 
-            if (exist == false){
-                if (data.previous != null)
-                    this.items.push(obj);
-                else {
-                    this.items.unshift(obj);
-                }
-            }
+        this.items_count = data.count;
+
+        if (data.request_query) {
+            this.dist = Number(data.request_query['dist']) / 1000
+            this.search = data.request_query['search']
         }
 
         this.next_url = data.next;
@@ -121,15 +127,14 @@ export class ListPage {
     }
 
     openSearch() {
-        let searchModal = this.modalCtrl.create(SearchPage, { userId: 8675309 });
+        let searchModal = this.modalCtrl.create(SearchPage);
         searchModal.onDidDismiss(data => {
-            console.log('params ', this.params);
 
             if ('search' in data) {
-                this.params.set('search', data['search'])
+                this.params.set('search', data['search']);
+                this.params.set('dist', data['dist']);
             }
 
-            console.log(data);
             this.locatePosition();
         });
 
@@ -167,29 +172,13 @@ export class ListPage {
 
 
     locatePosition() {
-        let distance : number = 10;
 
-        if (this.address != "전국") {
-            this.params.set('dist', '100000');
-            this.address = "전국";
-            this.loadItems(true);
-        }
+        this.geoService.address.subscribe((response) => {
+            console.log(response['results'][0]);
+            this.address = response['results'][0]['formatted_address'];
+        });
 
-        else {
-            // step 1) set positional argument
-            distance = distance * 1000;
-            this.params.set('dist', distance.toString());
-
-            // step 3) load items based on the position
-            this.loadItems(true);
-
-            // step 2) show address for user
-            this.geoService.address.subscribe((response) => {
-                console.log(response['results'][0]);
-                this.address = response['results'][0]['formatted_address'];
-            });
-
-        }
+        this.loadItems(true);
     }
 
     get_token() {
