@@ -133,16 +133,23 @@ export class ListPage {
             if ('search' in data) {
                 this.params.set('search', data['search']);
                 this.params.set('dist', data['dist']);
+                this.locatePosition();
             }
 
-            this.locatePosition();
         });
 
         searchModal.present();
     }
 
     addItem() {
-        this.navCtrl.push(PostPage);
+        let addItemModal = this.modalCtrl.create(PostPage);
+
+        addItemModal.onDidDismiss(data => {
+            if (data)
+                this.locatePosition();
+        });
+
+        addItemModal.present();
     }
 
     doRefresh(refresher) {

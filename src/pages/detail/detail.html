@@ -13,7 +13,7 @@
         <img data-src="{{item.properties.user.profile_picture_url}}"/>
       </ion-avatar>
 
-      <ion-row>
+      <ion-row center>
         <ion-col class="date">
           <b>{{item.properties.user.username}}</b>
         </ion-col>
@@ -22,18 +22,12 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col width-75>
-          <span class="address">{{item.properties.address}}</span>
-        </ion-col>
-        <ion-col>
-          <p>{{item.properties.distance}}
-          <button ion-button clear (click)="showMap()">
-            <ion-icon name="map"></ion-icon>
-          </button>
-          </p>
-        </ion-col>
+      <ion-row center>
+        <p class="address">{{item.properties.address}}</p>
 
+        <button ion-button outline item-right (click)="showMap()">
+          {{item.properties.distance}}
+        </button>
       </ion-row>
     </ion-item>
 

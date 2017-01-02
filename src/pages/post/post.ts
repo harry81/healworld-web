@@ -74,8 +74,12 @@ export class PostPage {
         this.postForm.value['image_ids'] = this.preview.map(function(a) {return a.id;}).join();
         this.itemService.postItem(this.postForm.value)
             .subscribe(response => {
-                this.viewCtrl.dismiss();
+                this.viewCtrl.dismiss(response);
             });
+    }
+
+    onCancel() {
+        this.viewCtrl.dismiss();
     }
 
     clearPostForm() {
