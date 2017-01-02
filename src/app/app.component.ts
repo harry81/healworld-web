@@ -5,10 +5,13 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { ListPage } from '../pages/list/list';
 import { ProfilePage } from '../pages/profile/profile';
 import { DesktopPage } from '../pages/desktop/desktop';
+import { AuthService } from '../providers/auth-service';
 
 
 @Component({
-    templateUrl: 'app.html'
+    templateUrl: 'app.html',
+    providers: [AuthService]
+
 })
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
@@ -17,7 +20,13 @@ export class MyApp {
 
     pages: Array<{title: string, component: any}>;
 
-    constructor(public platform: Platform) {
+    public user: {profile_picture_url: string,
+                  username: string};
+
+
+    constructor(public platform: Platform
+                ,public authService: AuthService
+               ) {
         this.initializeApp();
 
         // used for an example of ngFor and navigation
@@ -25,10 +34,15 @@ export class MyApp {
             { title: '목록', component: ListPage },
             { title: '계정', component: ProfilePage }
         ];
+        this.user = {profile_picture_url: '/assets/imgs/person.png',
+                     username: '방문자'};
 
         if (this.platform.is('core')) {
             this.rootPage = DesktopPage;
         };
+
+        if (localStorage.hasOwnProperty('user'))
+            this.user = JSON.parse(localStorage.getItem('user'));
     }
 
     initializeApp() {
