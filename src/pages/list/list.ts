@@ -85,7 +85,7 @@ export class ListPage {
 
     loadItems(overwrite=false){
         this.loader = this.loadingCtrl.create({
-            content: "Please wait...",
+            content: "데이타를 불러오고 있습니다.",
             duration: 3000
         });
 
