@@ -26,7 +26,7 @@ export class AuthService {
     }
 
     loggedOut() {
-        this._cookieService.remove('jwt_token');
+        this._cookieService.remove('jwt_token', { path: '/' });
         this._cookieService.removeAll();
         localStorage.clear();
         this.logout();
