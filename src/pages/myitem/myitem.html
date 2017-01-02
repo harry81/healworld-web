@@ -1,17 +1,16 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>myitem</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>아이템</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
   <ion-list >
     <ion-item-sliding *ngFor="let item of items">
-      <ion-item>
+      <ion-item no-lines>
         <h2>{{item.properties.title}}</h2>
         <h3>{{item.properties.created_at | amTimeAgo}}</h3>
         <p>{{item.properties.state}}</p>
@@ -22,5 +21,8 @@
     </ion-item-sliding>
   </ion-list>
 
+  <div *ngIf="!items.length">
+    <p>처리중인 아이템이 없습니다.</p>
+  </div>
 
 </ion-content>

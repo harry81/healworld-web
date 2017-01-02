@@ -14,9 +14,6 @@ export class SearchPage {
                 ,params: NavParams
                 ,private _cookieService: CookieService) {
 
-        this.search = 'hi';
-        this.dist = '10';
-
     }
 
     ionViewDidLoad() {

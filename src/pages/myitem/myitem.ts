@@ -26,8 +26,8 @@ export class MyitemPage {
         console.log('Hello MyitemPage Page');
     }
 
-    ionViewWillEnter() {
-        this.user = localStorage.getItem('user');
+    ionViewDidEnter() {
+        this.user = JSON.parse(localStorage.getItem('user'));
 
         if (this.user == undefined )
             return;
