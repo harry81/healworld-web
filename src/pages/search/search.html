@@ -1,12 +1,12 @@
 <ion-content padding>
 
-  <form (ngSubmit)="dismiss()" id="searchFrom">
+  <form  [formGroup]="searchForm" id="searchFrom">
     <ion-item no-lines>
       <ion-label>검색어</ion-label>
-      <ion-input  [(ngModel)]="search" name="search" clearInput></ion-input>
+      <ion-input  formControlName="search" name="search" clearInput></ion-input>
     </ion-item>
 
-    <ion-list radio-group [(ngModel)]="dist" name="dist">
+    <ion-list radio-group formControlName="dist" name="dist">
       <ion-list-header>
         반경
       </ion-list-header>
@@ -35,10 +35,11 @@
     <ion-item>
       <ion-row>
         <ion-col>
-          <button ion-button mini outline round (click)="dismiss(false)">취소</button>
+          <button type="submit" ion-button mini outline round (click)="dismiss()" [disabled]="!searchForm.valid" form="searchFrom">검색</button>
         </ion-col>
+
         <ion-col>
-          <button ion-button mini outline round (click)="dismiss()">검색</button>
+          <button ion-button mini outline round (click)="dismiss(false)">취소</button>
         </ion-col>
       </ion-row>
     </ion-item>

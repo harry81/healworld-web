@@ -91,7 +91,7 @@ export class ListPage {
 
     loadItems(overwrite=false){
         this.loader = this.loadingCtrl.create({
-            content: "데이타를 불러오고 있습니다.",
+            content: "데이타를 불러오고 있습니다",
             duration: 3000
         });
 
@@ -130,7 +130,7 @@ export class ListPage {
         let searchModal = this.modalCtrl.create(SearchPage);
         searchModal.onDidDismiss(data => {
 
-            if ('search' in data) {
+            if (data !== null && data.hasOwnProperty('search')) {
                 this.params.set('search', data['search']);
                 this.params.set('dist', data['dist']);
                 this.locatePosition();
