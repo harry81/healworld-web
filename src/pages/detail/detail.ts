@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Slides } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 import { ItemService } from '../../providers/item-service';
 import { AuthService } from '../../providers/auth-service';
@@ -23,10 +23,11 @@ export class DetailPage {
     public placeholder_comment: string = "댓글 달기";
     public comment_disabled: boolean = false;
 
+    @ViewChild('imgSlider') slider: Slides;
+
     public detailSlideOptions = {
-        initialSlide: 1,
+        initialSlide: 0,
         pager: true,
-        centeredSlides: true,
         zoom: true
     };
 
