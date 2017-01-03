@@ -26,10 +26,13 @@ export class AuthService {
     }
 
     loggedOut() {
-        this._cookieService.remove('jwt_token', { path: '/' });
-        this._cookieService.removeAll();
-        localStorage.clear();
-        this.logout();
+        this.logout()
+            .subscribe(data => {
+                console.log(data);
+                this._cookieService.remove('jwt_token', { path: '/' });
+                this._cookieService.removeAll();
+                localStorage.clear();
+            });
     }
 
     logout() {
