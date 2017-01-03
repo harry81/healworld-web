@@ -122,7 +122,7 @@ export class ListPage {
 
     itemTapped(item, event) {
         this.navCtrl.push(DetailPage, {
-            item: item
+            item_id: item.properties.pk
         });
     }
 

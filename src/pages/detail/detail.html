@@ -1,13 +1,12 @@
 <ion-header>
   <ion-navbar>
-    <ion-title><p>{{item.properties.title}}</p></ion-title>
+    <ion-title *ngIf="item"><p>{{item.properties.title}}</p></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-card>
-
+  <ion-card *ngIf="item">
     <ion-item >
       <ion-avatar item-left>
         <img data-src="{{item.properties.user.profile_picture_url}}"/>

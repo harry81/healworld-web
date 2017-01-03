@@ -17,6 +17,7 @@ export class DetailPage {
     public lat: number;
     public lng: number;
     public zoom: number;
+    public item_id: string;
     public item: any;
     public comments: any[];
     public commentForm: any;
@@ -37,7 +38,7 @@ export class DetailPage {
                 public authService: AuthService,
                 public itemService: ItemService) {
 
-        this.item = params.get("item");
+        this.item_id = params.get("item_id");
         this.commentForm = this.formBuilder.group({
             'comment': [{value: '', disabled: true},
                         Validators.compose([Validators.required])]
@@ -46,10 +47,10 @@ export class DetailPage {
         if (!this.authService.isAuthorized()) {
             this.placeholder_comment = "로그인후 댓글을 달 수 있습니다";
         }
+        this.loadItem(this.item_id);
     }
 
     ionViewDidLoad() {
-        this.loadItem(this.item);
         this.loadComment();
 
         if (!this.authService.isAuthorized()) {
@@ -57,18 +58,19 @@ export class DetailPage {
         }
     }
 
-    loadItem(item) {
-        this.itemService.loadItem(item.properties.pk)
+    loadItem(item_id) {
+        this.itemService.loadItem(item_id)
             .subscribe(data => {
                 this.lat = data['geometry']['coordinates'][1];
                 this.lng = data['geometry']['coordinates'][0];
                 this.zoom = 14;
+                this.item = data;
             });
     }
 
     loadComment() {
         let params: URLSearchParams = new URLSearchParams();
-        params.set('object_pk', this.item.properties.pk);
+        params.set('object_pk', this.item_id);
 
         this.itemService.loadComment(params)
             .subscribe(res => {
@@ -86,7 +88,7 @@ export class DetailPage {
         this.commentForm.value['site'] = 1;
         this.commentForm.value['user_name'] = this.authService.user.username;
         this.commentForm.value['user'] = this.authService.user.pk;
-        this.commentForm.value['object_pk'] = this.item.properties.pk;
+        this.commentForm.value['object_pk'] = this.item_id;
 
         this.itemService.postComment(this.commentForm.value)
             .subscribe(response => {

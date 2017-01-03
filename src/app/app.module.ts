@@ -32,7 +32,9 @@ export function getAuthHttp(http) {
 export const deepLinkConfig: DeepLinkConfig = {
     links: [
         { component: ProfilePage, name: 'Profile', segment: 'profile' },
-        { component: DetailPage, name: 'Detail', segment: 'detail/:userId' }
+        { component: DetailPage,
+          name: 'Detail', segment: 'detail/:item_id',
+          defaultHistory: [ListPage] }
     ]
 };
 
