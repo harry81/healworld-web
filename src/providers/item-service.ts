@@ -33,14 +33,14 @@ export class ItemService {
             .map(res => res.json());
     }
 
-    loadItem(item_id="") {
-
+    loadItem(item_id, params) {
         let url = this.baseUrl + 'api-item/';
+
         if (item_id != ''){
             url = url + item_id + '/';
         }
 
-        return this.http.get(url)
+        return this.http.get(url, {search: params})
             .map(res => res.json());
     }
 

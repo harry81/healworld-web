@@ -59,7 +59,13 @@ export class DetailPage {
     }
 
     loadItem(item_id) {
-        this.itemService.loadItem(item_id)
+        let params: URLSearchParams = new URLSearchParams();
+
+        let coord = JSON.parse(sessionStorage.getItem('position'));
+        if (coord)
+            params.set('point', `${coord.lng},${coord.lat}`);
+
+        this.itemService.loadItem(item_id, params)
             .subscribe(data => {
                 this.lat = data['geometry']['coordinates'][1];
                 this.lng = data['geometry']['coordinates'][0];

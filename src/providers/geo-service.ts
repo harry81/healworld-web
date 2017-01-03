@@ -29,6 +29,9 @@ export class GeoService {
                     this.address = this.getAddress(
                         this.position.coords.latitude,
                         this.position.coords.longitude);
+                    sessionStorage.setItem('position',
+                                         JSON.stringify({lat: position.coords.latitude,
+                                                         lng: position.coords.longitude}));
                     resolve(position);
                 },
                 (error) => {
