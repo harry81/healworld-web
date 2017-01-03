@@ -5,7 +5,7 @@ from fabric.api import local
 
 def deploy_to_aws():
     print 'Step 1 : version up'
-    version_up()
+    version = version_up()
 
     print '\nStep 2 : Building code.'
     build()
@@ -15,6 +15,9 @@ def deploy_to_aws():
 
     print '\nStep 4 : Invalidating cloudfront.'
     invalidate_cloudfront()
+
+    print '\nDone'
+    print 'version %s' % version
 
 def build():
     local("npm run build --prod --aot")
@@ -27,7 +30,8 @@ def invalidate_cloudfront():
 
 def version_up():
     version_up_invbatch()
-    version_up_service_worker()
+    version = version_up_service_worker()
+    return version
 
 def version_up_invbatch():
     with open('invbatch.json', 'rt') as fp:
@@ -53,3 +57,5 @@ def version_up_service_worker():
 
     with open('src/service-worker.js', 'wt') as fp:
         fp.write(content)
+
+    return version
