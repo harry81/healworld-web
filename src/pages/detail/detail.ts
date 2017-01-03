@@ -38,7 +38,16 @@ export class DetailPage {
                 public authService: AuthService,
                 public itemService: ItemService) {
 
-        this.item_id = params.get("item_id");
+        this.item = params.get("item");
+
+        if (typeof(this.item) == 'object') {
+            this.item_id = this.item.properties.pk;
+        }
+        else {
+            this.item_id = String(this.item);
+            this.item = null;
+            this.loadItem(this.item_id);
+        }
         this.commentForm = this.formBuilder.group({
             'comment': [{value: '', disabled: true},
                         Validators.compose([Validators.required])]
@@ -47,7 +56,6 @@ export class DetailPage {
         if (!this.authService.isAuthorized()) {
             this.placeholder_comment = "로그인후 댓글을 달 수 있습니다";
         }
-        this.loadItem(this.item_id);
     }
 
     ionViewDidLoad() {
