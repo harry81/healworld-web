@@ -28,6 +28,27 @@
       <ion-textarea formControlName="memo" placeholder="한달 썼어요" name="memo"></ion-textarea>
     </ion-item>
 
+    <ion-list radio-group formControlName="quality" name="quality">
+      <ion-list-header>
+        상태
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>상</ion-label>
+        <ion-radio value="9"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>중</ion-label>
+        <ion-radio value="5"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>하</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+    </ion-list>
+
     <ion-item no-lines>
       <ion-label>가격</ion-label>
       <ion-input formControlName="price" placeholder="7000" name="price"></ion-input>

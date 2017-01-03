@@ -38,6 +38,7 @@ export class PostPage {
             ],
             'image_ids': [''],
             'point': [''],
+            'quality': [''],
             'address': [''],
         });
     }
