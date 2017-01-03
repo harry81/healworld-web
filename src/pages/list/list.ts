@@ -142,6 +142,11 @@ export class ListPage {
     }
 
     addItem() {
+        if (!this.authService.isAuthorized()) {
+            this.presentToast('로그인후 물건 등록이 가능합니다', 3000);
+            return;
+        }
+
         let addItemModal = this.modalCtrl.create(PostPage);
 
         addItemModal.onDidDismiss(data => {
@@ -200,7 +205,7 @@ export class ListPage {
         let toast = this.toastCtrl.create({
             message: message,
             duration: time,
-            position: 'middle'
+            position: 'top'
         });
 
         toast.present();
