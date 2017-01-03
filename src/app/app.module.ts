@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicModule, DeepLinkConfig } from 'ionic-angular';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -29,6 +29,13 @@ export function getAuthHttp(http) {
     }), http);
 }
 
+export const deepLinkConfig: DeepLinkConfig = {
+    links: [
+        { component: ProfilePage, name: 'Profile', segment: 'profile' },
+        { component: DetailPage, name: 'Detail', segment: 'detail/:userId' }
+    ]
+};
+
 @NgModule({
     declarations: [
         MyApp,
@@ -44,7 +51,7 @@ export function getAuthHttp(http) {
         MapPage,
         TabsPage],
     imports: [
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(MyApp, {}, deepLinkConfig),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyDRCEiyDSW4JsDxFe7bJ17w9cpnLljvEQA'
         }),
