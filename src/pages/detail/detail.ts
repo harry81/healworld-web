@@ -19,8 +19,9 @@ export class DetailPage {
     public zoom: number;
     public item: any;
     public comments: any[];
-    public postForm: any;
+    public commentForm: any;
     public placeholder_comment: string = "댓글 달기";
+    public comment_disabled: boolean = false;
 
     public detailSlideOptions = {
         initialSlide: 1,
@@ -36,8 +37,9 @@ export class DetailPage {
                 public itemService: ItemService) {
 
         this.item = params.get("item");
-        this.postForm = this.formBuilder.group({
-            'comment': ['', Validators.compose([Validators.required])]
+        this.commentForm = this.formBuilder.group({
+            'comment': [{value: '', disabled: true},
+                        Validators.compose([Validators.required])]
         });
 
         if (!this.authService.isAuthorized()) {
@@ -48,6 +50,10 @@ export class DetailPage {
     ionViewDidLoad() {
         this.loadItem(this.item);
         this.loadComment();
+
+        if (!this.authService.isAuthorized()) {
+            this.comment_disabled = true;
+        }
     }
 
     loadItem(item) {
@@ -75,16 +81,16 @@ export class DetailPage {
             return;
         }
 
-        this.postForm.value['content_type'] = 8; // content type of Item
-        this.postForm.value['site'] = 1;
-        this.postForm.value['user_name'] = this.authService.user.username;
-        this.postForm.value['user'] = this.authService.user.pk;
-        this.postForm.value['object_pk'] = this.item.properties.pk;
+        this.commentForm.value['content_type'] = 8; // content type of Item
+        this.commentForm.value['site'] = 1;
+        this.commentForm.value['user_name'] = this.authService.user.username;
+        this.commentForm.value['user'] = this.authService.user.pk;
+        this.commentForm.value['object_pk'] = this.item.properties.pk;
 
-        this.itemService.postComment(this.postForm.value)
+        this.itemService.postComment(this.commentForm.value)
             .subscribe(response => {
                 this.comments.unshift(response);
-                this.postForm.reset();
+                this.commentForm.reset();
             },
                        error => {
                 if (error.status == 403){
