@@ -69,12 +69,11 @@
 
       <ion-row>
         <ion-col class="detail" center>
-          <ion-icon name="text"></ion-icon>
           {{ item.properties.cnt_of_comments }} 댓글
         </ion-col>
 
         <ion-col>
-          <p class="price">{{item.properties.price}} 원</p>
+          <span class="price"><ion-badge item-right>{{item.properties.price}} 원</ion-badge></span>
         </ion-col>
       </ion-row>
 

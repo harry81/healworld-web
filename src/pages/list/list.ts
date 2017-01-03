@@ -143,7 +143,7 @@ export class ListPage {
 
     addItem() {
         if (!this.authService.isAuthorized()) {
-            this.presentToast('로그인후 물건 등록이 가능합니다', 3000);
+            this.presentToast('물건 등록은 로그인후 가능합니다', 3000);
             return;
         }
 
