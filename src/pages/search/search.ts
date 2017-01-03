@@ -16,9 +16,7 @@ export class SearchPage {
                 private formBuilder: FormBuilder) {
 
         this.searchForm = this.formBuilder.group({
-            'search': [
-                '', Validators.compose([Validators.required])
-            ],
+            'search': [''],
             'dist': ['', Validators.compose([Validators.required])]
         });
     }
