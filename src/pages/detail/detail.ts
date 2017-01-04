@@ -19,10 +19,12 @@ export class DetailPage {
     public zoom: number;
     public item_id: string;
     public item: any;
+    public user: any;
     public comments: any[];
     public commentForm: any;
     public placeholder_comment: string = "댓글 달기";
     public comment_disabled: boolean = false;
+    public item_owner: boolean = false;
 
     @ViewChild('imgSlider') slider: Slides;
 
@@ -38,6 +40,7 @@ export class DetailPage {
                 public authService: AuthService,
                 public itemService: ItemService) {
 
+        this.user = JSON.parse(localStorage.getItem('user'));
         this.item = params.get("item");
 
         if (typeof(this.item) == 'object') {
@@ -64,6 +67,7 @@ export class DetailPage {
         if (!this.authService.isAuthorized()) {
             this.comment_disabled = true;
         }
+
     }
 
     loadItem(item_id) {
@@ -79,6 +83,10 @@ export class DetailPage {
                 this.lng = data['geometry']['coordinates'][0];
                 this.zoom = 14;
                 this.item = data;
+
+                if (this.user && this.item.properties.user.pk == this.user.pk)
+                    this.item_owner = true;
+
             });
     }
 
@@ -98,12 +106,10 @@ export class DetailPage {
             return;
         }
 
-        let user = JSON.parse(localStorage.getItem('user'));
-
         this.commentForm.value['content_type'] = 8; // content type of Item
         this.commentForm.value['site'] = 1;
-        this.commentForm.value['user_name'] = user.username;
-        this.commentForm.value['user'] = user.pk;
+        this.commentForm.value['user_name'] = this.user.username;
+        this.commentForm.value['user'] = this.user.pk;
         this.commentForm.value['object_pk'] = this.item_id;
 
         this.itemService.postComment(this.commentForm.value)
@@ -127,5 +133,22 @@ export class DetailPage {
             lng: this.lng,
             zoom: this.zoom
         });
+    }
+
+    deleteItem(item) {
+        if (this.user == undefined ) {
+            return;
+        }
+
+        let params = {deleted: 'true',
+                      item_id: item.properties.pk};
+
+        console.log(item);
+
+        this.itemService.patchItem(params)
+            .subscribe(data => {
+                console.log('data loaditem', data);
+                this.navCtrl.pop();
+            });
     }
 }

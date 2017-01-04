@@ -16,6 +16,7 @@ export class PostPage {
     public response: any;
     public address: string;
     public position: any;
+    public user: any;
 
     mySlideOptions = {
         initialSlide: 1
@@ -41,6 +42,9 @@ export class PostPage {
             'quality': [''],
             'address': [''],
         });
+
+        this.user = JSON.parse(localStorage.getItem('user'));
+
     }
 
     ionViewDidLoad() {
@@ -69,7 +73,7 @@ export class PostPage {
     }
 
     onSubmit() {
-        this.postForm.value['user_id'] = this.authService.user.pk;
+        this.postForm.value['user_id'] = this.user.pk;
         this.postForm.value['point'] = `POINT (${this.position.coords.longitude} ${this.position.coords.latitude} )`;
         this.postForm.value['address'] = this.address;
         this.postForm.value['image_ids'] = this.preview.map(function(a) {return a.id;}).join();

@@ -70,7 +70,15 @@
       </ion-item>
     </ion-list>
 
+  <ion-fab bottom right *ngIf="item_owner">
+    <button ion-fab mini><ion-icon name="md-arrow-dropup-circle"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="deleteItem(item)"><ion-icon name="md-trash"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
   </ion-card>
+
 
 </ion-content>
 
