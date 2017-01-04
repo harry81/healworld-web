@@ -12,7 +12,6 @@ export class AuthService {
                 ,private _cookieService: CookieService) {
 
         this.setBaseUrl();
-        this.setUserInfo();
     }
 
     setBaseUrl() {

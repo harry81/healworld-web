@@ -16,7 +16,6 @@ def deploy_to_aws():
     print '\nStep 4 : Invalidating cloudfront.'
     invalidate_cloudfront()
 
-    print '\nDone'
     print 'version %s' % version
 
 def build():

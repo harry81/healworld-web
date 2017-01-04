@@ -98,10 +98,12 @@ export class DetailPage {
             return;
         }
 
+        let user = JSON.parse(localStorage.getItem('user'));
+
         this.commentForm.value['content_type'] = 8; // content type of Item
         this.commentForm.value['site'] = 1;
-        this.commentForm.value['user_name'] = this.authService.user.username;
-        this.commentForm.value['user'] = this.authService.user.pk;
+        this.commentForm.value['user_name'] = user.username;
+        this.commentForm.value['user'] = user.pk;
         this.commentForm.value['object_pk'] = this.item_id;
 
         this.itemService.postComment(this.commentForm.value)
