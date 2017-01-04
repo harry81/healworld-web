@@ -59,6 +59,7 @@ export class DetailPage {
         if (!this.authService.isAuthorized()) {
             this.placeholder_comment = "로그인후 댓글을 달 수 있습니다";
         }
+
     }
 
     ionViewDidLoad() {
