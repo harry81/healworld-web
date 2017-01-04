@@ -1,6 +1,12 @@
 <ion-menu [content]="content">
-  <ion-content>
-    <ion-item>
+  <ion-content class="card-background-page">
+    <ion-card>
+      <img src="http://inspiredaustin.com/upload/150x150-water-drop-%E2%80%A2-mehro-339176.jpg"/>
+      <div class="card-title">Heal the world</div>
+      <div class="card-subtitle">위치 기반 직거래 플랫폼</div>
+    </ion-card>
+
+    <ion-item no-lines>
       <ion-avatar item-left>
         <img data-src="{{user.profile_picture_url}}"/>
       </ion-avatar>
@@ -9,6 +15,7 @@
 
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}" item-left></ion-icon>
         {{p.title}}
       </button>
     </ion-list>

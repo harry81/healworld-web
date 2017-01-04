@@ -19,7 +19,7 @@ export class MyApp {
 
     rootPage: any = ListPage;
 
-    pages: Array<{title: string, component: any}>;
+    pages: Array<{title: string, icon: string, component: any}>;
 
     public user: {profile_picture_url: string,
                   username: string};
@@ -32,9 +32,9 @@ export class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
-            { title: '목록', component: ListPage },
-            { title: '계정', component: ProfilePage },
-            { title: '나의 아이템', component: MyitemPage }
+            { title: '목록', icon:'md-list', component: ListPage },
+            { title: '계정', icon:'md-contact', component: ProfilePage },
+            { title: '나의 아이템', icon:'md-basket', component: MyitemPage }
         ];
         this.user = {profile_picture_url: '/assets/imgs/person.png',
                      username: '방문자'};
@@ -43,6 +43,9 @@ export class MyApp {
             this.rootPage = DesktopPage;
         };
 
+    }
+
+    ionViewDidLoad() {
         if (localStorage.hasOwnProperty('user'))
             this.user = JSON.parse(localStorage.getItem('user'));
     }
