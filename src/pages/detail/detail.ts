@@ -102,7 +102,6 @@ export class DetailPage {
     }
 
     postComment() {
-        console.log('in postcomment');
         if (!this.authService.isAuthorized()) {
             alert("[정보] 로그인후 댓글을 달 수 있습니다.");
             return;

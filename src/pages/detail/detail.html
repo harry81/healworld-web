@@ -60,7 +60,9 @@
           <img data-src="{{comment.user.profile_picture_url}}"/>
         </ion-avatar>
         <ion-row>
-          <h4><b>{{ comment.user_name }}</b>&nbsp;{{ comment.comment }}</h4>
+          <ion-col class="comment">
+            <p><b>{{ comment.user_name }}</b>&nbsp;{{ comment.comment }}</p>
+          </ion-col>
         </ion-row>
 
         <ion-row>
