@@ -53,6 +53,7 @@ export class MyApp {
             // Here you can do any higher level native things you might need.
             StatusBar.styleDefault();
             Splashscreen.hide();
+            this.registerBackButtonListener();
         });
     }
 
@@ -60,5 +61,20 @@ export class MyApp {
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
         this.nav.setRoot(page.component);
+    }
+
+
+    registerBackButtonListener() {
+        document.addEventListener('backbutton', () => {
+            console.log('backbutton');
+            // http://www.codingandclimbing.co.uk/blog/ionic-2-android-back-button-13
+            // var nav = this.getNav();
+            // if (nav.canGoBack()) {
+            //     nav.pop();
+            // }
+            // else {
+            //     this.confirmExitApp(nav);
+            // }
+        });
     }
 }
