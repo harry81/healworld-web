@@ -75,6 +75,7 @@ page-list {
 
     .label-md {
         margin: 0px;
+        background-color: #F4F4F9;
     }
 
     .slide-zoom {
@@ -86,6 +87,10 @@ page-list {
         height: 100%;
     }
 
+    .swiper-slide {
+        margin-bottom: 35px;
+    }
+
     .slider-slide img {
         position: absolute;
         top: 0;
@@ -93,7 +98,10 @@ page-list {
         left: 0;
         right: 0;
         margin: auto;
+
     }
 
-
+    .slider-pager{
+        bottom: 0px;
+    }
 }
