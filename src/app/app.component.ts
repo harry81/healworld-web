@@ -36,18 +36,24 @@ export class MyApp {
             { title: '계정', icon:'md-contact', component: ProfilePage },
             { title: '나의 아이템', icon:'md-basket', component: MyitemPage }
         ];
-        this.user = {profile_picture_url: '/assets/imgs/person.png',
-                     username: '방문자'};
 
         if (this.platform.is('core')) {
             this.rootPage = DesktopPage;
         };
 
+        this.initUser();
     }
 
-    ionViewDidLoad() {
+    menuDraged() {
         if (localStorage.hasOwnProperty('user'))
             this.user = JSON.parse(localStorage.getItem('user'));
+        else
+            this.initUser();
+    }
+
+    initUser() {
+        this.user = {profile_picture_url: '/assets/imgs/person.png',
+                     username: '방문자'};
     }
 
     initializeApp() {

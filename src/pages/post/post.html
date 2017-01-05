@@ -49,10 +49,19 @@
       </ion-item>
     </ion-list>
 
-    <ion-item no-lines>
-      <ion-label>가격</ion-label>
-      <ion-input formControlName="price" placeholder="7000" name="price"></ion-input>
-    </ion-item>
+    <ion-grid no-lines>
+      <ion-row>
+        <ion-col width-25 center>
+          <ion-label>가격</ion-label>
+        </ion-col>
+        <ion-col center>
+          <ion-input formControlName="price" placeholder="7000" name="price"></ion-input>
+        </ion-col >
+        <ion-col width-25 center>
+          원
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
     <ion-item text-center *ngIf="preview" no-lines>
       <ion-grid>
