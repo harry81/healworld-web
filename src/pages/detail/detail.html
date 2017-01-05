@@ -85,11 +85,10 @@
 
 <ion-footer>
   <ion-toolbar>
-    <form [formGroup]="commentForm" (ngSubmit)="postComment()">
-
+    <form [formGroup]="commentForm">
       <ion-item>
         <ion-input formControlName="comment" placeholder="{{placeholder_comment}}" name="comment" class="comment"></ion-input>
-        <button ion-button outline item-right [disabled]="comment_disabled" form="commentForm">등록</button>
+        <button ion-button outline item-right (click)="postComment()" [disabled]="comment_disabled" form="commentForm">등록</button>
       </ion-item>
     </form>
   </ion-toolbar>

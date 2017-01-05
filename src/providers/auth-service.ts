@@ -28,7 +28,8 @@ export class AuthService {
         this.logout()
             .subscribe(data => {
                 console.log(data);
-                this._cookieService.remove('jwt_token', { path: '/' });
+                this._cookieService.remove('jwt_token', { path: '/' , domain: '.healworld.co.kr'});
+                this._cookieService.remove('sessionid', { path: '/' , domain: '.healworld.co.kr'});
                 this._cookieService.removeAll();
                 localStorage.clear();
             });
