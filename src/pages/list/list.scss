@@ -73,9 +73,13 @@ page-list {
         height: 40px;
     }
 
-    .label-md {
+    .list-header .label-md {
         margin: 0px;
         background-color: #F4F4F9;
+    }
+
+    .label-md {
+        margin: 0px;
     }
 
     .slide-zoom {
@@ -103,5 +107,13 @@ page-list {
 
     .slider-pager{
         bottom: 0px;
+    }
+
+    .comment {
+        text-align:center;
+    }
+
+    .card-md ion-card-content {
+        padding: 13px 16px 13px 16px;
     }
 }

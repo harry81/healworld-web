@@ -8,6 +8,10 @@ page-detail {
         padding-left: 0px;
     }
 
+    .label-md {
+        margin: 0;
+
+    }
 
     .card-md {
         box-shadow: none;
@@ -33,6 +37,7 @@ page-detail {
 
     ion-col {
         text-align: center;
+        padding: 0px;
     }
 
     ion-row h4{
@@ -47,4 +52,10 @@ page-detail {
         height:20px
     }
 
+    ion-avatar img {
+        max-width: 4rem;
+        max-height: 4rem;
+        border-radius: 2rem;
+        margin: 0;
+    }
 }

@@ -7,28 +7,40 @@
 <ion-content>
 
   <ion-card *ngIf="item">
-    <ion-item >
-      <ion-avatar item-left>
-        <img data-src="{{item.properties.user.profile_picture_url}}"/>
-      </ion-avatar>
-
-      <ion-row center>
-        <ion-col class="date">
-          <b>{{item.properties.user.username}}</b>
+    <ion-grid>
+      <ion-row>
+        <ion-col width-20>
+          <ion-avatar item-left>
+            <img data-src="{{item.properties.user.profile_picture_url}}"/>
+          </ion-avatar>
         </ion-col>
+
         <ion-col>
-          <p>{{item.properties.created_at | amTimeAgo}}</p>
+
+          <ion-row>
+            <ion-col >
+              <b>{{item.properties.user.username}}</b><br>
+            </ion-col>
+            <ion-col>
+               <p>{{item.properties.created_at | amTimeAgo}}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row width-20>
+            <ion-col >
+              <p class="address">{{item.properties.address}}</p><br>
+            </ion-col>
+            <ion-col>
+              <button ion-button outline item-right (click)="showMap()">
+                {{item.properties.distance}}
+              </button>
+            </ion-col>
+          </ion-row>
+
         </ion-col>
-      </ion-row>
 
-      <ion-row center>
-        <p class="address">{{item.properties.address}}</p>
-
-        <button ion-button outline item-right (click)="showMap()">
-          {{item.properties.distance}}
-        </button>
       </ion-row>
-    </ion-item>
+    </ion-grid>
 
     <ion-item>
       <ion-row *ngFor="let image of item.properties.images">
@@ -63,23 +75,12 @@
             <p><b>{{ comment.user_name }}</b>&nbsp;{{ comment.comment }}</p>
           </ion-col>
         </ion-row>
-
         <ion-row>
           <p>{{ comment.submit_date | amTimeAgo}}</p>
         </ion-row>
-
       </ion-item>
     </ion-list>
-
-  <ion-fab bottom right *ngIf="item_owner">
-    <button ion-fab mini><ion-icon name="md-arrow-dropup-circle"></ion-icon></button>
-    <ion-fab-list side="top">
-      <button ion-fab (click)="deleteItem(item)"><ion-icon name="md-trash"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
-
   </ion-card>
-
 
 </ion-content>
 

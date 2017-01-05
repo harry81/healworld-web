@@ -135,21 +135,4 @@ export class DetailPage {
             zoom: this.zoom
         });
     }
-
-    deleteItem(item) {
-        if (this.user == undefined ) {
-            return;
-        }
-
-        let params = {deleted: 'true',
-                      item_id: item.properties.pk};
-
-        console.log(item);
-
-        this.itemService.patchItem(params)
-            .subscribe(data => {
-                console.log('data loaditem', data);
-                this.navCtrl.pop();
-            });
-    }
 }

@@ -13,7 +13,7 @@
     </ion-buttons>
   </ion-navbar>
 
-  <ion-item (click)="openSearch()">
+  <ion-item class="list-header" (click)="openSearch()">
     <ion-row>
       <ion-col width-75><p>{{address}}</p>
       </ion-col>
@@ -76,12 +76,12 @@
       </ion-item>
 
       <ion-row (click)="itemTapped(item)">
-        <ion-col center>
-          {{ item.properties.cnt_of_comments }} 댓글
+        <ion-col>
+          <p class="comment">{{ item.properties.cnt_of_comments }} 댓글</p>
         </ion-col>
 
-        <ion-col>
-          <span class="price">{{item.properties.price | number}} 원</span>
+        <ion-col class="price">
+          <span >{{item.properties.price | number}} 원</span>
         </ion-col>
       </ion-row>
 
