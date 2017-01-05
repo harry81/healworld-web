@@ -31,11 +31,11 @@
     </ion-item>
 
     <ion-item>
-      <ion-slides #imgSlider [options]="detailSlideOptions">
-        <ion-slide *ngFor="let image of item.properties.images" zoom>
+      <ion-row *ngFor="let image of item.properties.images">
+        <ion-col>
           <img src="{{image.itemshot.thumbnail__400x400}}" swiper-lazy zoom-pan>
-        </ion-slide>
-      </ion-slides>
+        </ion-col>
+      </ion-row>
 
       <ion-row>
         <ion-col offset-50>
@@ -45,7 +45,6 @@
     </ion-item>
 
     <ion-card-content><p>{{item.properties.title}}</p>{{item.properties.memo}}</ion-card-content>
-
     <ion-item>
       <ion-row>
         <ion-col>

@@ -27,6 +27,12 @@ export class ListPage {
     public dist: Number;
     public search: string;
 
+    public detailSlideOptions = {
+        initialSlide: 0,
+        pager: true,
+        zoom: true
+    };
+
     constructor(public navCtrl: NavController
                 ,public loadingCtrl: LoadingController
                 ,private toastCtrl: ToastController

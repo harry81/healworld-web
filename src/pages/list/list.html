@@ -67,7 +67,13 @@
         </ion-row>
       </ion-item>
 
-      <img height="95%" src="{{item.properties.image}}" (click)="itemTapped(item)">
+      <ion-item (click)="itemTapped(item)">
+        <ion-slides #imgSlider [options]="detailSlideOptions">
+          <ion-slide *ngFor="let image of item.properties.images" zoom>
+            <img src="{{image.itemshot.thumbnail__400x400}}" swiper-lazy zoom-pan>
+          </ion-slide>
+        </ion-slides>
+      </ion-item>
 
       <ion-row>
         <ion-col class="detail" center>
@@ -80,9 +86,8 @@
       </ion-row>
 
       <ion-card-content>
-        <p><b>{{item.properties.title}}</b></p>
-        <span class="memo">{{item.properties.memo}}
-        </span>
+        <b>{{item.properties.title}}</b>
+        {{item.properties.memo}}
       </ion-card-content>
     </ion-card>
   </ion-list>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { IonicApp, IonicModule, DeepLinkConfig } from 'ionic-angular';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MomentModule } from 'angular2-moment/moment.module';
@@ -78,7 +78,8 @@ export const deepLinkConfig: DeepLinkConfig = {
                     provide: AuthHttp,
                     useFactory: getAuthHttp,
                     deps: [Http]
-                }
+                },
+                { provide: LOCALE_ID, useValue: "ko" },
                ]
 })
 export class AppModule {}
