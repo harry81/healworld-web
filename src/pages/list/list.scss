@@ -1,84 +1,84 @@
 page-list {
 
-}
+    .item-md {
+        padding-left: 4px;
+    }
 
-page-list .item-md {
-    padding-left: 4px;
-}
-
-page-list .card-md {
-    box-shadow: none;
-    width: calc(100%);
-    margin: 0px;
-}
+    .card-md {
+        box-shadow: none;
+        width: calc(100%);
+        margin: 0px;
+    }
 
 
-.date {
-    color:#666;
-    font-size: 0.9em;
-    text-align:left;
-}
+    .date {
+        color:#666;
+        font-size: 0.9em;
+        text-align:left;
+    }
 
-.memo {
-    color:#666;
-    white-space: pre;
+    .memo {
+        color:#666;
+        white-space: pre;
 
-}
+    }
 
-.address {
-    font-size: 1.2rem;
-    line-height: normal;
-    text-overflow: inherit;
-    color: #666;
-    height: 100%;
-    display: block;
-    vertical-align: middle;
-}
+    .address {
+        font-size: 1.2rem;
+        line-height: normal;
+        text-overflow: inherit;
+        color: #666;
+        height: 100%;
+        display: block;
+        vertical-align: middle;
+    }
 
-.toolbar-md {
-    padding: 0px;
-}
+    .toolbar-md {
+        padding: 0px;
+    }
 
-.list-title {
-    top: 36%;
-    font-size: 2.0em;
-    width: 100%;
-    font-weight: bold;
-    color: #889785;
-    text-align:center;
-}
+    .list-title {
+        top: 36%;
+        font-size: 2.0em;
+        width: 100%;
+        font-weight: bold;
+        color: #889785;
+        text-align:center;
+    }
 
-ion-row {
-    text-decoration:none;
-    word-break: break-all;
-    white-space: normal;
+    ion-row {
+        text-decoration:none;
+        word-break: break-all;
+        white-space: normal;
 
-}
+    }
 
-ion-col {
-    padding:3px;
-}
+    ion-col {
+        padding:3px;
+        text-align: left;
+    }
 
-.tabs-md .tabbar {
-    height: 40px;
-}
+    .tabs-md .tabbar {
+        height: 40px;
+    }
 
-page-list .label-md {
-    margin: 0px 8px 0px 0px;
-}
-
-
-page-list .item-md {
-    background-color: unset;
-}
+    .label-md {
+        margin: 0px 8px 0px 0px;
+    }
 
 
-page-list .button-large-md {
-    height: unset;
-}
+    .item-md {
+        background-color: unset;
+    }
 
-.price {
-    font-weight: bold;
-    aligh: right;
-    color: #ef612f;
+
+    .button-large-md {
+        height: unset;
+    }
+
+    .price {
+        font-weight: bold;
+        aligh: right;
+        color: #ef612f;
+    }
 }

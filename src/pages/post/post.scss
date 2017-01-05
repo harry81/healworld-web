@@ -1,44 +1,49 @@
 page-post {
+    ion-item .img {
+        padding: 1px;
+    }
 
-}
+    .custom-file-input::-webkit-file-upload-button {
+        visibility: hidden;
+    }
 
-ion-item .img {
-    padding: 1px;
-}
+    .custom-file-input::before {
+        content: '사진 올리기';
+        display: inline-block;
+        border-radius: 3px;
+        padding: 5px 8px;
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        cursor: pointer;
+        text-shadow: 10px 0px #797570;
+        font-weight: 700;
+        font-size: 10pt;
+    }
+    .custom-file-input:hover::before {
+        border-color: black;
+    }
+    .custom-file-input:active::before {
+        background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+    }
 
-.custom-file-input::-webkit-file-upload-button {
-  visibility: hidden;
-}
+    input[type='file'] {
+        color: transparent;
+    }
 
-.custom-file-input::before {
-  content: '사진 올리기';
-  display: inline-block;
-  border-radius: 3px;
-  padding: 5px 8px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
-  text-shadow: 10px 0px #797570;
-  font-weight: 700;
-  font-size: 10pt;
-}
-.custom-file-input:hover::before {
-  border-color: black;
-}
-.custom-file-input:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-}
+    textarea{
+        resize: both;
+        min-height: 100px;
+    }
 
-input[type='file'] {
-  color: transparent;
-}
+    .button-md {
+        height: 4.5rem;
+    }
 
-page-post textarea{
-    resize: both;
-    min-height: 100px;
-}
+    .text-input {
+        border: 1px solid rgb(185,185,185);
+        border-radius: 5px;
+        padding: 10px;
+    }
 
-page-post .button-md {
-    height: 4.5rem;
 }
