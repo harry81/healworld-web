@@ -80,6 +80,13 @@ export class PostPage {
         this.itemService.postItem(this.postForm.value)
             .subscribe(response => {
                 this.viewCtrl.dismiss(response);
+            }, error => {
+                if (error.status == 403){
+                    alert("[정보] 로그인후 사진을 업로드 할 수 있습니다.")
+                }
+                else {
+                    alert("[정보] 아이템 등록에 문제가 있습니다.");
+                }
             });
     }
 

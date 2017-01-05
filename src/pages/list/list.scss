@@ -1,7 +1,8 @@
 page-list {
 
     .item-md {
-        padding-left: 4px;
+        background-color: #f3f4f9;
+        padding-left: 0px;
         background-color: unset;
         padding-right: 0px;
     }
@@ -16,6 +17,9 @@ page-list {
         margin: 0px;
     }
 
+    .item-md.item-block .item-inner {
+        padding-right: 0px;
+    }
 
     .date {
         color:#666;

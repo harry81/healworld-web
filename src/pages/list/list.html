@@ -75,8 +75,8 @@
         </ion-slides>
       </ion-item>
 
-      <ion-row>
-        <ion-col class="detail" center>
+      <ion-row (click)="itemTapped(item)">
+        <ion-col center>
           {{ item.properties.cnt_of_comments }} 댓글
         </ion-col>
 
