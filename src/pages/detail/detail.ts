@@ -6,6 +6,7 @@ import { ItemService } from '../../providers/item-service';
 import { AuthService } from '../../providers/auth-service';
 import { MapPage } from '../map/map';
 
+declare var ga:Function;
 
 @Component({
     selector: 'page-detail',
@@ -63,6 +64,8 @@ export class DetailPage {
     }
 
     ionViewDidLoad() {
+        ga('send', 'pageview', 'detail');
+
         this.loadComment();
 
         if (!this.authService.isAuthorized()) {
