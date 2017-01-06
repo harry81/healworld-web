@@ -1,5 +1,5 @@
 // tick this to make the cache invalidate and update
-const CACHE_VERSION = 124;
+const CACHE_VERSION = 126;
 const CURRENT_CACHES = {
   'read-through': 'read-through-cache-v' + CACHE_VERSION
 };
@@ -76,10 +76,13 @@ self.addEventListener('push', function(event) {
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.open(CURRENT_CACHES['read-through']).then((cache) => {
-      return cache.match(event.request).then((response) => {
+      return cache.match(event.request.url).then((response) => {
         if (response) {
           // If there is an entry in the cache for event.request, then response will be defined
           // and we can just return it.
+          if (event.request.url.indexOf('https://healworld-dev-seoul.s3.ap-northeast-2.amazonaws.com') != -1){
+            console.log('Response from cache', event.request.url);
+          }
 
           return response;
         }
@@ -99,6 +102,11 @@ self.addEventListener('fetch', (event) => {
           if (response.status < 400 && response.type === 'basic') {
             // We need to call .clone() on the response object to save a copy of it to the cache.
             // (https://fetch.spec.whatwg.org/#dom-request-clone)
+            cache.put(event.request.url, response.clone());
+          }
+
+          if (event.request.url.indexOf('https://healworld-dev-seoul.s3.ap-northeast-2.amazonaws.com') != -1){
+            console.log('put', event.request.url);
             cache.put(event.request, response.clone());
           }
 
