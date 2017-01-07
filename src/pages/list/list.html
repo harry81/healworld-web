@@ -69,8 +69,8 @@
 
       <ion-item (click)="itemTapped(item)">
         <ion-slides #imgSlider [options]="detailSlideOptions">
-          <ion-slide *ngFor="let image of item.properties.images" zoom>
-            <img src="{{image.itemshot.thumbnail__400x400}}" swiper-lazy zoom-pan>
+          <ion-slide *ngFor="let image of item.properties.images">
+            <img src="{{image.itemshot.thumbnail__400x400}}" swiper-lazy>
           </ion-slide>
         </ion-slides>
       </ion-item>

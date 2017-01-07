@@ -29,7 +29,6 @@ export class ListPage {
 
     public detailSlideOptions = {
         initialSlide: 0,
-        pager: true,
         zoom: true
     };
 
