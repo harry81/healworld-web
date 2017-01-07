@@ -10,6 +10,8 @@ import { DetailPage } from '../detail/detail';
 import { SearchPage } from '../search/search';
 import { PostPage } from '../post/post';
 
+declare var fooga:Function;
+
 @Component({
     selector: 'page-list',
     templateUrl: 'list.html',
@@ -54,6 +56,7 @@ export class ListPage {
     }
 
     ionViewDidLoad() {
+        fooga('send', 'pageview', 'list');
     }
 
     updateItem(data, overwrite=false){
