@@ -75,7 +75,7 @@ export class DetailPage {
 
         let coord = JSON.parse(sessionStorage.getItem('position'));
         if (coord)
-            params.set('point', `${coord.lng},${coord.lat}`);
+            params.set('item_point', `${coord.lng},${coord.lat}`);
 
         this.itemService.loadItem(item_id, params)
             .subscribe(data => {
