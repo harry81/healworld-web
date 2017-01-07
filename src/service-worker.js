@@ -1,5 +1,5 @@
 // tick this to make the cache invalidate and update
-const CACHE_VERSION = 130;
+const CACHE_VERSION = 132;
 const CURRENT_CACHES = {
   'read-through': 'read-through-cache-v' + CACHE_VERSION
 };
@@ -11,6 +11,9 @@ var filesToCache = [
   './assets/fonts/ionicons.woff',
   './assets/fonts/ionicons.woff2',
 ];
+
+importScripts('./offline-google-analytics-import.js');
+goog.offlineGoogleAnalytics.initialize();
 
 self.addEventListener('install', function(event) {
 

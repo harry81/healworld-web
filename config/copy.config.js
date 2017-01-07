@@ -7,7 +7,10 @@ module.exports = {
     dest: '{{WWW}}/assets'
   },
   copyIndexContent: {
-    src: ['{{SRC}}/index.html', '{{SRC}}/manifest.json', '{{SRC}}/service-worker.js', '{{SRC}}/push-notification.js'],
+    src: ['{{SRC}}/index.html', '{{SRC}}/manifest.json',
+          '{{SRC}}/service-worker.js',
+          '{{SRC}}/offline-google-analytics-import.js',
+          '{{SRC}}/push-notification.js'],
     dest: '{{WWW}}'
   },
   copyFonts: {
