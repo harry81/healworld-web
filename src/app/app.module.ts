@@ -1,9 +1,10 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core';
 import { IonicApp, IonicModule, DeepLinkConfig } from 'ionic-angular';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { Http } from '@angular/http';
+import Raven from 'raven-js';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { MyApp } from './app.component';
@@ -37,6 +38,16 @@ export const deepLinkConfig: DeepLinkConfig = {
           defaultHistory: [ListPage] }
     ]
 };
+
+Raven
+  .config('https://685b68704634462ebd2b855d94f39bf6@sentry.io/127326')
+  .install();
+
+class RavenErrorHandler implements ErrorHandler {
+  handleError(err:any) : void {
+    Raven.captureException(err.originalError);
+  }
+}
 
 @NgModule({
     declarations: [
@@ -80,6 +91,7 @@ export const deepLinkConfig: DeepLinkConfig = {
                     deps: [Http]
                 },
                 { provide: LOCALE_ID, useValue: "ko" },
+                { provide: ErrorHandler, useClass: RavenErrorHandler }
                ]
 })
 export class AppModule {}
