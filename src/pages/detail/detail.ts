@@ -6,6 +6,8 @@ import { ItemService } from '../../providers/item-service';
 import { AuthService } from '../../providers/auth-service';
 import { MapPage } from '../map/map';
 
+declare var fooga:Function;
+
 @Component({
     selector: 'page-detail',
     templateUrl: 'detail.html',
@@ -62,6 +64,8 @@ export class DetailPage {
     }
 
     ionViewDidLoad() {
+        fooga('send', 'pageview', 'detail');
+
         this.loadComment();
 
         if (!this.authService.isAuthorized()) {

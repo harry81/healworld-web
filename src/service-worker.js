@@ -1,5 +1,5 @@
 // tick this to make the cache invalidate and update
-const CACHE_VERSION = 132;
+const CACHE_VERSION = 133;
 const CURRENT_CACHES = {
   'read-through': 'read-through-cache-v' + CACHE_VERSION
 };
@@ -111,7 +111,6 @@ self.addEventListener('fetch', (event) => {
           }
 
           if (event.request.url.indexOf('https://healworld-dev-seoul.s3.ap-northeast-2.amazonaws.com') != -1){
-            console.log('put', event.request.url, response.clone());
             cache.put(event.request, response.clone());
           }
 
