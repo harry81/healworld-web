@@ -61,10 +61,17 @@ export class DetailPage {
             this.placeholder_comment = "로그인후 댓글을 달 수 있습니다";
         }
 
+        fooga('send', 'pageview', 'detail');
+
+        fooga('send', {
+            hitType: 'pageview',
+            title: 'detail',
+            page: this.item_id
+        });
     }
 
     ionViewDidLoad() {
-        fooga('send', 'pageview', 'detail');
+        fooga('send', 'event', 'Detail', 'open', this.item_id);
 
         this.loadComment();
 

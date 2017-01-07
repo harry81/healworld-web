@@ -4,6 +4,7 @@ import { URLSearchParams } from '@angular/http';
 import { ItemService } from '../../providers/item-service';
 import { GeoService } from '../../providers/geo-service';
 
+declare var fooga:Function;
 
 @Component({
     selector: 'page-myitem',
@@ -20,7 +21,10 @@ export class MyitemPage {
     constructor(public navCtrl: NavController
                 ,public itemService: ItemService
                 ,public geoService: GeoService
-               ) {}
+               ) {
+        fooga('send', 'pageview', 'MyItemPage');
+
+    }
 
     ionViewDidLoad() {
         console.log('Hello MyitemPage Page');
@@ -41,6 +45,8 @@ export class MyitemPage {
     }
 
     deleteItem(item) {
+        fooga('send', 'event', 'MyItemPage', 'delete', item.properties.pk);
+
         if (this.user == undefined ) {
             return;
         }

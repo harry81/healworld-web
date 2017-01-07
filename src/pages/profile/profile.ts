@@ -2,12 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 
-/*
-  Generated class for the Profile page.
+declare var fooga:Function;
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
     selector: 'page-profile',
     templateUrl: 'profile.html',
@@ -25,6 +21,7 @@ export class ProfilePage {
     constructor(public navCtrl: NavController
                 ,public authService: AuthService
                ) {
+        fooga('send', 'pageview', 'PorfilePage');
         this.setUserProfile();
     }
 
@@ -47,6 +44,8 @@ export class ProfilePage {
     }
 
     subscribeToPush() {
+        fooga('send', 'event', 'Profilepage', 'subscribe', this.notification_push);
+
         if (this.notification_push == true) {
             window['subscribe'].call();
         }
@@ -57,6 +56,7 @@ export class ProfilePage {
     }
 
     logout() {
+        fooga('send', 'event', 'Profilepage', 'logout');
         this.authService.loggedOut();
     }
 

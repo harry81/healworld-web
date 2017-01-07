@@ -7,6 +7,7 @@ import { DesktopPage } from '../pages/desktop/desktop';
 import { MyitemPage } from '../pages/myitem/myitem';
 import { AuthService } from '../providers/auth-service';
 
+declare var fooga:Function;
 
 @Component({
     templateUrl: 'app.html',
@@ -27,6 +28,8 @@ export class MyApp {
     constructor(public platform: Platform
                 ,public authService: AuthService
                ) {
+        fooga('send', 'pageview', 'MyApp');
+
         this.initializeApp();
 
         // used for an example of ngFor and navigation

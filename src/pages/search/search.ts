@@ -3,6 +3,8 @@ import { NavParams, ViewController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 import { CookieService } from 'angular2-cookie/core';
 
+declare var fooga:Function;
+
 @Component({
     selector: 'page-search',
     templateUrl: 'search.html'
@@ -14,6 +16,8 @@ export class SearchPage {
                 ,params: NavParams
                 ,private _cookieService: CookieService,
                 private formBuilder: FormBuilder) {
+
+        fooga('send', 'pageview', 'SearchPage');
 
         this.searchForm = this.formBuilder.group({
             'search': [''],
@@ -37,6 +41,7 @@ export class SearchPage {
             this._cookieService.putObject('search_data', data);
         }
 
+        fooga('send', 'event', 'SearchPage', 'data', data);
         this.viewCtrl.dismiss(data);
     }
 }

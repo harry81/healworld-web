@@ -43,6 +43,8 @@ export class ListPage {
                 ,public modalCtrl: ModalController
                 ,private _cookieService: CookieService) {
 
+        fooga('send', 'pageview', 'ListPage');
+
         this.params.set('search', ``);
         this.params.set('state', `created`);
         this.params.set('dist', '100000');
@@ -56,7 +58,7 @@ export class ListPage {
     }
 
     ionViewDidLoad() {
-        fooga('send', 'pageview', 'list');
+        fooga('send', 'event', 'List', 'open');
     }
 
     updateItem(data, overwrite=false){
@@ -150,7 +152,11 @@ export class ListPage {
     }
 
     addItem() {
+        fooga('send', 'event', 'addItem', 'click', 'add button');
+
         if (!this.authService.isAuthorized()) {
+            fooga('send', 'event', 'addItem', 'login required',);
+
             this.presentToast('물건 등록은 로그인후 가능합니다', 3000);
             return;
         }
@@ -163,9 +169,12 @@ export class ListPage {
         });
 
         addItemModal.present();
+        fooga('send', 'event', 'addItem', 'open', 'PostPage');
     }
 
     doRefresh(refresher) {
+        fooga('send', 'event', 'ListPage', 'reFresh');
+
         this.itemService.loadItems(this.params)
             .subscribe(data => {
                 this.updateItem(data);
@@ -174,6 +183,8 @@ export class ListPage {
     }
 
     doInfinite(infiniteScroll) {
+        fooga('send', 'event', 'ListPage', 'doInfinite');
+
         setTimeout(() => {
             if (this.next_url != null)
                 this.itemService.loadItemsbyUrl(this.next_url)
@@ -217,6 +228,8 @@ export class ListPage {
         });
 
         toast.present();
+
+        fooga('send', 'event', 'Toast', 'presentToast', message);
     }
 
 }
