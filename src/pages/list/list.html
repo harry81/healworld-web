@@ -30,6 +30,7 @@
         <p>{{items_count}} 건</p>
       </ion-col>
     </ion-row>
+
   </ion-item>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
@@ -44,6 +45,7 @@
 
   <ion-list>
     <ion-card *ngFor="let item of items">
+
       <ion-item class="list-header">
         <ion-avatar item-left>
           <img data-src="{{item.properties.user.profile_picture_url}}"/>
@@ -101,6 +103,11 @@
 
   <ion-fab bottom right>
     <button ion-fab (click)="addItem()">등록</button>
+    <button ion-button clear large (click)="getposition()">
+      <ion-icon name="md-locate"></ion-icon>
+    </button>
+
+
   </ion-fab>
 
 </ion-content>

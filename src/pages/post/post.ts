@@ -69,7 +69,7 @@ export class PostPage {
                     alert("[정보] 사진 업로드에 문제가 있습니다.");
                 }
             });
-        this.getAddress()
+        this.getAddress();
     }
 
     onSubmit() {
@@ -110,12 +110,13 @@ export class PostPage {
     }
 
     getAddress(){
-        this.geoService.getAddress(this.geoService.position.coords.latitude,
-                                    this.geoService.position.coords.longitude)
+        this.geoService.getAddress()
             .subscribe((response) => {
                 console.log(response['results'][0]);
 
                 this.address = response['results'][0]['formatted_address'];
+            },error=> {
+                console.log('hi');
             })
     }
 }

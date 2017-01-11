@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { CookieService } from 'angular2-cookie/core';
 import { URLSearchParams } from '@angular/http';
 import { NavController, LoadingController,
-         ToastController, ModalController } from 'ionic-angular';
+         ModalController,
+         AlertController} from 'ionic-angular';
 import { ItemService } from '../../providers/item-service';
 import { GeoService } from '../../providers/geo-service';
 import { AuthService } from '../../providers/auth-service';
@@ -36,11 +37,11 @@ export class ListPage {
 
     constructor(public navCtrl: NavController
                 ,public loadingCtrl: LoadingController
-                ,private toastCtrl: ToastController
                 ,public itemService: ItemService
                 ,public authService: AuthService
                 ,public geoService: GeoService
                 ,public modalCtrl: ModalController
+                ,public alertCtrl: AlertController
                 ,private _cookieService: CookieService) {
 
         fooga('send', 'pageview', 'ListPage');
@@ -49,7 +50,6 @@ export class ListPage {
         this.params.set('state', `created`);
         this.params.set('dist', '100000');
         this.authService.setUserInfo();
-        this.geoService.getPosition();
     }
 
     ionViewWillEnter() {
@@ -91,8 +91,11 @@ export class ListPage {
 
         this.items_count = data.count;
 
+        data.request_query['dist'] = "";
+
         if (data.request_query) {
-            this.dist = Number(data.request_query['dist']) / 1000
+            if ('dist' in data.request_query)
+                this.dist = Number(data.request_query['dist']) / 1000
             this.search = data.request_query['search']
         }
 
@@ -100,6 +103,8 @@ export class ListPage {
     }
 
     loadItems(overwrite=false){
+        let params: URLSearchParams = new URLSearchParams();
+
         this.loader = this.loadingCtrl.create({
             content: "데이타를 불러오고 있습니다",
             duration: 3000
@@ -107,27 +112,21 @@ export class ListPage {
 
         this.loader.present();
 
-        this.geoService.getPosition()
-            .then(position =>{
-                this.params.set('point',
-                                `${this.geoService.position.coords.longitude},${this.geoService.position.coords.latitude}`);
+        try {
+            let coord = JSON.parse(sessionStorage.getItem('position'));
+            if (coord !== null)
+                this.params.set('point', `${coord.lng},${coord.lng}`);
+        }
+        catch(error){
+            console.log('getAddress error', error);
+            return;
+        };
 
-                this.itemService.loadItems(this.params)
-                    .subscribe(data => {
-                        this.updateItem(data, overwrite);
-                        this.loader.dismiss();
-                    });
-            },
-                  error => {
-                      switch(error.code) {
-                      case error.PERMISSION_DENIED:
-                          this.presentToast('현재 위치 검색을 위해 주소를 이동합니다. https://www.healworld.co.kr', 3000);
-                          window.location.href = "https://www.healworld.co.kr";
-                          break;
-                      default:
-                          alert(error);
-                      }
-                  });
+        this.itemService.loadItems(params)
+            .subscribe(data => {
+                this.updateItem(data, overwrite);
+                this.loader.dismiss();
+            });
     }
 
     itemTapped(item, event) {
@@ -157,7 +156,7 @@ export class ListPage {
         if (!this.authService.isAuthorized()) {
             fooga('send', 'event', 'addItem', 'login required',);
 
-            this.presentToast('물건 등록은 로그인후 가능합니다', 3000);
+            this.showGoLoginConfirm();
             return;
         }
 
@@ -220,16 +219,38 @@ export class ListPage {
         console.log('login');
     }
 
-    presentToast(message, time) {
-        let toast = this.toastCtrl.create({
-            message: message,
-            duration: time,
-            position: 'top'
-        });
 
-        toast.present();
 
-        fooga('send', 'event', 'Toast', 'presentToast', message);
+    getposition() {
+        this.geoService.getPosition()
+            .then(data => {
+                console.log('data', data);
+            }, error => {
+                console.log('error', error);
+            });
     }
 
+    showGoLoginConfirm() {
+        let confirm = this.alertCtrl.create({
+            title: '로그인',
+            message: '아이템을 등록하려면 로그인이 필요합니다.',
+            buttons: [
+                {
+                    text: '아니오',
+                    handler: () => {
+                        console.log('Disagree clicked');
+                    }
+                },
+                {
+                    text: '네',
+                    handler: () => {
+                        console.log('Agree clicked');
+                        window.location.href = "/#/profile";
+                    }
+                }
+            ]
+        });
+        confirm.present();
+        fooga('send', 'event', 'alertCtrl', 'login required');
+    }
 }
