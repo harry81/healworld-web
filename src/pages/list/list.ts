@@ -103,19 +103,17 @@ export class ListPage {
     }
 
     loadItems(overwrite=false){
-        let params: URLSearchParams = new URLSearchParams();
-
         try {
             let coord = JSON.parse(sessionStorage.getItem('position'));
             if (coord !== null)
-                this.params.set('point', `${coord.lng},${coord.lng}`);
+                this.params.set('point', `${coord.lng},${coord.lat}`);
         }
         catch(error){
             console.log('getAddress error', error);
             return;
         };
 
-        this.itemService.loadItems(params)
+        this.itemService.loadItems(this.params)
             .subscribe(data => {
                 this.updateItem(data, overwrite);
             });
