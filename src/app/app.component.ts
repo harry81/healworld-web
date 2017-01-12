@@ -46,7 +46,7 @@ export class MyApp {
         this.initUser();
     }
 
-    menuDraged() {
+    menuOpened() {
         if (localStorage.hasOwnProperty('user'))
             this.user = JSON.parse(localStorage.getItem('user'));
         else

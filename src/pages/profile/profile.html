@@ -8,25 +8,6 @@
 </ion-header>
 
 <ion-content padding>
-
-  <ion-card *ngIf="authService.isAuthorized()">
-    <ion-item>
-      {{profile_picture_url}}
-      <ion-avatar item-left>
-        <img data-src="{{user.profile_picture_url}}"/>
-      </ion-avatar>
-      <h2>{{username}}</h2>
-    </ion-item>
-
-    <ion-card-content>
-      <p>소비자가 커피 한 잔을 마시기 위해서는 원두 재배·수확·가공·유통 등에 140l의 물이 필요하다.</p>
-    </ion-card-content>
-    <ion-item>
-      <ion-label>푸시 알림 받기</ion-label>
-      <ion-toggle  [(ngModel)]="notification_push" (ionChange)="subscribeToPush();" checked="true"></ion-toggle>
-    </ion-item>
-  </ion-card>
-
   <ion-card  *ngIf="!authService.isAuthorized()">
     <ion-card-header>
       로그인 하세요.
@@ -46,8 +27,26 @@
       <a href="{{authService.baseUrl}}login/facebook/">
         <button ion-button outline round block>페이스북</button></a>
     </ion-item>
-
   </ion-card>
+
+  <ion-card *ngIf="authService.isAuthorized()">
+    <ion-item>
+      {{profile_picture_url}}
+      <ion-avatar item-left>
+        <img data-src="{{user.profile_picture_url}}"/>
+      </ion-avatar>
+      <h2>{{username}}</h2>
+    </ion-item>
+
+    <ion-card-content>
+      <p>소비자가 커피 한 잔을 마시기 위해서는 원두 재배·수확·가공·유통 등에 140l의 물이 필요하다.</p>
+    </ion-card-content>
+    <ion-item>
+      <ion-label>푸시 알림 받기</ion-label>
+      <ion-toggle  [(ngModel)]="notification_push" (ionChange)="subscribeToPush();" checked="true"></ion-toggle>
+    </ion-item>
+  </ion-card>
+
 </ion-content>
 
 <ion-footer *ngIf="authService.isAuthorized()" >

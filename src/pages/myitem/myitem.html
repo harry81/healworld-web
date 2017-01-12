@@ -8,7 +8,12 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list >
+
+  <div *ngIf="!items.length">
+    <p>처리중인 아이템이 없습니다.</p>
+  </div>
+
+  <ion-list *ngIf="items.length">
     <ion-item-sliding *ngFor="let item of items">
       <ion-item no-lines>
         <h2>{{item.properties.title}}</h2>
@@ -20,9 +25,5 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
-  <div *ngIf="!items.length">
-    <p>처리중인 아이템이 없습니다.</p>
-  </div>
 
 </ion-content>
