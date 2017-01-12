@@ -5,6 +5,8 @@ import { ItemService } from '../../providers/item-service';
 import { AuthService } from '../../providers/auth-service';
 import { GeoService } from '../../providers/geo-service';
 
+declare var fooga:Function;
+
 @Component({
     selector: 'page-post',
     templateUrl: 'post.html',
@@ -47,10 +49,6 @@ export class PostPage {
 
     }
 
-    ionViewDidLoad() {
-        this.getCurrentLocation();
-    }
-
     popView(){
         this.navCtrl.pop();
     }
@@ -69,12 +67,17 @@ export class PostPage {
                     alert("[정보] 사진 업로드에 문제가 있습니다.");
                 }
             });
-        this.getAddress();
     }
 
     onSubmit() {
+        let coord = JSON.parse(sessionStorage.getItem('position'));
+        if (coord === null){
+            alert("등록하려는 위치를 찾지 못했습니다.");
+            return
+        }
+
         this.postForm.value['user_id'] = this.user.pk;
-        this.postForm.value['point'] = `POINT (${this.position.coords.longitude} ${this.position.coords.latitude} )`;
+        this.postForm.value['point'] = `POINT (${coord.lng} ${coord.lat} )`;
         this.postForm.value['address'] = this.address;
         this.postForm.value['image_ids'] = this.preview.map(function(a) {return a.id;}).join();
         this.itemService.postItem(this.postForm.value)
@@ -82,7 +85,7 @@ export class PostPage {
                 this.viewCtrl.dismiss(response);
             }, error => {
                 if (error.status == 403){
-                    alert("[정보] 로그인후 사진을 업로드 할 수 있습니다.")
+                    alert("[정보] 로그인 후 진행할 수 있습니다.");
                 }
                 else {
                     alert("[정보] 아이템 등록에 문제가 있습니다.");
@@ -112,11 +115,13 @@ export class PostPage {
     getAddress(){
         this.geoService.getAddress()
             .subscribe((response) => {
-                console.log(response['results'][0]);
+                let addr = response['results'][0]['formatted_address'].split(' ');
+                this.address = addr.slice(addr.length - 2, addr.length).join(' ');
 
-                this.address = response['results'][0]['formatted_address'];
             },error=> {
-                console.log('hi');
+                console.log(error);
+                fooga('send', 'event', 'post', error.message);
+                alert('현재 위치를 알수 없습니다.');
             })
     }
 }

@@ -202,12 +202,6 @@ export class ListPage {
 
 
     locatePosition() {
-
-        this.geoService.address.subscribe((response) => {
-            console.log(response['results'][0]);
-            this.address = response['results'][0]['formatted_address'];
-        });
-
         this.loadItems(true);
     }
 

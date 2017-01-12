@@ -7,8 +7,6 @@ declare var fooga:Function;
 @Injectable()
 export class GeoService {
     public position: any;
-    public address: any;
-
     public gmapUrl: string= 'https://maps.googleapis.com/maps/api/geocode/json\?types\=political';
     public gmapKey: string= 'AIzaSyDRCEiyDSW4JsDxFe7bJ17w9cpnLljvEQA';
 
@@ -41,12 +39,11 @@ export class GeoService {
     }
 
     getAddress () {
-        let coord = JSON.parse(sessionStorage.getItem('position'));
-        if (coord === null)
-            return;
-
         let params: URLSearchParams = new URLSearchParams();
-        params.set('latlng', `${coord.lat},${coord.lng}`);
+        let coord = JSON.parse(sessionStorage.getItem('position'));
+        if (coord !== null)
+            params.set('latlng', `${coord.lat},${coord.lng}`);
+
         params.set('language', 'ko');
         params.set('location_type', 'APPROXIMATE');
         params.set('result_type', 'political|sublocality|postal_code');

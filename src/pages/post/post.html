@@ -28,6 +28,18 @@
       <ion-textarea formControlName="memo" placeholder="한달 썼어요" name="memo"></ion-textarea>
     </ion-item>
 
+    <ion-item no-lines>
+      <ion-label>위치</ion-label>
+      <ion-input disabled clearInput value="{{address}}"></ion-input>
+      <button ion-button item-right (click)="getAddress()">현재위치</button>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label>가격</ion-label>
+      <ion-input formControlName="price" placeholder="숫자만 입력하세요" name="price"></ion-input>
+      <button ion-button clear item-right >원</button>
+    </ion-item>
+
     <ion-list radio-group formControlName="quality" name="quality">
       <ion-list-header>
         상태
@@ -49,27 +61,12 @@
       </ion-item>
     </ion-list>
 
-    <ion-grid no-lines>
-      <ion-row>
-        <ion-col width-25 center>
-          <ion-label>가격</ion-label>
-        </ion-col>
-        <ion-col center>
-          <ion-input formControlName="price" placeholder="7000" name="price"></ion-input>
-        </ion-col >
-        <ion-col width-25 center>
-          원
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
     <ion-item text-center *ngIf="preview" no-lines>
       <ion-grid>
         <ion-row >
           <ion-col width-33 *ngFor="let image of preview"><img src="{{image.itemshot.thumbnail__200x200}}"></ion-col>
         </ion-row>
       </ion-grid>
-      <p>{{address}}</p>
     </ion-item>
 
     <ion-item no-lines>
