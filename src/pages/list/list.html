@@ -33,21 +33,18 @@
 
   </ion-item>
 
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-
-    <ion-refresher-content
-       pullingIcon="arrow-dropdown"
-       pullingText="Pull to refresh"
-       refreshingSpinner="circles"
-       refreshingText="Refreshing...">
-    </ion-refresher-content>
-  </ion-refresher>
-
   <ion-grid no-lines *ngIf="!items.length">
     <ion-col center width-10>
       <ion-spinner name="bubbles" ></ion-spinner>
     </ion-col>
   </ion-grid>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+       pullingIcon="arrow-dropdown"
+       refreshingSpinner="bubbles">
+    </ion-refresher-content>
+  </ion-refresher>
 
   <ion-list>
     <ion-card *ngFor="let item of items">

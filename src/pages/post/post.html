@@ -23,6 +23,14 @@
       </div>
     </ion-item>
 
+    <ion-item text-center *ngIf="preview" no-lines>
+      <ion-grid>
+        <ion-row >
+          <ion-col width-33 *ngFor="let image of preview"><img src="{{image.itemshot.thumbnail__200x200}}"></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
     <ion-item no-lines>
       <ion-label>내용</ion-label>
       <ion-textarea formControlName="memo" placeholder="한달 썼어요" name="memo"></ion-textarea>
@@ -60,14 +68,6 @@
         <ion-radio value="1"></ion-radio>
       </ion-item>
     </ion-list>
-
-    <ion-item text-center *ngIf="preview" no-lines>
-      <ion-grid>
-        <ion-row >
-          <ion-col width-33 *ngFor="let image of preview"><img src="{{image.itemshot.thumbnail__200x200}}"></ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
 
     <ion-item no-lines>
       <ion-row>

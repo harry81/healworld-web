@@ -175,9 +175,13 @@ export class ListPage {
 
     doInfinite(infiniteScroll) {
         fooga('send', 'event', 'ListPage', 'doInfinite');
+        if (this.next_url === null){
+            infiniteScroll.complete();
+            return;
+
+        }
 
         setTimeout(() => {
-            if (this.next_url != null)
                 this.itemService.loadItemsbyUrl(this.next_url)
                 .subscribe(data => {
                     this.updateItem(data);
