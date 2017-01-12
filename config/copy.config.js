@@ -10,6 +10,7 @@ module.exports = {
     src: ['{{SRC}}/index.html', '{{SRC}}/manifest.json',
           '{{SRC}}/service-worker.js',
           '{{SRC}}/offline-google-analytics-import.js',
+          '{{SRC}}/sw-toolbox.js',
           '{{SRC}}/push-notification.js'],
     dest: '{{WWW}}'
   },

@@ -9,7 +9,7 @@
     "sizes": "300x300",
     "type": "image/png"
   }],
-  ​​"orientation": "portrait-primary",
+  "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#4e8ef7",
   "gcm_sender_id": "113213172315"
