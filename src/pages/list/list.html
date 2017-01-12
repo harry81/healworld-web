@@ -43,6 +43,12 @@
     </ion-refresher-content>
   </ion-refresher>
 
+  <ion-grid no-lines *ngIf="!items.length">
+    <ion-col center width-10>
+      <ion-spinner name="bubbles" ></ion-spinner>
+    </ion-col>
+  </ion-grid>
+
   <ion-list>
     <ion-card *ngFor="let item of items">
 
@@ -103,11 +109,6 @@
 
   <ion-fab bottom right>
     <button ion-fab (click)="addItem()">등록</button>
-    <button ion-button clear large (click)="getposition()">
-      <ion-icon name="md-locate"></ion-icon>
-    </button>
-
-
   </ion-fab>
 
 </ion-content>

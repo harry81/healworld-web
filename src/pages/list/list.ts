@@ -105,13 +105,6 @@ export class ListPage {
     loadItems(overwrite=false){
         let params: URLSearchParams = new URLSearchParams();
 
-        this.loader = this.loadingCtrl.create({
-            content: "데이타를 불러오고 있습니다",
-            duration: 3000
-        });
-
-        this.loader.present();
-
         try {
             let coord = JSON.parse(sessionStorage.getItem('position'));
             if (coord !== null)
@@ -125,7 +118,6 @@ export class ListPage {
         this.itemService.loadItems(params)
             .subscribe(data => {
                 this.updateItem(data, overwrite);
-                this.loader.dismiss();
             });
     }
 
