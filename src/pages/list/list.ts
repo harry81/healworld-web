@@ -29,6 +29,7 @@ export class ListPage {
     public params: URLSearchParams = new URLSearchParams();
     public dist: Number;
     public search: string;
+    public itemspinner: boolean = false;
 
     public detailSlideOptions = {
         initialSlide: 0,
@@ -91,7 +92,7 @@ export class ListPage {
 
         this.items_count = data.count;
 
-        data.request_query['dist'] = "";
+        this.dist = 0;
 
         if (data.request_query) {
             if ('dist' in data.request_query)
@@ -103,6 +104,8 @@ export class ListPage {
     }
 
     loadItems(overwrite=false){
+        this.itemspinner = true;
+
         try {
             let coord = JSON.parse(sessionStorage.getItem('position'));
             if (coord !== null)
@@ -116,6 +119,8 @@ export class ListPage {
         this.itemService.loadItems(this.params)
             .subscribe(data => {
                 this.updateItem(data, overwrite);
+            }, error => {}, () =>{
+                this.itemspinner = false;
             });
     }
 

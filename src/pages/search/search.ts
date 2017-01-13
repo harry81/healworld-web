@@ -2,20 +2,23 @@ import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 import { CookieService } from 'angular2-cookie/core';
+import { GeoService } from '../../providers/geo-service';
 
 declare var fooga:Function;
 
 @Component({
     selector: 'page-search',
-    templateUrl: 'search.html'
+    templateUrl: 'search.html',
+    providers: [GeoService]
 })
 export class SearchPage {
     public searchForm: any;
 
     constructor(public viewCtrl: ViewController
                 ,params: NavParams
-                ,private _cookieService: CookieService,
-                private formBuilder: FormBuilder) {
+                ,private _cookieService: CookieService
+                ,public geoService: GeoService
+                ,private formBuilder: FormBuilder) {
 
         fooga('send', 'pageview', 'SearchPage');
 
@@ -31,6 +34,16 @@ export class SearchPage {
 
         if (data)
             this.searchForm.patchValue(data);
+    }
+
+    locateHere () {
+        console.log('locate here');
+        this.geoService.getPosition()
+            .then(data => {
+                console.log('data', data);
+            }, error => {
+                console.log('error', error);
+            });
     }
 
     dismiss(search) {

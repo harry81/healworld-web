@@ -33,7 +33,7 @@
 
   </ion-item>
 
-  <ion-grid no-lines *ngIf="!items.length">
+  <ion-grid no-lines *ngIf="itemspinner">
     <ion-col center width-10>
       <ion-spinner name="bubbles" ></ion-spinner>
     </ion-col>
@@ -46,7 +46,7 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-list>
+  <ion-list *ngIf="!itemspinner">
     <ion-card *ngFor="let item of items">
       <ion-item class="list-header">
         <ion-avatar item-left>

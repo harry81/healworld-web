@@ -6,7 +6,7 @@
       <ion-input  formControlName="search" name="search" clearInput></ion-input>
     </ion-item>
 
-    <ion-list radio-group formControlName="dist" name="dist">
+    <ion-list radio-group formControlName="dist" (ionChange)="locateHere()" name="dist">
       <ion-list-header>
         반경
       </ion-list-header>
