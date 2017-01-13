@@ -19,6 +19,7 @@ export class PostPage {
     public address: string;
     public position: any;
     public user: any;
+    public imagespinner: boolean = false;
 
     mySlideOptions = {
         initialSlide: 1
@@ -54,11 +55,14 @@ export class PostPage {
     }
 
     onPostImage(input) {
+        this.imagespinner = true;
+
         this.itemService.postImage(input.files[0])
             .subscribe(data => {
                 this.response = data; // because property 'itemshot' does not exist on type '{}'
                 this.preview.push(this.response);
                 this.postForm.value['image_ids'] = this.response.id;
+
             }, error => {
                 if (error.status == 403){
                     alert("[정보] 로그인후 사진을 업로드 할 수 있습니다.")
@@ -66,6 +70,8 @@ export class PostPage {
                 else {
                     alert("[정보] 사진 업로드에 문제가 있습니다.");
                 }
+            }, () => {
+                this.imagespinner = false;
             });
     }
 
