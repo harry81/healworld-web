@@ -113,11 +113,19 @@ export class PostPage {
     }
 
     getAddress(){
-        this.geoService.getAddress()
-            .subscribe((response) => {
-                let addr = response['results'][0]['formatted_address'].split(' ');
-                this.address = addr.slice(addr.length - 2, addr.length).join(' ');
+        this.geoService.getPosition()
+            .then((response) => {
+                console.log('response', response);
+                this.geoService.getAddress()
+                    .subscribe((response) => {
+                        let addr = response['results'][0]['formatted_address'].split(' ');
+                        this.address = addr.slice(addr.length - 2, addr.length).join(' ');
 
+                    },error=> {
+                        console.log(error);
+                        fooga('send', 'event', 'post', error.message);
+                        alert('현재 주소를 알수 없습니다.');
+                    })
             },error=> {
                 console.log(error);
                 fooga('send', 'event', 'post', error.message);
