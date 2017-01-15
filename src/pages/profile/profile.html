@@ -46,13 +46,14 @@
       <ion-toggle  [(ngModel)]="notification_push" (ionChange)="subscribeToPush();" checked="true"></ion-toggle>
     </ion-item>
   </ion-card>
-
 </ion-content>
 
 <ion-footer *ngIf="authService.isAuthorized()" >
   <ion-toolbar>
     <ion-item>
-      <button item-center ion-button (click)="logout()">나가기</button>
+      <ion-col offset-33>
+        <button ion-button (click)="logout()">나가기</button>
+      </ion-col>
     </ion-item>
   </ion-toolbar>
 </ion-footer>
