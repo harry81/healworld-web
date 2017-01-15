@@ -11,6 +11,7 @@ module.exports = {
           '{{SRC}}/service-worker.js',
           '{{SRC}}/offline-google-analytics-import.js',
           '{{SRC}}/sw-toolbox.js',
+          '{{SRC}}/sw-precache.js',
           '{{SRC}}/push-notification.js'],
     dest: '{{WWW}}'
   },

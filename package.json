@@ -42,6 +42,7 @@
   "devDependencies": {
     "@ionic/app-scripts": "0.0.48",
     "sw-offline-google-analytics": "0.0.7",
+    "sw-precache": "^4.3.0",
     "typescript": "2.0.6"
   },
   "description": "healworld-web: An Ionic project",

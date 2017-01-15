@@ -1,10 +1,13 @@
 // tick this to make the cache invalidate and update
-const CACHE_VERSION = 154;
+const CACHE_VERSION = 160;
 const CURRENT_CACHES = {
   'read-through': 'read-through-cache-v' + CACHE_VERSION
 };
 
 var filesToCache = [
+  './',
+  './?service',
+  './index.html',
   './build/main.js',
   './build/main.css',
   './build/polyfills.js',
@@ -14,16 +17,27 @@ var filesToCache = [
 
 console.log('cache name', CURRENT_CACHES);
 
-importScripts('./offline-google-analytics-import.js');
-goog.offlineGoogleAnalytics.initialize();
-
 importScripts('./sw-toolbox.js');
 
-toolbox.router.get('/api-item/(.*)', function(request, values) {
-  console.log('router');
-  return new Response('Handled a request for ' + request.url +
-      ', where foo is "' + values.foo + '"');
-});
+toolbox.options = {
+  cache: {
+    name: CURRENT_CACHES
+  }
+}
+
+console.log('filestoCache', filesToCache);
+toolbox.precache(filesToCache);
+
+toolbox.router.get('/api-item/*', function(request, values) {
+  console.log('router', request, values);
+  return request;
+  // return new Response('Handled a request for ' + request.url +
+  //     ', where foo is "' + values.foo + '"');
+}, {origin: 'https://backend.healworld.co.kr'});
+
+
+importScripts('./offline-google-analytics-import.js');
+goog.offlineGoogleAnalytics.initialize();
 
 
 self.addEventListener('push', function(event) {
