@@ -71,13 +71,7 @@
         </ion-row>
       </ion-item>
 
-      <ion-item (click)="itemTapped(item)">
-        <ion-slides #imgSlider [options]="detailSlideOptions">
-          <ion-slide *ngFor="let image of item.properties.images">
-            <img src="{{image.itemshot.thumbnail__400x400}}" swiper-lazy>
-          </ion-slide>
-        </ion-slides>
-      </ion-item>
+      <img src="{{item.properties.image}}" (click)="itemTapped(item)">
 
       <ion-row (click)="itemTapped(item)">
         <ion-col>
