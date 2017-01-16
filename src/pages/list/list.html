@@ -47,7 +47,7 @@
 
   <ion-list *ngIf="!itemspinner">
     <ion-card *ngFor="let item of items">
-      <ion-item>
+      <ion-item class="list-header">
         <ion-avatar item-left>
           <img data-src="{{item.properties.user.profile_picture_url}}"/>
         </ion-avatar>
@@ -56,7 +56,7 @@
 
       <img src="{{item.properties.image}}" (click)="itemTapped(item)">
 
-      <ion-card-content class="list-header">
+      <ion-card-content>
         <b>{{item.properties.title}}</b>
       </ion-card-content>
 
