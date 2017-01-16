@@ -35,14 +35,15 @@
       <ion-avatar item-left>
         <img data-src="{{user.profile_picture_url}}"/>
       </ion-avatar>
-      <h2>{{username}}</h2>
+      <h2>{{username}}</h2> {{social_auth.provider}}
     </ion-item>
 
-    <ion-card-content>
-      <p>소비자가 커피 한 잔을 마시기 위해서는 원두 재배·수확·가공·유통 등에 140l의 물이 필요하다.</p>
-    </ion-card-content>
     <ion-item>
       <ion-label>푸시 알림 받기</ion-label>
+      <ion-toggle  [(ngModel)]="notification_push" (ionChange)="subscribeToPush();" checked="true"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>문자 알림 받기</ion-label>
       <ion-toggle  [(ngModel)]="notification_push" (ionChange)="subscribeToPush();" checked="true"></ion-toggle>
     </ion-item>
   </ion-card>

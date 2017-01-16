@@ -1,5 +1,5 @@
 // tick this to make the cache invalidate and update
-const CACHE_VERSION = 161;
+const CACHE_VERSION = 162;
 const CURRENT_CACHES = {
   'read-through': 'read-through-cache-v' + CACHE_VERSION
 };
@@ -28,12 +28,12 @@ toolbox.options = {
 console.log('filestoCache', filesToCache);
 toolbox.precache(filesToCache);
 
-toolbox.router.get('/api-item/*', function(request, values) {
-  console.log('router', request, values);
-  return request;
-  // return new Response('Handled a request for ' + request.url +
-  //     ', where foo is "' + values.foo + '"');
-}, {origin: 'https://backend.healworld.co.kr'});
+// toolbox.router.get('/api-item/*', function(request, values) {
+//   console.log('router', request, values);
+//   return request;
+//   // return new Response('Handled a request for ' + request.url +
+//   //     ', where foo is "' + values.foo + '"');
+// }, {origin: 'http://localhost:8000'});
 
 
 importScripts('./offline-google-analytics-import.js');
