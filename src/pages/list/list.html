@@ -48,45 +48,40 @@
 
   <ion-list *ngIf="!itemspinner">
     <ion-card *ngFor="let item of items">
-      <ion-item class="list-header">
+      <ion-item>
         <ion-avatar item-left>
           <img data-src="{{item.properties.user.profile_picture_url}}"/>
         </ion-avatar>
-
-        <ion-row>
-          <ion-col class="date">
-            <b>{{item.properties.user.username}}</b>
-          </ion-col>
-          <ion-col>
-            <p>{{item.properties.created_at | amTimeAgo}}</p>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col width-75>
-            <span class="address">{{item.properties.address}}</span>
-          </ion-col>
-          <ion-col>
-            <p>{{item.properties.distance}}</p>
-          </ion-col>
-        </ion-row>
+        <h2>{{item.properties.user.username}}</h2>
       </ion-item>
+
 
       <img src="{{item.properties.image}}" (click)="itemTapped(item)">
 
+      <ion-card-content class="list-header">
+        <b>{{item.properties.title}}</b>
+      </ion-card-content>
+
       <ion-row (click)="itemTapped(item)">
-        <ion-col>
-          <p class="comment">{{ item.properties.cnt_of_comments }} 댓글</p>
+        <ion-col width-25 class="price">
+          <span >{{item.properties.price | number}} 원</span>
         </ion-col>
 
-        <ion-col class="price">
-          <span >{{item.properties.price | number}} 원</span>
+        <ion-col width-25 class="short-info">
+          <span>{{item.properties.created_at | amTimeAgo}}</span>
+        </ion-col>
+
+        <ion-col width-50 class="short-info">
+          <span >{{item.properties.address}} {{item.properties.distance}}</span>
         </ion-col>
       </ion-row>
 
-      <ion-card-content>
-        <b>{{item.properties.title}}</b>
-        {{item.properties.memo}}
-      </ion-card-content>
+      <ion-row>
+        <ion-col offset-75 class="short-info">
+          <span>{{ item.properties.cnt_of_comments }} 댓글</span>
+        </ion-col>
+      </ion-row>
+
     </ion-card>
   </ion-list>
 

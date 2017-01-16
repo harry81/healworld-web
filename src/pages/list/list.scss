@@ -12,7 +12,8 @@ page-list {
     .card-md {
         box-shadow: none;
         width: calc(100%);
-        margin: 0px;
+        margin: 0px 0px 10px 0px;
+        padding: 0px 0px 10px 0px;
     }
 
     .item-md.item-block .item-inner {
@@ -34,8 +35,8 @@ page-list {
 
     }
 
-    .address {
-        font-size: 1.2rem;
+    .short-info {
+        font-size: 1.3rem;
         line-height: normal;
         text-overflow: inherit;
         color: #666;
@@ -73,12 +74,16 @@ page-list {
     }
 
     .list-header .label-md {
-        margin: 0px;
+        margin: 0px 0px 0px 10px;
         background-color: #F4F4F9;
     }
 
     .label-md {
-        margin: 0px;
+        margin: 0px 0px 0px 10px;
+    }
+
+    ion-avatar img{
+        width: 20px;
     }
 
     .slide-zoom {
@@ -108,12 +113,8 @@ page-list {
         bottom: 0px;
     }
 
-    .comment {
-        text-align:center;
-    }
-
     .card-md ion-card-content {
-        padding: 13px 16px 13px 16px;
+        padding: unset;
     }
 
     div.spinner {
