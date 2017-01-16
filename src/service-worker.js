@@ -25,7 +25,6 @@ toolbox.options = {
   }
 }
 
-console.log('filestoCache', filesToCache);
 toolbox.precache(filesToCache);
 
 // toolbox.router.get('/api-item/*', function(request, values) {

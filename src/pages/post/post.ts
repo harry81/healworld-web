@@ -42,7 +42,7 @@ export class PostPage {
             ],
             'image_ids': [''],
             'point': [''],
-            'quality': [''],
+            'grade': [''],
             'address': [''],
         });
 
@@ -85,6 +85,7 @@ export class PostPage {
         this.postForm.value['user_id'] = this.user.pk;
         this.postForm.value['point'] = `POINT (${coord.lng} ${coord.lat} )`;
         this.postForm.value['address'] = this.address;
+        // this.postForm.value['grade'] = this.grade;
         this.postForm.value['image_ids'] = this.preview.map(function(a) {return a.id;}).join();
         this.itemService.postItem(this.postForm.value)
             .subscribe(response => {
