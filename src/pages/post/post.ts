@@ -121,7 +121,6 @@ export class PostPage {
     getAddress(){
         this.geoService.getPosition()
             .then((response) => {
-                console.log('response', response);
                 this.geoService.getAddress()
                     .subscribe((response) => {
                         let addr = response['results'][0]['formatted_address'].split(' ');

@@ -16,19 +16,15 @@
         </ion-col>
 
         <ion-col>
-
           <ion-row>
-            <ion-col >
-              <b>{{item.properties.user.username}}</b><br>
-            </ion-col>
-            <ion-col>
-               <p>{{item.properties.created_at | amTimeAgo}}</p>
+            <ion-col text-left>
+              <b>{{item.properties.user.username}}</b>
             </ion-col>
           </ion-row>
 
-          <ion-row width-20>
-            <ion-col >
-              <p class="address">{{item.properties.address}}</p><br>
+          <ion-row width-20 center>
+            <ion-col text-left>
+              <p class="address">{{item.properties.address}}</p>
             </ion-col>
             <ion-col>
               <button ion-button outline item-right (click)="showMap()">
@@ -49,15 +45,19 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col offset-50>
+      <ion-row padding-top>
+        <ion-col>
+          {{item.properties.created_at | amTimeAgo}}
+        </ion-col>
+
+        <ion-col>
           <span class="price">{{item.properties.price | number}} 원</span>
         </ion-col>
       </ion-row>
     </ion-item>
 
     <ion-card-content><p>{{item.properties.title}}</p>{{item.properties.memo}}</ion-card-content>
-    <ion-item>
+    <ion-item *ngIf="comments.length">
       <ion-row>
         <ion-col>
           <div *ngIf="comments"><p>{{comments.length}} 댓글</p></div>

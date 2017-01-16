@@ -70,3 +70,10 @@ $colors: (
 
 $ionicons-font-path: "../assets/fonts";
 @import "ionicons";
+
+
+@font-face {
+font-family: 'Durant';
+src: url('../assets/fonts/NanumGothic.ttf'); /* IE9 Compat Modes */
+font-weight: bold;
+}

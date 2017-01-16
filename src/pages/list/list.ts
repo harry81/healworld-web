@@ -24,7 +24,7 @@ export class ListPage {
     public items_count: Number = 0;
     public next_url: string;
     public loader: any;
-    public address: any = "전국";
+    public address: any = "";
 
     public params: URLSearchParams = new URLSearchParams();
     public dist: Number;
@@ -49,7 +49,6 @@ export class ListPage {
 
         this.params.set('search', ``);
         this.params.set('state', `created`);
-        this.params.set('dist', '100000');
         this.authService.setUserInfo();
     }
 
@@ -108,11 +107,14 @@ export class ListPage {
 
         try {
             let coord = JSON.parse(sessionStorage.getItem('position'));
-            if (coord !== null)
+            if (coord !== null) {
                 this.params.set('point', `${coord.lng},${coord.lat}`);
+                let address = sessionStorage.getItem('address');
+                this.address = address;
+            }
         }
         catch(error){
-            console.log('getAddress error', error);
+            console.log('getAddress error', error.message);
             return;
         };
 

@@ -25,6 +25,18 @@ export class GeoService {
                     sessionStorage.setItem('position',
                                          JSON.stringify({lat: position.coords.latitude,
                                                          lng: position.coords.longitude}));
+
+                    this.getAddress()
+                        .subscribe((response) => {
+                            let addr = response['results'][0]['formatted_address'].split(' ');
+                            sessionStorage.setItem('address', addr.slice(addr.length - 2, addr.length).join(' '));
+
+                        },error=> {
+                            console.log(error);
+                            fooga('send', 'event', 'post', error.message);
+                            alert('현재 주소를 알수 없습니다.');
+                        });
+
                     resolve(position);
                 },
                 (error) => {
@@ -38,7 +50,7 @@ export class GeoService {
         return promise;
     }
 
-    getAddress () {
+    getAddress() {
         let params: URLSearchParams = new URLSearchParams();
         let coord = JSON.parse(sessionStorage.getItem('position'));
         if (coord !== null)

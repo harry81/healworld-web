@@ -5,10 +5,6 @@ page-list {
         padding-right: 0px;
     }
 
-    .item-md p {
-        text-align: center;
-    }
-
     .card-md {
         box-shadow: none;
         width: calc(100%);
@@ -19,6 +15,11 @@ page-list {
     .item-md.item-block .item-inner {
         padding-right: 0px;
     }
+
+    .item-md ion-avatar[item-left] {
+        margin: 8px 16px 8px 10px;
+    }
+
 
     .date {
         color:#666;
@@ -65,8 +66,7 @@ page-list {
     }
 
     ion-col {
-        padding:3px;
-        text-align: left;
+        text-align: right;
     }
 
     .tabs-md .tabbar {
@@ -124,4 +124,5 @@ page-list {
         height: 85px;
         text-align: center;
     }
+
 }
