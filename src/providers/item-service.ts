@@ -72,6 +72,13 @@ export class ItemService {
             .map(response => response.json());
     }
 
+    patchProfile(formData){
+        return this.authHttp
+            .patch(this.baseUrl + 'api-profile/',
+                  formData)
+            .map(response => response.json());
+    }
+
     loadComment(params) {
         let url = this.baseUrl + 'api-comment/';
 

@@ -54,8 +54,6 @@ export class MyitemPage {
         let params = {deleted: 'true',
                       item_id: item.properties.pk};
 
-        console.log(item);
-
         this.itemService.patchItem(params)
             .subscribe(data => {
                 this.response = data;

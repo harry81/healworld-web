@@ -39,13 +39,19 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>푸시 알림 받기</ion-label>
+      <ion-label>푸시 알림 받기 </ion-label>
       <ion-toggle  [(ngModel)]="notification_push" (ionChange)="subscribeToPush();" checked="true"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>문자 알림 받기</ion-label>
-      <ion-toggle  [(ngModel)]="notification_push" (ionChange)="subscribeToPush();" checked="true"></ion-toggle>
+      <ion-toggle  [(ngModel)]="phone_push" (ionChange)="subscribeToPush();" checked="true"></ion-toggle>
     </ion-item>
+    <ion-item *ngIf="phone.length">
+      <ion-label>전화</ion-label>
+      <ion-input placeholder="" name="phone"  [(ngModel)]="phone" clearInput></ion-input>
+      <button ion-button item-right (click)="patchProfile()">수정</button>
+    </ion-item>
+
   </ion-card>
 </ion-content>
 
