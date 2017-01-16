@@ -71,13 +71,17 @@
           <img data-src="{{comment.user.profile_picture_url}}"/>
         </ion-avatar>
         <ion-row>
-          <ion-col class="comment" width-10>
+          <ion-col class="comment">
             <p><b>{{ comment.user_name }}</b></p>
           </ion-col>
+        </ion-row>
+
+        <ion-row>
           <ion-col class="comment" item-text-wrap>
             <p item-text-wrap>{{ comment.comment }}</p>
           </ion-col>
         </ion-row>
+
         <ion-row>
           <ion-col text-right>
             <p>{{ comment.submit_date | amTimeAgo}}</p>
