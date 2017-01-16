@@ -1,5 +1,5 @@
 // tick this to make the cache invalidate and update
-const CACHE_VERSION = 163;
+const CACHE_VERSION = 164;
 const CURRENT_CACHES = {
   'read-through': 'read-through-cache-v' + CACHE_VERSION
 };
@@ -47,7 +47,8 @@ self.addEventListener('push', function(event) {
   const options = {
     body: '새로운 댓글입니다.',
     icon: 'assets/imgs/icon-text.png',
-    badge: 'images/badge.png'
+    badge: 'images/badge.png',
+    link: 'https://www.healworld.co.kr'
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
