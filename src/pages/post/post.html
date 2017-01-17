@@ -18,7 +18,9 @@
             <ion-icon name="ios-cloud-upload-outline"></ion-icon>
         </label>
 
-        <input id="file-input" type="file" class="custom-file-input" (change)="onPostImage(input)" formControlName="image_ids" #input capture="camera" title=" " accept="images/*" />
+        <input id="file-input" type="file" class="custom-file-input"
+               multiple="multiple" (change)="onPostImage(input)"
+               formControlName="image_ids" #input capture="camera" title=" " accept="images/*" />
         <input type="hidden" name="image_ids"  />
         <ion-spinner name="bubbles" *ngIf="imagespinner==true"></ion-spinner>
       </div>

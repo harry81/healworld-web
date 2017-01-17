@@ -42,7 +42,7 @@ export class PostPage {
             ],
             'image_ids': [''],
             'point': [''],
-            'grade': [''],
+            'grade': ['3'],
             'address': [''],
         });
 
@@ -55,9 +55,15 @@ export class PostPage {
     }
 
     onPostImage(input) {
+        for (var i = 0; i < input.files.length; i++) {
+            this.postImage(input.files[i]);
+        }
+    }
+
+    postImage(file) {
         this.imagespinner = true;
 
-        this.itemService.postImage(input.files[0])
+        this.itemService.postImage(file)
             .subscribe(data => {
                 this.response = data; // because property 'itemshot' does not exist on type '{}'
                 this.preview.push(this.response);
