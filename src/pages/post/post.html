@@ -28,7 +28,7 @@
 
     <ion-item text-center *ngIf="preview" no-lines>
       <ion-grid>
-        <ion-row >
+        <ion-row responsive-sm wrap>
           <ion-col width-33 *ngFor="let image of preview"><img src="{{image.itemshot.thumbnail__200x200}}"></ion-col>
         </ion-row>
       </ion-grid>
