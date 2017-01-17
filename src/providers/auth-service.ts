@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'angular2-cookie/core';
 import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
+import { Http } from '@angular/http';
+
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -9,6 +11,7 @@ export class AuthService {
     public user: any;
 
     constructor(private authHttp: AuthHttp
+                ,public http: Http
                 ,private _cookieService: CookieService) {
 
         this.setBaseUrl();
@@ -25,19 +28,23 @@ export class AuthService {
     }
 
     loggedOut() {
-        this.logout()
+        this.session_logout()
             .subscribe(data => {
                 console.log(data);
                 this._cookieService.remove('jwt_token', { path: '/' , domain: '.healworld.co.kr'});
-                this._cookieService.remove('sessionid', { path: '/' , domain: '.healworld.co.kr'});
+                this._cookieService.remove('sessionid', {
+                    path: '/' ,
+                    domain: '.healworld.co.kr'
+                    ,expires: 'Thu, 01 Jan 1970 00:00:00 GMT'});
                 this._cookieService.removeAll();
                 localStorage.clear();
             });
     }
 
-    logout() {
+    session_logout() {
         let url = this.baseUrl + 'api-profile/logout/';
-        return this.authHttp.get(url)
+        return this.http.get(url,  {
+            withCredentials: true})
             .map(res => res.json());
     }
 

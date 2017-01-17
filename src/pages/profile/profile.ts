@@ -48,6 +48,10 @@ export class ProfilePage {
         }
     }
 
+    ionViewDidLoad() {
+        fooga('send', 'event', 'Profile', 'open');
+    }
+
     subscribeToPush() {
         fooga('send', 'event', 'Profilepage', 'subscribe', this.notification_push);
 
@@ -61,7 +65,6 @@ export class ProfilePage {
     }
 
     patchProfile() {
-        console.log('patch');
         let params = {phone: this.phone};
 
         this.itemService.patchProfile(params)
