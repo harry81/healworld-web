@@ -1,7 +1,17 @@
 page-detail {
 
+    .card-md {
+        box-shadow: none;
+        margin: 5px 0px 0px 0px;
+        width: calc(100%);
+    }
+
     ion-card .card-md {
         margin: 10px 0px 0px 0px;
+    }
+
+    ion-card img {
+        margin-bottom: 2px;
     }
 
     .item-md {
@@ -18,12 +28,6 @@ page-detail {
 
     .button-md {
         height: 3.0rem;
-    }
-
-    .card-md {
-        box-shadow: none;
-        margin: 5px 0px 0px 0px;
-        width: calc(100%);
     }
 
     .item-md.item-block .item-inner {
