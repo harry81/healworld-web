@@ -69,6 +69,15 @@ ion-card-content {
     color: #ef612f;
 }
 
+.short-info {
+    font-size: 1.3rem;
+    line-height: normal;
+    text-overflow: inherit;
+    color: #666;
+    display: block;
+    vertical-align: middle;
+}
+
 
 input[type="text"] textarea[type="text"]
 {
