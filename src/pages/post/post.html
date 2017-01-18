@@ -48,7 +48,7 @@
     <ion-item no-lines>
       <ion-label>가격</ion-label>
       <ion-input formControlName="price"
-                 (tap)="showRadio($event)" name="price" value="{{price}}"></ion-input>
+                 (tap)="showPriceradio($event)" name="price" value="{{price | number}}"></ion-input>
       <button ion-button clear item-right >원</button>
     </ion-item>
 

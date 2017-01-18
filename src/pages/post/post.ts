@@ -119,7 +119,6 @@ export class PostPage {
     getCurrentLocation(){
         this.geoService.getPosition()
             .then(position =>{
-                console.log(position);
                 this.position = position;
             },
                   error => alert(error));
@@ -134,18 +133,16 @@ export class PostPage {
                         this.address = addr.slice(addr.length - 2, addr.length).join(' ');
 
                     },error=> {
-                        console.log(error);
                         fooga('send', 'event', 'post', error.message);
                         alert('현재 주소를 알수 없습니다.');
                     })
             },error=> {
-                console.log(error);
                 fooga('send', 'event', 'post', error.message);
                 alert('현재 위치를 알수 없습니다.');
             })
     }
 
-    showRadio(evt) {
+    showPriceradio(evt) {
         let alert = this.alertCtrl.create();
         alert.setTitle('가격');
 
@@ -168,9 +165,7 @@ export class PostPage {
         alert.addButton({
             text: 'OK',
             handler: data => {
-                console.log('data', data);
                 this.price = data;
-                console.log('this.postForm.value', this.postForm.value);
             }
         });
         alert.present();
