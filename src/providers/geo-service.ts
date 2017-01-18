@@ -33,7 +33,7 @@ export class GeoService {
 
                         },error=> {
                             console.log(error);
-                            fooga('send', 'event', 'post', error.message);
+                            fooga('send', 'event', 'Geo-service', error.message);
                             alert('현재 주소를 알수 없습니다.');
                         });
 

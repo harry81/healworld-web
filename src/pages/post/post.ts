@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ViewController } from 'ionic-angular';
+import { NavController, ViewController, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 import { ItemService } from '../../providers/item-service';
 import { AuthService } from '../../providers/auth-service';
@@ -18,6 +18,7 @@ export class PostPage {
     public response: any;
     public address: string;
     public position: any;
+    public price: number = 0;
     public user: any;
     public imagespinner: boolean = false;
 
@@ -30,6 +31,7 @@ export class PostPage {
                 public itemService: ItemService,
                 public authService: AuthService,
                 public geoService: GeoService,
+                public alertCtrl: AlertController,
                 private formBuilder: FormBuilder) {
 
         this.postForm = this.formBuilder.group({
@@ -47,7 +49,6 @@ export class PostPage {
         });
 
         this.user = JSON.parse(localStorage.getItem('user'));
-
     }
 
     popView(){
@@ -91,7 +92,6 @@ export class PostPage {
         this.postForm.value['user_id'] = this.user.pk;
         this.postForm.value['point'] = `POINT (${coord.lng} ${coord.lat} )`;
         this.postForm.value['address'] = this.address;
-        // this.postForm.value['grade'] = this.grade;
         this.postForm.value['image_ids'] = this.preview.map(function(a) {return a.id;}).join();
         this.itemService.postItem(this.postForm.value)
             .subscribe(response => {
@@ -143,5 +143,36 @@ export class PostPage {
                 fooga('send', 'event', 'post', error.message);
                 alert('현재 위치를 알수 없습니다.');
             })
+    }
+
+    showRadio(evt) {
+        let alert = this.alertCtrl.create();
+        alert.setTitle('가격');
+
+        alert.addInput({
+            type: 'radio',
+            label: '무료드림',
+            value: '0',
+            checked: true
+        });
+
+        for (var i = 1; i < 50; i++) {
+            alert.addInput({
+                type: 'radio',
+                label: eval("i * 1000").toString(),
+                value: eval("i * 1000").toString()
+            });
+        }
+
+        alert.addButton('Cancel');
+        alert.addButton({
+            text: 'OK',
+            handler: data => {
+                console.log('data', data);
+                this.price = data;
+                console.log('this.postForm.value', this.postForm.value);
+            }
+        });
+        alert.present();
     }
 }
