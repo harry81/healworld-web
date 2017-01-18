@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, DeepLinkConfig } from 'ionic-angular';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import 'moment/locale/ko';
 import { Http } from '@angular/http';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
