@@ -15,6 +15,29 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+ion-menu {
+    .card-background-page ion-card {
+        position: relative;
+        margin: unset;
+        text-align: left;
+        width: 100%;
+    }
+    .card-background-page .card-title {
+        position: absolute;
+        top: 55%;
+        font-size: 1.2em;
+        width: 100%;
+        color: white;
+        font-weight: lighter;
+        padding:10px;
+        color: #3c503c;
+    }
+    ion-avatar img {
+        width:40px;
+        border-radius: 50%;
+    }
+}
+
 .toolbar-md {
     min-height: 40px;
 }

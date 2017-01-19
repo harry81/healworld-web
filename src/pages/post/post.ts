@@ -40,7 +40,7 @@ export class PostPage {
             ],
             'memo': ['', Validators.compose([Validators.required])],
             'price': [
-                '', Validators.compose([Validators.required])
+                '0', Validators.compose([Validators.required])
             ],
             'image_ids': [''],
             'point': [''],
@@ -131,7 +131,6 @@ export class PostPage {
                     .subscribe((response) => {
                         let addr = response['results'][0]['formatted_address'].split(' ');
                         this.address = addr.slice(addr.length - 2, addr.length).join(' ');
-
                     },error=> {
                         fooga('send', 'event', 'post', error.message);
                         alert('현재 주소를 알수 없습니다.');
@@ -139,11 +138,13 @@ export class PostPage {
             },error=> {
                 fooga('send', 'event', 'post', error.message);
                 alert('현재 위치를 알수 없습니다.');
-            })
+            });
     }
 
     showPriceradio(evt) {
         let alert = this.alertCtrl.create();
+        let postForm = this.postForm;
+
         alert.setTitle('가격');
 
         alert.addInput({
@@ -163,9 +164,10 @@ export class PostPage {
 
         alert.addButton('Cancel');
         alert.addButton({
-            text: 'OK',
+            text: '확인',
             handler: data => {
                 this.price = data;
+                postForm.value['price'] = this.price;
             }
         });
         alert.present();
