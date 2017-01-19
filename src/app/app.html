@@ -1,16 +1,15 @@
 <ion-menu [content]="content" (ionOpen)="menuOpened()">
   <ion-content class="card-background-page">
     <ion-card>
-      <img src="/assets/imgs/drop-background.jpg"/>
-      <div class="card-title">Heal the world</div>
-    </ion-card>
+      <img src="/assets/imgs/drop-background2.jpg"/>
+      <div class="card-title">
+        <ion-avatar item-left>
+          <img data-src="{{user.profile_picture_url}}"/>
+        </ion-avatar>
+        <span>{{user.username}}</span>
+      </div>
 
-    <ion-item no-lines>
-      <ion-avatar item-left>
-        <img data-src="{{user.profile_picture_url}}"/>
-      </ion-avatar>
-      <h2>{{user.username}}</h2>
-    </ion-item>
+    </ion-card>
 
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
