@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { CookieService } from 'angular2-cookie/core';
 import { URLSearchParams } from '@angular/http';
 import { NavController, LoadingController,
-         ModalController,
-         AlertController} from 'ionic-angular';
+         ModalController } from 'ionic-angular';
 import { ItemService } from '../../providers/item-service';
 import { GeoService } from '../../providers/geo-service';
 import { AuthService } from '../../providers/auth-service';
@@ -42,7 +41,6 @@ export class ListPage {
                 ,public authService: AuthService
                 ,public geoService: GeoService
                 ,public modalCtrl: ModalController
-                ,public alertCtrl: AlertController
                 ,private _cookieService: CookieService) {
 
         fooga('send', 'pageview', 'ListPage');
@@ -153,7 +151,7 @@ export class ListPage {
         if (!this.authService.isAuthorized()) {
             fooga('send', 'event', 'addItem', 'login required',);
 
-            this.showGoLoginConfirm();
+            this.authService.showGoLoginConfirm('아이템을');
             return;
         }
 
@@ -225,27 +223,4 @@ export class ListPage {
             });
     }
 
-    showGoLoginConfirm() {
-        let confirm = this.alertCtrl.create({
-            title: '로그인',
-            message: '아이템을 등록하려면 로그인이 필요합니다.',
-            buttons: [
-                {
-                    text: '아니오',
-                    handler: () => {
-                        console.log('Disagree clicked');
-                    }
-                },
-                {
-                    text: '네',
-                    handler: () => {
-                        console.log('Agree clicked');
-                        window.location.href = "/#/profile";
-                    }
-                }
-            ]
-        });
-        confirm.present();
-        fooga('send', 'event', 'alertCtrl', 'login required');
-    }
 }

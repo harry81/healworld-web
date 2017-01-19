@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'angular2-cookie/core';
 import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 import { Http } from '@angular/http';
+import { AlertController} from 'ionic-angular';
 
 import 'rxjs/add/operator/map';
 
@@ -12,6 +13,7 @@ export class AuthService {
 
     constructor(private authHttp: AuthHttp
                 ,public http: Http
+                ,public alertCtrl: AlertController
                 ,private _cookieService: CookieService) {
 
         this.setBaseUrl();
@@ -70,6 +72,27 @@ export class AuthService {
                 localStorage.setItem('user', user);
                 this.user = JSON.parse(user);
             });
+    }
+
+    showGoLoginConfirm(message="") {
+        let confirm = this.alertCtrl.create({
+            title: '로그인',
+            message: message + ' 등록하려면 로그인이 필요합니다.',
+            buttons: [
+                {
+                    text: '아니오',
+                    handler: () => {
+                    }
+                },
+                {
+                    text: '네',
+                    handler: () => {
+                        window.location.href = "/#/profile";
+                    }
+                }
+            ]
+        });
+        confirm.present();
     }
 
 }

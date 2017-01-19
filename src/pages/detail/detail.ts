@@ -145,4 +145,14 @@ export class DetailPage {
             zoom: this.zoom
         });
     }
+
+    checkLogin (){
+        if (!this.authService.isAuthorized()) {
+            fooga('send', 'event', 'addItem', 'login required',);
+
+            this.authService.showGoLoginConfirm('댓글을');
+            return;
+        }
+        console.log('want to write reply');
+    }
 }
