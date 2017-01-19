@@ -76,11 +76,10 @@
     <ion-item no-lines>
       <ion-row>
         <ion-col text-center>
-          <button ion-button large type="cancel" (click)="onCancel()">취소</button>
+          <button ion-button type="cancel" (click)="onCancel()">취소</button>
         </ion-col>
         <ion-col text-center>
-
-          <button ion-button large type="submit" (click)="onSubmit()" [disabled]="!postForm.valid" form="postFrom">등록완료</button>
+          <button ion-button type="submit" (click)="onSubmit()" [disabled]="!postForm.valid" form="postFrom">등록</button>
         </ion-col>
       </ion-row>
     </ion-item>

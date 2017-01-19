@@ -97,7 +97,7 @@
   <ion-toolbar>
     <form [formGroup]="commentForm" id="commentForm">
       <ion-item>
-        <ion-input formControlName="comment" placeholder="{{placeholder_comment}}" name="comment" class="comment"></ion-input>
+        <ion-input formControlName="comment" placeholder="{{placeholder_comment}}" (tap)="checkLogin()" name="comment" class="comment"></ion-input>
         <button type="submit" ion-button outline item-right (click)="postComment()" [disabled]="comment_disabled" form="commentForm">등록</button>
       </ion-item>
     </form>
