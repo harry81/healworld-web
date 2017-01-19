@@ -39,10 +39,7 @@ export class MyApp {
             { title: '나의 아이템', icon:'md-basket', component: MyitemPage }
         ];
 
-        if (this.platform.is('core')) {
-            this.rootPage = DesktopPage;
-        };
-
+        this.checkDesktop();
         this.initUser();
     }
 
@@ -74,6 +71,13 @@ export class MyApp {
         this.nav.setRoot(page.component);
     }
 
+    checkDesktop() {
+        if (this.platform.is('core')) {
+            console.log('app.component in condition');
+
+            this.rootPage = DesktopPage;
+        };
+    }
 
     registerBackButtonListener() {
         document.addEventListener('backbutton', () => {
