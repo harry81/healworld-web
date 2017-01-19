@@ -66,6 +66,7 @@ export class DetailPage {
             title: 'detail',
             page: this.item_id
         });
+
     }
 
     ionViewDidLoad() {
@@ -91,6 +92,7 @@ export class DetailPage {
                 this.lat = data['geometry']['coordinates'][1];
                 this.lng = data['geometry']['coordinates'][0];
                 this.zoom = 14;
+
                 this.item = data;
 
                 if (this.user && this.item.properties.user.pk == this.user.pk)

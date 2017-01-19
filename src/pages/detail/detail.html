@@ -44,6 +44,14 @@
         </ion-col>
       </ion-row>
 
+      <ion-item >
+        <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="true">
+          <sebm-google-map-circle [latitude]="lat" [longitude]="lng" [clickable]="true"
+                                  fillColor="#010101" [radius]="500" [fillOpacity]="0.1"></sebm-google-map-circle>
+        </sebm-google-map>
+      </ion-item>
+
+
       <ion-row padding-top padding-bottom>
         <ion-col class="short-info">
           {{item.properties.created_at | amTimeAgo}}
