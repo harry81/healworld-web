@@ -8,11 +8,6 @@
 
   <form [formGroup]="postForm" id="postFrom">
     <ion-item no-lines>
-      <ion-label>제목</ion-label>
-      <ion-input formControlName="title" placeholder="가방 팝니다" name="title" clearInput></ion-input>
-    </ion-item>
-
-    <ion-item no-lines>
       <div class="image-upload">
         <label for="file-input">
             <ion-icon name="ios-cloud-upload-outline"></ion-icon>
@@ -26,19 +21,6 @@
       </div>
     </ion-item>
 
-    <ion-item text-center *ngIf="preview" no-lines>
-      <ion-grid>
-        <ion-row responsive-sm wrap>
-          <ion-col width-33 *ngFor="let image of preview"><img src="{{image.itemshot.thumbnail__200x200}}"></ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-
-    <ion-item no-lines>
-      <ion-label>내용</ion-label>
-      <ion-textarea formControlName="memo" placeholder="한달 썼어요" name="memo"></ion-textarea>
-    </ion-item>
-
     <ion-item no-lines>
       <ion-label>위치</ion-label>
       <ion-input disabled clearInput value="{{address}}"></ion-input>
@@ -50,6 +32,24 @@
       <ion-input formControlName="price"
                  (tap)="showPriceradio($event)" name="price" [(ngModel)]="price"></ion-input>
       <button ion-button clear item-right >원</button>
+    </ion-item>
+
+    <ion-item text-center *ngIf="preview" no-lines>
+      <ion-grid>
+        <ion-row responsive-sm wrap>
+          <ion-col width-33 *ngFor="let image of preview"><img src="{{image.itemshot.thumbnail__200x200}}"></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label>제목</ion-label>
+      <ion-input formControlName="title" placeholder="가방 팝니다" name="title" clearInput></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label>내용</ion-label>
+      <ion-textarea formControlName="memo" placeholder="한달 썼어요" name="memo"></ion-textarea>
     </ion-item>
 
     <ion-list radio-group formControlName="grade" name="grade">
