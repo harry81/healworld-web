@@ -23,7 +23,7 @@ export class DetailPage {
     public user: any;
     public comments: any[];
     public commentForm: any;
-    public placeholder_comment: string = "댓글 달기";
+    public placeholder_comment: string = "댓글은 등록자에게 문자로 전송됨";
     public comment_disabled: boolean = false;
     public item_owner: boolean = false;
 
