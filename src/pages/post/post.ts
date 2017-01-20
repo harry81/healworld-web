@@ -18,7 +18,7 @@ export class PostPage {
     public response: any;
     public address: string;
     public position: any;
-    public price: number = 0;
+    public price: number;
     public user: any;
     public imagespinner: boolean = false;
 
@@ -40,7 +40,10 @@ export class PostPage {
             ],
             'memo': ['', Validators.compose([Validators.required])],
             'price': [
-                '0', Validators.compose([Validators.required])
+                '', Validators.compose([Validators.required])
+            ],
+            'phone': [
+                '', Validators.compose([Validators.required])
             ],
             'image_ids': [''],
             'point': [''],
