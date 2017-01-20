@@ -5,10 +5,5 @@
     "www/index.html"
   ],
   "stripPrefix": "www/",
-  "runtimeCaching": [{
-    "urlPattern": "/api-item/(.*)",
-    "handler": "networkFirst",
-    "options": {"origin": "https://backend.healworld.co.kr"}
-  }],
   "maximumFileSizeToCacheInBytes": 2397152
 }
