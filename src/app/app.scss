@@ -24,7 +24,7 @@ ion-menu {
     }
     .card-background-page .card-title {
         position: absolute;
-        top: 55%;
+        top: 40%;
         font-size: 1.2em;
         width: 100%;
         color: white;
@@ -32,9 +32,11 @@ ion-menu {
         padding:10px;
         color: #3c503c;
     }
+
     ion-avatar img {
-        width:40px;
+        width:60px;
         border-radius: 50%;
+        padding: 10px;
     }
 }
 

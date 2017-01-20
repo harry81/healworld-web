@@ -40,12 +40,13 @@ export class MyApp {
         ];
 
         this.checkDesktop();
-        this.initUser();
+        this.menuOpened();
     }
 
     menuOpened() {
-        if (localStorage.hasOwnProperty('user'))
+        if (localStorage.hasOwnProperty('user')){
             this.user = JSON.parse(localStorage.getItem('user'));
+        }
         else
             this.initUser();
     }
@@ -57,6 +58,7 @@ export class MyApp {
 
     initializeApp() {
         this.platform.ready().then(() => {
+            console.log('this.platform.ready()');
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             // StatusBar.styleDefault();
@@ -80,8 +82,8 @@ export class MyApp {
     }
 
     registerBackButtonListener() {
+        console.log('registerBackButtonListener');
         document.addEventListener('backbutton', () => {
-            console.log('backbutton');
             // http://www.codingandclimbing.co.uk/blog/ionic-2-android-back-button-13
             // var nav = this.getNav();
             // if (nav.canGoBack()) {
