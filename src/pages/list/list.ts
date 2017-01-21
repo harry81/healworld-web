@@ -46,6 +46,7 @@ export class ListPage {
         fooga('send', 'pageview', 'ListPage');
 
         this.params.set('search', ``);
+        this.params.set('dist', '100000');
         this.params.set('state', `created`);
         this.authService.setUserInfo();
     }

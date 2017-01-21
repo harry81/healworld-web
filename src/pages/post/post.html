@@ -23,8 +23,8 @@
 
     <ion-item text-center *ngIf="preview.length" no-lines>
       <ion-grid>
-        <ion-row responsive-sm wrap>
-          <ion-col width-10 *ngFor="let image of preview"><img src="{{image.itemshot.thumbnail__200x200}}"></ion-col>
+        <ion-row wrap>
+          <ion-col width-33 *ngFor="let image of preview"><img src="{{image.itemshot.thumbnail__200x200}}"></ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -42,11 +42,10 @@
     </ion-item>
 
     <ion-item no-lines>
-      <ion-label>전화</ion-label>
+      <ion-label>전화번호</ion-label>
       <div item-content>
-        <ion-input formControlName="phone" name="phone" [(ngModel)]="phone"
-                   placeholder="'-'제외한 번호만 입력"></ion-input>
-        <p>추후 댓글이 등록시 문자 알림이 옵니다</p>
+        <ion-input formControlName="phone" (tap)="showChangePhone()" name="phone" [(ngModel)]="phone"
+                   placeholder="댓글 등록시 문자로 알림받기"></ion-input>
       </div>
     </ion-item>
 

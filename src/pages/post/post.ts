@@ -19,6 +19,7 @@ export class PostPage {
     public address: string;
     public position: any;
     public price: number;
+    public phone: string;
     public user: any;
     public imagespinner: boolean = false;
 
@@ -52,6 +53,10 @@ export class PostPage {
         });
 
         this.user = JSON.parse(localStorage.getItem('user'));
+    }
+
+    ionViewDidLoad() {
+        this.phone = this.user.phone;
     }
 
     popView(){
@@ -144,6 +149,40 @@ export class PostPage {
             });
     }
 
+    showChangePhone(evt) {
+        let _this = this;
+        let prompt = this.alertCtrl.create({
+            title: '전화번호 변경',
+            message: "전화번호를 입력하세요",
+            inputs: [
+                {
+                    name: 'phone',
+                    placeholder: '"-" 없이 숫자만 입력하세요',
+                    value: this.phone
+                },
+            ],
+            buttons: [
+                {
+                    text: '취소',
+                    handler: data => {
+                    }
+                },
+                {
+                    text: '저장',
+                    handler: data => {
+                        this.itemService.patchProfile(data)
+                            .subscribe(response => {
+                                this.phone = response.data.phone;
+                            });
+                    }
+                }
+            ]
+        });
+        prompt.present();
+    }
+    // showPriceradio
+    // 가격 입력을 라디오 입력박스로 하기, 불필요하다는 피드백이 있어 당분간
+    // 사용하지 않음
     showPriceradio(evt) {
         let alert = this.alertCtrl.create();
         let postForm = this.postForm;

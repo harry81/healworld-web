@@ -22,7 +22,7 @@
             </ion-col>
           </ion-row>
 
-          <ion-row width-20 center>
+          <ion-row *ngIf="item.properties.distance.length" width-20 center>
             <ion-col text-left>
               <p class="address">{{item.properties.address}}</p>
             </ion-col>
