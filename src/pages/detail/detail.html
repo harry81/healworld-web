@@ -53,18 +53,18 @@
 
 
       <ion-row padding-top padding-bottom>
-        <ion-col class="short-info">
+        <ion-col class="short-info" center>
           {{item.properties.created_at | amTimeAgo}}
         </ion-col>
 
-        <ion-col class="short-info">
-          <a href="tel:{{item.properties.user.phone}}">{{item.properties.user.phone}}</a>
-
-        </ion-col>
-
-        <ion-col>
+        <ion-col center>
           <span class="price">{{item.properties.price | number}} 원</span>
         </ion-col>
+
+        <ion-col class="short-info">
+          <a ion-button href="tel:{{item.properties.user.phone}}">전화걸기</a>
+        </ion-col>
+
       </ion-row>
     </ion-item>
 
