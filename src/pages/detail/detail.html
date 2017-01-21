@@ -57,6 +57,11 @@
           {{item.properties.created_at | amTimeAgo}}
         </ion-col>
 
+        <ion-col class="short-info">
+          <a href="tel:{{item.properties.user.phone}}">{{item.properties.user.phone}}</a>
+
+        </ion-col>
+
         <ion-col>
           <span class="price">{{item.properties.price | number}} 원</span>
         </ion-col>

@@ -43,8 +43,9 @@
 
     <ion-item no-lines>
       <ion-label>연락처</ion-label>
-        <ion-input formControlName="phone" (tap)="showChangePhone()" name="phone" [(ngModel)]="phone"
-                   placeholder="댓글 등록시 문자로 알림받기"></ion-input>
+      <ion-input type="tel" formControlName="phone"
+                 (tap)="showChangePhone()" name="phone" [(ngModel)]="phone"
+                 placeholder="댓글 등록시 문자로 알림받기"></ion-input>
     </ion-item>
 
     <ion-item no-lines>
