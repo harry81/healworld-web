@@ -156,7 +156,8 @@ export class PostPage {
                 {
                     name: 'phone',
                     placeholder: '"-" 없이 숫자만 입력하세요',
-                    value: this.phone
+                    value: this.phone,
+                    type: "tel"
                 },
             ],
             buttons: [
