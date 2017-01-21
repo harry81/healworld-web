@@ -47,8 +47,6 @@ export class ItemService {
     postImage(file){
         let formData = new FormData();
 
-        console.log('postImage in service');
-
         formData.append("itemshot", file);
         formData.append("item", 1);
 

@@ -2,7 +2,7 @@
   "name": "중고에게 새 생명을",
   "short_name": "Heal the world!",
   "start_url": "index.html",
-  "description": "세상을 치유하는 쉬운 방법",
+  "description": "내가 쓰지 않는 물건에 새 숨결을",
   "display": "standalone",
   "icons": [{
     "src": "assets/imgs/logo.png",

@@ -150,9 +150,7 @@ export class PostPage {
     }
 
     showChangePhone(evt) {
-        let _this = this;
         let prompt = this.alertCtrl.create({
-            title: '전화번호 변경',
             message: "전화번호를 입력하세요",
             inputs: [
                 {
