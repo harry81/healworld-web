@@ -13,24 +13,23 @@
     </ion-buttons>
   </ion-navbar>
 
-  <ion-item class="list-header" (click)="openSearch()">
-    <ion-row>
-      <ion-col width-50>
-        <p>{{search}}</p>
-      </ion-col>
-      <ion-col>
-        <p style="count">{{items_count}} 건</p>
-      </ion-col>
-    </ion-row>
-
-    <ion-row *ngIf="dist">
-      <ion-col width-50><p>{{address}}</p>
-      </ion-col>
-      <ion-col>
-        <p>반경 {{dist}} km</p>
-      </ion-col>
-    </ion-row>
-  </ion-item>
+  <ion-card>
+    <ion-grid (click)="openSearch()">
+      <ion-row >
+        <ion-col width-75 left class="short-info">
+          <p>{{address}}</p>
+          <p>반경 {{dist}} km</p>
+          <p>{{search}}</p>
+          <p style="count">{{items_count}} 건</p>
+        </ion-col>
+        <ion-col center>
+          <button ion-button icon-only outline clear>
+            <ion-icon name="search"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 
   <ion-grid no-lines *ngIf="itemspinner">
     <ion-col center width-10>
