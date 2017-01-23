@@ -70,6 +70,15 @@ export class ItemService {
             .map(response => response.json());
     }
 
+    patchItemAction(formData){
+        let url = this.baseUrl + 'api-item/' + formData.item_id + '/state_action/';
+
+        return this.authHttp
+            .patch(url,
+                  formData)
+            .map(response => response.json());
+    }
+
     patchProfile(formData){
         return this.authHttp
             .patch(this.baseUrl + 'api-profile/',

@@ -13,17 +13,22 @@
     <p>처리중인 아이템이 없습니다.</p>
   </div>
 
-  <ion-list *ngIf="items.length">
-    <ion-item-sliding *ngFor="let item of items">
-      <ion-item no-lines>
-        <h2>{{item.properties.title}}</h2>
-        <h3>{{item.properties.created_at | amTimeAgo}}</h3>
-        <p>{{item.properties.state}}</p>
-      </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="danger" (click)="deleteItem(item)">삭제</button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+  <ion-card *ngFor="let item of items" color="{{item.properties.state}}" >
+    <ion-grid no-lines>
+      <ion-row>
+        <ion-col center>
+          <h2>{{item.properties.title}}</h2>
+          <span class="short-info">{{item.properties.created_at  | amDateFormat:'YYYY.MM.DD HH:mm' }}</span>
+        </ion-col>
+        <ion-col width-20 center>
+          <ion-buttons>
+            <button ion-button icon-only outline clear (click)="showConfirm(item)">
+              <ion-icon name="more"></ion-icon>
+            </button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 
 </ion-content>
