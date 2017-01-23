@@ -63,7 +63,7 @@ export class DetailPage {
 
         fooga('send', {
             hitType: 'pageview',
-            title: 'detail',
+            title: 'DetailPage',
             page: this.item_id
         });
 
@@ -130,10 +130,10 @@ export class DetailPage {
             },
                        error => {
                 if (error.status == 403){
-                    alert("[정보] 로그인후 사진을 업로드 할 수 있습니다.")
+                    alert("[정보] 로그인후 댓글을 달수 있습니다.")
                 }
                 else {
-                    alert("[정보] 사진 업로드에 문제가 있습니다.");
+                    alert("[정보] 댓글 등록에 문제가 있습니다.");
                 }
                        });
     }

@@ -28,7 +28,6 @@ export class MyApp {
     constructor(public platform: Platform
                 ,public authService: AuthService
                ) {
-        fooga('send', 'pageview', 'MyApp');
 
         this.initializeApp();
 
@@ -42,7 +41,6 @@ export class MyApp {
         this.checkDesktop();
         this.menuOpened();
     }
-
     menuOpened() {
         if (localStorage.hasOwnProperty('user')){
             this.user = JSON.parse(localStorage.getItem('user'));
