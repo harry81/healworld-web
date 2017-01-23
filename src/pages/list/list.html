@@ -12,9 +12,8 @@
     <ion-grid (click)="openSearch()">
       <ion-row >
         <ion-col width-75 left class="short-info">
-          <p>{{address}}</p>
-          <p>반경 {{dist}} km</p>
           <p>{{search}}</p>
+          <p>{{address}} <span>반경 {{dist}} km</span> </p>
           <p style="count">{{items_count}} 건</p>
         </ion-col>
         <ion-col center>

@@ -2,8 +2,6 @@ page-detail {
 
     .card-md {
         box-shadow: none;
-        margin: 5px 0px 0px 0px;
-        width: calc(100%);
     }
 
     ion-card .card-md {
@@ -56,7 +54,7 @@ page-detail {
     }
 
     .toolbar-md {
-        height:20px
+        height: 60px
     }
 
     ion-avatar img {
@@ -74,7 +72,7 @@ page-detail {
     }
 
     .sebm-google-map-container {
-        height: 250px;
+        height: 200px;
         padding-top: 5px;
     }
 }

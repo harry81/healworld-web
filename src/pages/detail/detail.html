@@ -26,11 +26,6 @@
             <ion-col text-left>
               <p class="address">{{item.properties.address}}</p>
             </ion-col>
-            <ion-col>
-              <button ion-button outline item-right (click)="showMap()">
-                {{item.properties.distance}}
-              </button>
-            </ion-col>
           </ion-row>
         </ion-col>
 
@@ -55,6 +50,10 @@
       <ion-row padding-top padding-bottom>
         <ion-col class="short-info" center>
           {{item.properties.created_at | amTimeAgo}}
+        </ion-col>
+
+        <ion-col class="short-info" center>
+            {{item.properties.distance}}
         </ion-col>
 
         <ion-col center>
