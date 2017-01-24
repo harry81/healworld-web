@@ -50,7 +50,7 @@
           {{item.properties.created_at | amTimeAgo}}
         </ion-col>
 
-        <ion-col class="short-info" center>
+        <ion-col class="short-info" center (click)="showMap()">
           {{item.properties.distance}}
           <p class="address" *ngIf="item.properties.distance.length" >{{item.properties.address}}</p>
         </ion-col>
