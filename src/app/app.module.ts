@@ -13,6 +13,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DetailPage } from '../pages/detail/detail';
 import { MyitemPage } from '../pages/myitem/myitem';
+import { SignupPage } from '../pages/signup/signup';
 import { SearchPage } from '../pages/search/search';
 import { PostPage } from '../pages/post/post';
 import { ProfilePage } from '../pages/profile/profile';
@@ -34,6 +35,7 @@ export const deepLinkConfig: DeepLinkConfig = {
     links: [
         { component: ProfilePage, name: 'Profile', segment: 'profile' },
         { component: MyitemPage, name: 'Myitem', segment: 'myitem' },
+        { component: SignupPage, name: 'Signup', segment: 'signup' },
         { component: DetailPage,
           name: 'Detail', segment: 'detail/:item',
           defaultHistory: [ListPage] }
@@ -48,6 +50,7 @@ export const deepLinkConfig: DeepLinkConfig = {
         ListPage,
         DetailPage,
         MyitemPage,
+        SignupPage,
         SearchPage,
         PostPage,
         ProfilePage,
@@ -68,6 +71,7 @@ export const deepLinkConfig: DeepLinkConfig = {
         ListPage,
         DetailPage,
         MyitemPage,
+        SignupPage,
         SearchPage,
         PostPage,
         ProfilePage,

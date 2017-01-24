@@ -5,6 +5,7 @@ import { ListPage } from '../pages/list/list';
 import { ProfilePage } from '../pages/profile/profile';
 import { DesktopPage } from '../pages/desktop/desktop';
 import { MyitemPage } from '../pages/myitem/myitem';
+import { SignupPage } from '../pages/signup/signup';
 import { AuthService } from '../providers/auth-service';
 
 declare var fooga:Function;

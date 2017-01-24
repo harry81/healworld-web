@@ -27,6 +27,11 @@
       <a href="{{authService.baseUrl}}login/facebook/">
         <button ion-button outline round block>페이스북</button></a>
     </ion-item>
+
+    <ion-item>
+      <a href="#/signup">
+        <button ion-button outline round block>휴대폰 </button></a>
+    </ion-item>
   </ion-card>
 
   <ion-card *ngIf="authService.isAuthorized()">
