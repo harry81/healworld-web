@@ -1,6 +1,7 @@
 page-post {
-    ion-item .img {
+    ion-item img {
         padding: 1px;
+        border:1px solid brown;
     }
 
     .custom-file-input::-webkit-file-upload-button {
@@ -44,8 +45,62 @@ page-post {
     .item-md .item-button {
         height: 40px;
     }
+
+    ion-label {
+        font-size:1.3rem;
+    }
     .label-md {
         margin:unset;
     }
 
+    .button-bar > .button{
+        border: 1px solid #cfcfcf;
+    }
+
+    .button-bar > .button:last-child {
+        border-radius: 0px 20px 20px 0px !important;
+    }
+    .button-bar > .button:first-child {
+        border-radius: 20px 0px 0px 20px !important;
+    }
+
+
+    ion-list {
+        ul {
+            list-style: none;
+            font-size: 0px;
+        }
+
+        li {
+            border: 1px solid #cfcfcf;
+            font-size: 12px;
+            display: inline-block;
+            padding:3px;
+        }
+
+        input {
+            visibility:hidden;
+            width:0px;
+        }
+
+        label {
+            cursor: pointer;
+            padding:7px;
+        }
+
+
+        input[type="radio"]:checked + label{
+            color:white;
+            background:#387ef5;
+        }
+
+
+        /* li:last-child > label{ */
+        /*     border-radius: 0px 20px 20px 0px !important; */
+        /* } */
+
+        /* li:first-child > label{ */
+        /*     border-radius: 20px 0px 0px 20px !important; */
+        /* } */
+    }
 }

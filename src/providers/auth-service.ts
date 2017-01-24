@@ -29,6 +29,13 @@ export class AuthService {
         return tokenNotExpired() && id_token;
     }
 
+    signup(formData) {
+        let url = this.baseUrl + 'api-profile/signup/';
+
+        return this.http.post(url, formData)
+            .map(res => res.json());
+    }
+
     loggedOut() {
         this.session_logout()
             .subscribe(data => {

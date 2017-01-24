@@ -15,18 +15,8 @@
           </ion-avatar>
         </ion-col>
 
-        <ion-col>
-          <ion-row>
-            <ion-col text-left>
-              <b>{{item.properties.user.username}}</b>
-            </ion-col>
-          </ion-row>
-
-          <ion-row *ngIf="item.properties.distance.length" width-20 center>
-            <ion-col text-left>
-              <p class="address">{{item.properties.address}}</p>
-            </ion-col>
-          </ion-row>
+        <ion-col text-left center>
+          <b>{{item.properties.user.username}}</b>
         </ion-col>
 
       </ion-row>
@@ -48,14 +38,6 @@
 
 
       <ion-row padding-top padding-bottom>
-        <ion-col class="short-info" center>
-          {{item.properties.created_at | amTimeAgo}}
-        </ion-col>
-
-        <ion-col class="short-info" center>
-            {{item.properties.distance}}
-        </ion-col>
-
         <ion-col center>
           <span class="price">{{item.properties.price | number}} 원</span>
         </ion-col>
@@ -63,6 +45,16 @@
         <ion-col class="short-info" *ngIf="item.properties.user.phone">
           <a ion-button outline href="tel:{{item.properties.user.phone}}">전화걸기</a>
         </ion-col>
+
+        <ion-col class="short-info" center>
+          {{item.properties.created_at | amTimeAgo}}
+        </ion-col>
+
+        <ion-col class="short-info" center>
+          {{item.properties.distance}}
+          <p class="address" *ngIf="item.properties.distance.length" >{{item.properties.address}}</p>
+        </ion-col>
+
 
       </ion-row>
     </ion-item>
