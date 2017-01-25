@@ -32,8 +32,10 @@ export class SearchPage {
         let data: any;
         data = this._cookieService.getObject('search_data');
 
-        if (data)
-            this.searchForm.patchValue(data);
+        if (!data)
+            data = {search:'', dist:'10000'};
+
+        this.searchForm.patchValue(data);
     }
 
     locateHere () {

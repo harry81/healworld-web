@@ -16,7 +16,7 @@
           <p>{{address}} <span>반경 {{dist}} km</span> </p>
           <p style="count">{{items_count}} 건</p>
         </ion-col>
-        <ion-col center>
+        <ion-col center offset-10 class="search-icon">
           <button ion-button icon-only outline clear>
             <ion-icon name="search"></ion-icon>
           </button>
@@ -63,8 +63,7 @@
         </ion-col>
 
         <ion-col width-50 class="short-info">
-          {{item.properties.address}}
-          <p class="address" *ngIf="item.properties.distance.length" >{{item.properties.distance}}</p>
+          {{item.properties.address}} {{item.properties.distance}}
         </ion-col>
       </ion-row>
 
