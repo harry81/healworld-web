@@ -101,17 +101,20 @@ export class PostPage {
         this.postForm.value['point'] = `POINT (${coord.lng} ${coord.lat} )`;
         this.postForm.value['address'] = this.address;
         this.postForm.value['image_ids'] = this.preview.map(function(a) {return a.id;}).join();
-        this.itemService.postItem(this.postForm.value)
-            .subscribe(response => {
-                this.viewCtrl.dismiss(response);
-            }, error => {
-                if (error.status == 403){
-                    alert("[정보] 로그인 후 진행할 수 있습니다.");
-                }
-                else {
-                    alert("[정보] 아이템 등록에 문제가 있습니다.");
-                }
-            });
+
+        console.log('form', this.postForm);
+
+        // this.itemService.postItem(this.postForm.value)
+        //     .subscribe(response => {
+        //         this.viewCtrl.dismiss(response);
+        //     }, error => {
+        //         if (error.status == 403){
+        //             alert("[정보] 로그인 후 진행할 수 있습니다.");
+        //         }
+        //         else {
+        //             alert("[정보] 아이템 등록에 문제가 있습니다.");
+        //         }
+        //     });
     }
 
     onCancel() {
