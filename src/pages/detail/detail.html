@@ -42,7 +42,7 @@
           <span class="price">{{item.properties.price | number}} 원</span>
         </ion-col>
 
-        <ion-col class="short-info" *ngIf="item.properties.user.phone">
+        <ion-col class="short-info" *ngIf="item.properties.user.phone" center>
           <a ion-button outline href="tel:{{item.properties.user.phone}}">전화걸기</a>
         </ion-col>
 
