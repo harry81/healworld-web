@@ -28,10 +28,10 @@
         <button ion-button outline round block>페이스북</button></a>
     </ion-item>
 
-    <ion-item>
-      <a href="#/signup">
-        <button ion-button outline round block>휴대폰 </button></a>
-    </ion-item>
+    <!-- <ion-item> -->
+    <!--   <a href="#/signup"> -->
+    <!--     <button ion-button outline round block>휴대폰 </button></a> -->
+    <!-- </ion-item> -->
   </ion-card>
 
   <ion-card *ngIf="authService.isAuthorized()">
@@ -43,11 +43,6 @@
       <h2>{{username}}</h2>
       <h3>{{social_auth.provider}}</h3>
     </ion-item>
-
-    <!-- <ion-item> -->
-    <!--   <ion-label>푸시 알림 받기 </ion-label> -->
-    <!--   <ion-toggle  [(ngModel)]="notification_push" (ionChange)="subscribeToPush();" checked="true"></ion-toggle> -->
-    <!-- </ion-item> -->
 
     <ion-item>
       <ion-label>전화</ion-label>
