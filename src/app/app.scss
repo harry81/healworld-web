@@ -106,3 +106,11 @@ ion-card-content {
 input[type="text"] textarea[type="text"] {
     font-size:1.3rem;
 }
+
+body, input, textarea {
+    font-family: 'Nanum Gothic', 'Helvetica', Arial, Lucida Grande, sans-serif;
+    font-size: 14px;   /* if that’s what you want... */
+    line-height: 1.4;  /* somewhat excessive */
+    color: #232222;    /* if that’s what you want, but it reduces legibility */
+    background: white; /* always set background when you set color */
+}
