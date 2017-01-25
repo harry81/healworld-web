@@ -63,7 +63,8 @@
         </ion-col>
 
         <ion-col width-50 class="short-info">
-          <span >{{item.properties.address}} {{item.properties.distance}}</span>
+          {{item.properties.address}}
+          <p class="address" *ngIf="item.properties.distance.length" >{{item.properties.distance}}</p>
         </ion-col>
       </ion-row>
 
