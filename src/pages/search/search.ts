@@ -54,9 +54,9 @@ export class SearchPage {
         if (search != false) {
             data = this.searchForm.value;
             this._cookieService.putObject('search_data', data);
+            fooga('send', 'event', 'SearchPage', 'data', JSON.stringify(data));
         }
 
-        fooga('send', 'event', 'SearchPage', 'data', data);
         this.viewCtrl.dismiss(data);
     }
 }
