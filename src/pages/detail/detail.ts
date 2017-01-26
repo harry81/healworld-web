@@ -70,9 +70,7 @@ export class DetailPage {
     }
 
     ionViewDidLoad() {
-        fooga('send', 'event', 'Detail', 'open', this.item_id);
         fooga('send', 'event', 'Detail', 'userAgent', navigator.userAgent);
-
         this.loadComment();
 
         if (!this.authService.isAuthorized()) {
@@ -99,6 +97,7 @@ export class DetailPage {
                 if (this.user && this.item.properties.user.pk == this.user.pk)
                     this.item_owner = true;
 
+                fooga('send', 'event', 'Detail', 'loadItem', this.item.properties.title);
             });
     }
 
