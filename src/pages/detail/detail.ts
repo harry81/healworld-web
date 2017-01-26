@@ -71,6 +71,7 @@ export class DetailPage {
 
     ionViewDidLoad() {
         fooga('send', 'event', 'Detail', 'open', this.item_id);
+        fooga('send', 'event', 'Detail', 'userAgent', navigator.userAgent);
 
         this.loadComment();
 
