@@ -105,12 +105,15 @@ export class PostPage {
         this.itemService.postItem(this.postForm.value)
             .subscribe(response => {
                 this.viewCtrl.dismiss(response);
+                fooga('send', 'event', 'onSubmit', 'OK', response.properties.pk);
             }, error => {
                 if (error.status == 403){
                     alert("[정보] 로그인 후 진행할 수 있습니다.");
+                    fooga('send', 'event', 'onSubmit', 'error', error.message);
                 }
                 else {
                     alert("[정보] 아이템 등록에 문제가 있습니다.");
+                    fooga('send', 'event', 'onSubmit', 'error', error.message);
                 }
             });
     }
@@ -141,11 +144,11 @@ export class PostPage {
                         let addr = response['results'][0]['formatted_address'].split(' ');
                         this.address = addr.slice(addr.length - 2, addr.length).join(' ');
                     },error=> {
-                        fooga('send', 'event', 'post', error.message);
+                        fooga('send', 'event', 'getAddress', 'error', error.message);
                         alert('현재 주소를 알수 없습니다.');
                     })
             },error=> {
-                fooga('send', 'event', 'post', error.message);
+                fooga('send', 'event', 'getAddress', 'error', error.message);
                 alert('현재 위치를 알수 없습니다.');
             });
     }
