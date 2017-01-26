@@ -24,7 +24,6 @@ export class MyitemPage {
                 ,public geoService: GeoService
                ) {
         fooga('send', 'pageview', 'MyItemPage');
-
     }
 
     ionViewDidLoad() {
@@ -95,6 +94,7 @@ export class MyitemPage {
             ]
         });
         confirm.present();
+        fooga('send', 'event', 'MyItemPage', 'showConfirm', item.properties.pk);
     }
 
 }

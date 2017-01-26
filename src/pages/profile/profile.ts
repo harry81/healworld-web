@@ -49,7 +49,10 @@ export class ProfilePage {
     }
 
     ionViewDidLoad() {
-        fooga('send', 'event', 'Profile', 'open');
+        if (this.user)
+            fooga('send', 'event', 'Profile', 'open', this.user.pk);
+        else
+            fooga('send', 'event', 'Profile', 'open');
     }
 
     subscribeToPush() {
@@ -75,8 +78,7 @@ export class ProfilePage {
     }
 
     logout() {
-        fooga('send', 'event', 'Profilepage', 'logout');
+        fooga('send', 'event', 'Profilepage', 'logout', this.user.pk);
         this.authService.loggedOut();
     }
-
 }

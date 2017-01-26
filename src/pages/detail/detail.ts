@@ -113,9 +113,14 @@ export class DetailPage {
 
     postComment() {
         if (!this.authService.isAuthorized()) {
-            alert("[정보] 로그인후 댓글을 달 수 있습니다.");
+            let message = "[정보] 로그인후 댓글을 달 수 있습니다.";
+            alert(message);
+            fooga('send', 'event', 'Detail', 'alert', message);
+
             return;
         }
+
+        fooga('send', 'event', 'Detail', 'postComment', this.item_id);
 
         this.commentForm.value['content_type'] = 8; // content type of Item
         this.commentForm.value['site'] = 1;
@@ -139,6 +144,8 @@ export class DetailPage {
     }
 
     showMap() {
+        fooga('send', 'event', 'Detail', 'showMap', this.item_id);
+
         this.navCtrl.push(MapPage, {
             lat: this.lat,
             lng: this.lng,
@@ -153,6 +160,5 @@ export class DetailPage {
             this.authService.showGoLoginConfirm('댓글을');
             return;
         }
-        console.log('want to write reply');
     }
 }

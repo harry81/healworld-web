@@ -132,6 +132,8 @@ export class ListPage {
     }
 
     openSearch() {
+        fooga('send', 'event', 'List', 'openSearch');
+
         let searchModal = this.modalCtrl.create(SearchPage);
         searchModal.onDidDismiss(data => {
 
@@ -140,7 +142,6 @@ export class ListPage {
                 this.params.set('dist', data['dist']);
                 this.locatePosition();
             }
-
         });
 
         searchModal.present();
