@@ -11,22 +11,34 @@
         필수
       </ion-list-header>
       <ion-item no-lines>
-        <ion-input type="text" formControlName="phone" placeholder="휴대폰번호"></ion-input>
+        <ion-input type="number" formControlName="username" placeholder="휴대폰번호"></ion-input>
         <button ion-button item-right outline>인증받기</button>
       </ion-item>
+      <div *ngIf="error.username" text-left>
+        <p class="error-message">{{error.username}}</p>
+      </div>
 
       <ion-item no-lines>
         <ion-input type="number" formControlName="verified_code" placeholder="인증번호"></ion-input>
+        <p *ngIf="error.verified_code"  class="alert">{{error.verified_code}}</p>
       </ion-item>
+      <div *ngIf="error.verified_code" text-left padding-left>
+        <p class="error-message">{{error.verified_code}}</p>
+      </div>
 
       <ion-item no-lines>
         <ion-input type="password"  formControlName="password1" placeholder="비밀번호"></ion-input>
       </ion-item>
+      <div *ngIf="error.password1" text-left padding-left>
+        <p class="error-message">{{error.password1}}</p>
+      </div>
 
       <ion-item no-lines>
         <ion-input type="password"  formControlName="password2" placeholder="비밀번호(확인)"></ion-input>
       </ion-item>
-
+      <div *ngIf="error.password2" text-left padding-left>
+        <p class="error-message">{{error.password2}}</p>
+      </div>
     </ion-list>
 
     <ion-list>
@@ -36,8 +48,15 @@
       <ion-item>
         <ion-input type="text" formControlName="nick" placeholder="닉네임"></ion-input>
       </ion-item>
-
     </ion-list>
+
+    <ion-item no-lines *ngIf="(!signupform.valid) && submitAttempt">
+      error
+    </ion-item>
+
+      <div *ngIf="error.non_field_errors" text-left padding-left>
+        <p class="error-message">{{error.non_field_errors}}</p>
+      </div>
 
     <button ion-button full type="submit">가입하기</button>
   </form>

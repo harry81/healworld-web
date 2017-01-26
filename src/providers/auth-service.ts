@@ -30,7 +30,7 @@ export class AuthService {
     }
 
     signup(formData) {
-        let url = this.baseUrl + 'api-profile/signup/';
+        let url = this.baseUrl + 'rest-auth/registration/';
 
         return this.http.post(url, formData)
             .map(res => res.json());

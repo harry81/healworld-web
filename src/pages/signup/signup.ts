@@ -10,6 +10,14 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class SignupPage {
     public signupform: any;
+    submitAttempt: boolean = false;
+
+    public error = {
+        phone:  [],
+        verified_code:  [],
+        password1:  [],
+        password2:  []
+    };
 
     constructor(public navCtrl: NavController
                 ,public navParams: NavParams
@@ -17,17 +25,17 @@ export class SignupPage {
                 ,private formBuilder: FormBuilder) {
 
         this.signupform = this.formBuilder.group({
-            'phone': [
-                '', Validators.compose([Validators.required])
+            'username': [
+                '', Validators.compose([Validators.minLength(11), Validators.required])
             ],
             'verified_code': [
-                '', Validators.compose([Validators.required])
+                '', Validators.compose([Validators.minLength(4), Validators.required])
             ],
             'password1': [
-                '', Validators.compose([Validators.required])
+                '', Validators.compose([Validators.minLength(8), Validators.required])
             ],
             'password2': [
-                '', Validators.compose([Validators.required])
+                '', Validators.compose([Validators.minLength(8), Validators.required])
             ],
             'nick': [],
         });
@@ -39,10 +47,16 @@ export class SignupPage {
     }
 
     doSignup() {
+        this.submitAttempt = true;
+
         console.log('signup', this.signupform.value);
         this.authService.signup(this.signupform.value)
             .subscribe(data=> {
                 console.log('ok');
+            }, error => {
+                let parsed_error = error['_body'];
+                this.error = JSON.parse(parsed_error);
+                console.log('error', this.error);
             });
     }
 }
