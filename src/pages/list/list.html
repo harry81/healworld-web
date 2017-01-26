@@ -76,6 +76,11 @@
     </ion-card>
   </ion-list>
 
+  <ion-card *ngIf="items.length==0" class="short-info no-items">
+      찾으시는 물건 "{{search}}"<br>"{{address}}" 주변에 없습니다.
+  </ion-card>
+
+
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content
        loadingSpinner="bubbles"
