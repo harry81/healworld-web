@@ -56,7 +56,8 @@ export class PostPage {
     }
 
     ionViewDidLoad() {
-        this.phone = this.user.phone;
+        // TODO remove
+        // this.phone = this.user.phone;
     }
 
     popView(){
@@ -97,7 +98,11 @@ export class PostPage {
             return
         }
 
-        this.postForm.value['user_id'] = this.user.pk;
+        if (this.user)
+            this.postForm.value['user_id'] = this.user.pk;
+        else
+            this.postForm.value['user_id'] = '44';
+
         this.postForm.value['point'] = `POINT (${coord.lng} ${coord.lat} )`;
         this.postForm.value['address'] = this.address;
         this.postForm.value['image_ids'] = this.preview.map(function(a) {return a.id;}).join();
@@ -173,10 +178,12 @@ export class PostPage {
                 {
                     text: '저장',
                     handler: data => {
-                        this.itemService.patchProfile(data)
-                            .subscribe(response => {
-                                this.phone = response.data.phone;
-                            });
+                        this.phone = data.phone;
+
+                        // this.itemService.patchProfile(data)
+                        //     .subscribe(response => {
+                        //         this.phone = response.data.phone;
+                        //     });
                     }
                 }
             ]

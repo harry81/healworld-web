@@ -96,6 +96,12 @@ export class AuthService {
                     handler: () => {
                         window.location.href = "/#/profile";
                     }
+                },
+                {
+                    text: '익명으로 등록',
+                    handler: () => {
+                        window.location.href = "/#/profile";
+                    }
                 }
             ]
         });
