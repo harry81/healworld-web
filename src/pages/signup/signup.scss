@@ -1,12 +1,13 @@
 page-signup {
-    .text-input-md {
-    }
-
     .text-input {
         border-radius: 5px;
     }
 
     .error-message {
         color: red;
+    }
+
+    input[type=text]:focus {
+        box-shadow: -8px 10px 0px -7px #4EA6EA, 8px 10px 0px -7px #4EA6EA;
     }
 }

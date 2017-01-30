@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <form [formGroup]="signupform" id="postFrom" (ngSubmit)="doSignup($event)">
-    <ion-list>
+    <ion-list no-lines>
       <ion-list-header>
         필수
       </ion-list-header>
@@ -45,7 +45,7 @@
       <ion-list-header>
         선택
       </ion-list-header>
-      <ion-item>
+      <ion-item no-lines>
         <ion-input type="text" formControlName="nick" placeholder="닉네임"></ion-input>
       </ion-item>
     </ion-list>
