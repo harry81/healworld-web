@@ -81,4 +81,11 @@ export class ProfilePage {
         fooga('send', 'event', 'Profilepage', 'logout', this.user.pk);
         this.authService.loggedOut();
     }
+
+    login_social(provider) {
+        fooga('send', 'event', 'Profile', 'social_login', provider);
+        let url = this.authService.baseUrl + "login/" + provider + '/';
+        console.log('url', url);
+        window.location.href = url;
+    }
 }

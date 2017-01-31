@@ -14,18 +14,18 @@
     </ion-card-header>
 
     <ion-item>
-      <a href="{{authService.baseUrl}}login/kakao/">
-        <button ion-button outline round block color="kakao">카카오</button></a>
+      <button ion-button outline round block
+              (click)="login_social('kakao')" color="kakao">카카오</button>
     </ion-item>
 
     <ion-item>
-      <a href="{{authService.baseUrl}}login/naver/">
-        <button ion-button outline round block color="secondary">네이버</button></a>
+      <button ion-button outline round block
+              (click)="login_social('naver')" color="secondary">네이버</button>
     </ion-item>
 
     <ion-item>
-      <a href="{{authService.baseUrl}}login/facebook/">
-        <button ion-button outline round block>페이스북</button></a>
+      <button ion-button outline round block
+              (click)="login_social('facebook')">페이스북</button>
     </ion-item>
 
     <!-- <ion-item> -->
