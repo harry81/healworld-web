@@ -3,6 +3,7 @@ import { NavController, AlertController } from 'ionic-angular';
 import { URLSearchParams } from '@angular/http';
 import { ItemService } from '../../providers/item-service';
 import { GeoService } from '../../providers/geo-service';
+import { DetailPage } from '../detail/detail';
 
 declare var fooga:Function;
 
@@ -71,6 +72,12 @@ export class MyitemPage {
                 this.response = data;
                 console.log('data loaditem', data);
             });
+    }
+
+    itemTapped(item, event) {
+        this.navCtrl.push(DetailPage, {
+            item: item.properties.pk
+        });
     }
 
     showConfirm(item) {

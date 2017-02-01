@@ -16,12 +16,12 @@
   <ion-card *ngFor="let item of items" color="{{item.properties.state}}" >
     <ion-grid no-lines>
       <ion-row>
-        <ion-col center>
+        <ion-col center (click)="itemTapped(item)">
           <h2>{{item.properties.title}}</h2>
           <span class="short-info">{{item.properties.created_at  | amDateFormat:'YYYY.MM.DD' }}</span>
         </ion-col>
         <ion-col width-20 center>
-          <ion-buttons>
+          <ion-buttons *ngIf="item.properties.state!='deleted'">
             <button ion-button icon-only outline clear (click)="showConfirm(item)">
               <ion-icon name="more"></ion-icon>
             </button>
