@@ -93,7 +93,10 @@ export class PostPage {
     onSubmit() {
         let coord = JSON.parse(sessionStorage.getItem('position'));
         if (coord === null){
-            alert("등록하려는 위치를 찾지 못했습니다.");
+            let message = "등록하려는 위치를 찾지 못했습니다.";
+
+            fooga('send', 'event', 'onSubmit', 'onCancel()');
+            alert(message);
             return
         }
 
@@ -105,7 +108,7 @@ export class PostPage {
         this.itemService.postItem(this.postForm.value)
             .subscribe(response => {
                 this.viewCtrl.dismiss(response);
-                fooga('send', 'event', 'onSubmit', 'OK', response.properties.pk);
+                fooga('send', 'event', 'onSubmit', 'done', response.properties.pk);
             }, error => {
                 if (error.status == 403){
                     alert("[정보] 로그인 후 진행할 수 있습니다.");
@@ -119,6 +122,7 @@ export class PostPage {
     }
 
     onCancel() {
+        fooga('send', 'event', 'onSubmit', 'onCancel()');
         this.viewCtrl.dismiss();
     }
 
@@ -176,6 +180,8 @@ export class PostPage {
                         this.itemService.patchProfile(data)
                             .subscribe(response => {
                                 this.phone = response.data.phone;
+                                fooga('send', 'event', 'showChangePhone',
+                                      'patched', response.data.phone);
                             });
                     }
                 }
