@@ -83,7 +83,7 @@ export class ProfilePage {
     }
 
     login_social(provider) {
-        fooga('send', 'event', 'Profile', 'social_login', provider);
+        fooga('send', 'event', 'Profilepage', 'social_login', provider);
         let url = this.authService.baseUrl + "login/" + provider + '/';
         console.log('url', url);
         window.location.href = url;
