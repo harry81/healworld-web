@@ -112,12 +112,13 @@ export class PostPage {
             }, error => {
                 if (error.status == 403){
                     alert("[정보] 로그인 후 진행할 수 있습니다.");
-                    fooga('send', 'event', 'onSubmit', 'error', error.message);
+                    fooga('send', 'event', 'onSubmit', 'error');
                 }
                 else {
                     alert("[정보] 아이템 등록에 문제가 있습니다.");
-                    fooga('send', 'event', 'onSubmit', 'error', error.message);
+                    fooga('send', 'event', 'onSubmit', 'error', error._body);
                 }
+                throw new Error("onSubmit" + error._body);
             });
     }
 
