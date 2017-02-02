@@ -1,9 +1,10 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, DeepLinkConfig } from 'ionic-angular';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import 'moment/locale/ko';
+import * as Raven from 'raven-js';
 import { Http } from '@angular/http';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
@@ -21,6 +22,16 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { DesktopPage } from '../pages/desktop/desktop';
 import { MapPage } from '../pages/map/map';
 
+
+Raven
+  .config('https://685b68704634462ebd2b855d94f39bf6@sentry.io/127326')
+  .install();
+
+export class RavenErrorHandler implements ErrorHandler {
+  handleError(err:any) : void {
+    Raven.captureException(err.originalError);
+  }
+}
 
 export function getAuthHttp(http) {
     return new AuthHttp(new AuthConfig({
@@ -86,6 +97,7 @@ export const deepLinkConfig: DeepLinkConfig = {
                     deps: [Http]
                 },
                 { provide: LOCALE_ID, useValue: "ko" },
+                { provide: ErrorHandler, useClass: RavenErrorHandler }
                ]
 })
 export class AppModule {}
