@@ -8,6 +8,7 @@ module.exports = {
   },
   copyIndexContent: {
     src: ['{{SRC}}/index.html', '{{SRC}}/manifest.json',
+          '{{SRC}}/robots.txt',
           '{{SRC}}/service-worker.js',
           '{{SRC}}/offline-google-analytics-import.js',
           '{{SRC}}/sw-toolbox.js',
