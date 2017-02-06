@@ -57,7 +57,7 @@ export class ListPage {
     }
 
     ionViewDidLoad() {
-        fooga('send', 'event', 'List', 'open');
+        fooga('send', 'event', 'ListPage', 'open');
     }
 
     updateItem(data, overwrite=false){
@@ -132,7 +132,7 @@ export class ListPage {
     }
 
     openSearch() {
-        fooga('send', 'event', 'List', 'openSearch');
+        fooga('send', 'event', 'ListPage', 'openSearch');
 
         let searchModal = this.modalCtrl.create(SearchPage);
         searchModal.onDidDismiss(data => {
@@ -165,7 +165,7 @@ export class ListPage {
         });
 
         addItemModal.present();
-        fooga('send', 'event', 'addItem', 'open', 'PostPage');
+        fooga('send', 'event', 'PostPage', 'addItem()', 'open');
     }
 
     doRefresh(refresher) {

@@ -56,6 +56,7 @@ export class PostPage {
     }
 
     ionViewDidLoad() {
+        fooga('send', 'event', 'PostPage', 'shown');
         this.phone = this.user.phone;
     }
 
