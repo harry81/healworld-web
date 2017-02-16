@@ -51,9 +51,10 @@
 
       <ion-card-content>
         <b>{{item.properties.title}}</b>
+{{item.properties.memo}}
       </ion-card-content>
 
-      <ion-row (click)="itemTapped(item)">
+      <ion-row (click)="itemTapped(item)" *ngIf="item.properties.price">
         <ion-col width-25 class="price">
           <span >{{item.properties.price | number}} 원</span>
         </ion-col>
@@ -67,7 +68,7 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="item.properties.cnt_of_comments">
         <ion-col offset-75 class="short-info">
           <span>{{ item.properties.cnt_of_comments }} 댓글</span>
         </ion-col>

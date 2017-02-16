@@ -126,9 +126,12 @@ export class ListPage {
     }
 
     itemTapped(item, event) {
-        this.navCtrl.push(DetailPage, {
-            item: item.properties.pk
-        });
+        if (item.properties.link != undefined)
+            window.open(item.properties.link, '_system', 'location=yes');
+        else
+            this.navCtrl.push(DetailPage, {
+                item: item.properties.pk
+            });
     }
 
     openSearch() {
