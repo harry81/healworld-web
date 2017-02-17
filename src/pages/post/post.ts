@@ -96,7 +96,7 @@ export class PostPage {
         if (coord === null){
             let message = "등록하려는 위치를 찾지 못했습니다.";
 
-            fooga('send', 'event', 'onSubmit', 'onCancel()');
+            fooga('send', 'event', 'onSubmit', 'onCancel-등록하려는 위치를 찾지 못했습니다.');
             alert(message);
             return
         }
@@ -149,6 +149,7 @@ export class PostPage {
                     .subscribe((response) => {
                         let addr = response['results'][0]['formatted_address'].split(' ');
                         this.address = addr.slice(addr.length - 2, addr.length).join(' ');
+                        fooga('send', 'event', 'getAddress', this.address);
                     },error=> {
                         fooga('send', 'event', 'getAddress', 'error', error.message);
                         alert('현재 주소를 알수 없습니다.');
