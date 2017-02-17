@@ -126,8 +126,12 @@ export class ListPage {
     }
 
     itemTapped(item, event) {
-        if (item.properties.link != undefined)
+
+        if (item.properties.link != undefined) {
             window.open(item.properties.link, '_system', 'location=yes');
+            fooga('send', 'event', 'ListPage', 'facebook itemTapped', item.properties.link);
+        }
+
         else
             this.navCtrl.push(DetailPage, {
                 item: item.properties.pk
