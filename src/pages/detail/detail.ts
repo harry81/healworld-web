@@ -53,7 +53,7 @@ export class DetailPage {
             this.loadItem(this.item_id);
         }
         this.commentForm = this.formBuilder.group({
-            'comment': [{value: '', disabled: true},
+            'comment': [{value: '', disabled: false},
                         Validators.compose([Validators.required])]
         });
 
